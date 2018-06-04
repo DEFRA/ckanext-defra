@@ -7,17 +7,13 @@
   margin-top: -30px;
 }
 
-html,
-body {
-   height:100%;
-}
-
 body {
   font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serifm;
   font-size: 16px;
   background: none;
   background-color: rgb(238, 238, 238);
   color: #333;
+  padding-bottom: 124px;   /* Height of the footer */
 }
 
 .masthead .navigation .nav-pills li.active a {
@@ -35,13 +31,6 @@ body {
 a.btn-primary, a.btn-primary:hover, a.btn-primary:visited {
   background-color: rgb(0, 163, 59);
   background-image: none;
-}
-
-footer {
-  position:absolute;
-  bottom:0;
-  width:100%;
-  height:124px;
 }
 
 /* Homepage  */
@@ -62,3 +51,8 @@ footer {
   background-color: #015e23;
 }
 
+
+.publisher-image {
+  float: left;
+  padding-right: 20px;
+}
