@@ -24,12 +24,10 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
 
     # IRoutes
     def before_map(self, routes):
-        routes.redirect('/organization/{url:.*}', '/publisher/{url}')        
+        routes.redirect('/organization/{url:.*}', '/publisher/{url}')                
         return routes
 
     def after_map(self, routes):
-        # delete_routes_by_path_startswith(routes, '/organization')
-
         with SubMapper(routes, controller='ckanext.defra.controllers.publisher:PublisherController') as m:
             m.connect('publishers_index', '/publisher', action='index')
             m.connect('publisher_index', '/publisher', action='index')
@@ -59,6 +57,7 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
                     '/publisher/bulk_process/{id}',
                     action='bulk_process')
 
+        # delete_routes_by_path_startswith(routes, '/organization')
         return routes
 
     # ITemplateHelpers
