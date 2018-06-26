@@ -136,7 +136,7 @@ msgstr "User {0} not authorised to update resource {1}"
 
 #: ckanext/datastore/templates/ajax_snippets/api_info.html:19
 msgid "CKAN Data API"
-msgstr "CKAN Data API"
+msgstr "Data API"
 
 #: ckanext/datastore/templates/ajax_snippets/api_info.html:23
 msgid "Access resource data via a web API with powerful query support"
@@ -1088,11 +1088,11 @@ msgstr "Unauthorised to read package %s"
 
 #: ckan/controllers/package.py:444
 msgid "CKAN Dataset Revision History"
-msgstr "CKAN Dataset Revision History"
+msgstr "Dataset Revision History"
 
 #: ckan/controllers/package.py:447
 msgid "Recent changes to CKAN Dataset: "
-msgstr "Recent changes to CKAN Dataset: "
+msgstr "Recent changes to Dataset: "
 
 #: ckan/controllers/package.py:503
 msgid "Unauthorized to create a package"
@@ -1197,11 +1197,11 @@ msgstr "No preview has been defined."
 
 #: ckan/controllers/revision.py:44
 msgid "CKAN Repository Revision History"
-msgstr "CKAN Repository Revision History"
+msgstr "Repository Revision History"
 
 #: ckan/controllers/revision.py:46
 msgid "Recent changes to the CKAN repository."
-msgstr "Recent changes to the CKAN repository."
+msgstr "Recent changes to the repository."
 
 #: ckan/controllers/revision.py:110
 #, python-format
@@ -2583,7 +2583,7 @@ msgstr "About {0}"
 
 #: ckan/templates/footer.html:15
 msgid "CKAN API"
-msgstr "CKAN API"
+msgstr "API"
 
 #: ckan/templates/footer.html:16
 msgid "CKAN Association"
@@ -2711,7 +2711,7 @@ msgstr "Update Config"
 
 #: ckan/templates/admin/config.html:26
 msgid "CKAN config options"
-msgstr "CKAN config options"
+msgstr "Config options"
 
 #: ckan/templates/admin/config.html:33
 #, python-format
@@ -2755,7 +2755,7 @@ msgstr "Confirm Reset"
 
 #: ckan/templates/admin/index.html:15
 msgid "Administer CKAN"
-msgstr "Administer CKAN"
+msgstr "Administer"
 
 #: ckan/templates/admin/index.html:20
 #, python-format
@@ -3130,7 +3130,7 @@ msgid ""
 "particular theme, or as a very simple way to help people find and search "
 "your own published datasets. "
 msgstr ""
-"You can use CKAN Groups to create and manage collections of datasets. This "
+"You can use Groups to create and manage collections of datasets. This "
 "could be to catalogue datasets for a particular project or team, or on a "
 "particular theme, or as a very simple way to help people find and search "
 "your own published datasets. "
@@ -3233,7 +3233,7 @@ msgstr ""
 
 #: ckan/templates/home/snippets/promoted.html:8
 msgid "Welcome to CKAN"
-msgstr "Welcome to CKAN"
+msgstr "Welcome to DefraData"
 
 #: ckan/templates/home/snippets/promoted.html:10
 msgid ""
@@ -3483,7 +3483,7 @@ msgid ""
 "datasets. Users can have different roles within an Organization, depending "
 "on their level of authorisation to create, edit and publish. "
 msgstr ""
-" CKAN Publishers are used to create, manage and publish collections of "
+"Publishers are used to create, manage and publish collections of "
 "datasets. Users can have different roles within an Publisher, depending "
 "on their level of authorisation to create, edit and publish. "
 
@@ -3531,7 +3531,7 @@ msgid ""
 "with a description and other information, at a fixed URL. Datasets are what "
 "users see when searching for data. "
 msgstr ""
-" A CKAN Dataset is a collection of data resources (such as files), together "
+" A Dataset is a collection of data resources (such as files), together "
 "with a description and other information, at a fixed URL. Datasets are what "
 "users see when searching for data. "
 
@@ -4426,10 +4426,8 @@ msgid "Account Info"
 msgstr "Account Info"
 
 #: ckan/templates/user/edit.html:19
-msgid ""
-" Your profile lets other CKAN users know about who you are and what you do. "
-msgstr ""
-" Your profile lets other CKAN users know about who you are and what you do. "
+msgid "Your profile lets other CKAN users know about who you are and what you do."
+msgstr "Your profile lets other users know about who you are and what you do. "
 
 #: ckan/templates/user/edit_user_form.html:7
 msgid "Change details"

@@ -1,0 +1,14 @@
+{% ckan_extends %}
+
+{% block organization_facets %}
+  <div class="filters">
+    <div>
+      {% for facet in c.facet_titles %}
+        {% if not facet in ['groups'] %}
+          {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet, extras={'id':c.group_dict.id}) }}
+        {% endif %}
+      {% endfor %}
+    </div>
+    <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
+  </div>
+{% endblock %}
