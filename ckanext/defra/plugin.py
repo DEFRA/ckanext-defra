@@ -3,6 +3,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.config.routing import SubMapper
 
+import ckanext.defra.logic.auth as auth
 import ckanext.defra.schema as schema_defs
 
 
@@ -11,11 +12,15 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITemplateHelpers)
+    plugins.implements(plugins.IAuthFunctions)
 
     # IConfigurer
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
+
+    def get_auth_functions(self):
+        return {'dashboard_show': auth.dashboard_show}
 
     # IRoutes
     def before_map(self, routes):

@@ -10,6 +10,10 @@
   margin-top: -30px;
 }
 
+.hero { 
+  min-height: 0;
+}
+
 
 body {
   font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serifm;

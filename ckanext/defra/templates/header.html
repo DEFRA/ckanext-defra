@@ -1,6 +1,9 @@
 {% ckan_extends %}
 
 {% block header_site_navigation_tabs %}
+  {% if h.check_access('dashboard_show') %}
+    <li><a href="{{ h.url_for('dashboard.index') }}">Dashboard</a></li>
+  {% endif %}
   {{ h.build_nav_main(
     ('search', _('Datasets')),
     ('publisher_index', 'Publishers'),

@@ -2656,7 +2656,7 @@ msgstr "Datasets"
 
 #: ckan/templates/header.html:116
 msgid "Search Datasets"
-msgstr "Search Datasets"
+msgstr "Find Datasets"
 
 #: ckan/templates/header.html:117 ckan/templates/home/snippets/search.html:11
 #: ckan/templates/snippets/simple_search.html:5
@@ -3073,7 +3073,7 @@ msgstr "Create Group"
 #: ckan/templates/group/read.html:21 ckan/templates/organization/read.html:25
 #: ckan/templates/snippets/search_form.html:3
 msgid "Search datasets..."
-msgstr "Search datasets..."
+msgstr "Find datasets..."
 
 #: ckan/templates/group/snippets/feeds.html:3
 msgid "Datasets in group: {group}"
@@ -3253,7 +3253,7 @@ msgstr "E.g. environment"
 
 #: ckan/templates/home/snippets/search.html:6
 msgid "Search data"
-msgstr "Search data"
+msgstr "Find data"
 
 #: ckan/templates/home/snippets/search.html:16
 msgid "Popular tags"
