@@ -3,9 +3,11 @@ import sys
 import uuid 
 from urlparse import urljoin
 
-import ckan.plugins.toolkit as toolkit 
+import ckan.plugins.toolkit as toolkit
+
 
 PublisherStub = collections.namedtuple('PublisherStub', ['name', 'title', 'image_url'])
+
 
 class ImportPublishersCommand(toolkit.CkanCommand):
     ''' Imports all of the publishers for Defra (inc. defra) '''

@@ -1,6 +1,9 @@
 {% ckan_extends %}
 
 {% block secondary_content %}
+
+{% snippet "spatial/snippets/spatial_query.html", default_extent="[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]]" %}
+
 <div class="filters">
   <div>
     {% for facet in c.facet_titles %}
@@ -12,3 +15,4 @@
   <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
 </div>
 {% endblock %}
+
