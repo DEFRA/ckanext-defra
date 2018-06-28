@@ -41,7 +41,8 @@ setup(
         defra=ckanext.defra.plugin:DefraPlugin
 
         [paste.paster_command]
-        import_publishers = ckanext.defra.commands.import_commands:ImportPublishersCommand
+        import_publishers = ckanext.defra.commands.import_publishers:ImportPublishersCommand
+        import_harvesters = ckanext.defra.commands.import_harvesters:ImportHarvestersCommand
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
