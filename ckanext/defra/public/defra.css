@@ -99,3 +99,7 @@ li.media-item {
   width: 100%;
   margin-left: 0;
 }
+
+.activity a {
+  font-weight: 700;
+}
