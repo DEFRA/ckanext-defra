@@ -6,7 +6,7 @@ from urlparse import urljoin
 import ckan.plugins.toolkit as toolkit
 
 
-PublisherStub = collections.namedtuple('PublisherStub', ['name', 'title', 'image_url'])
+PublisherStub = collections.namedtuple('PublisherStub', ['name', 'title', 'image_url', 'dgu_name'])
 
 
 class ImportPublishersCommand(toolkit.CkanCommand):
@@ -37,7 +37,7 @@ class ImportPublishersCommand(toolkit.CkanCommand):
             if publisher.image_url:
                 publisher_dict['image_url'] = urljoin(self.site_url, publisher.image_url)
 
-            result = toolkit.get_action(action)(
+            toolkit.get_action(action)(
                 self.context, publisher_dict
             )
 
@@ -61,171 +61,205 @@ class ImportPublishersCommand(toolkit.CkanCommand):
 PUBLISHERS = [
     PublisherStub(
         name='defra', 
+        dgu_name='',
         title='Department for Environment, Food & Rural Affairs',
         image_url='/images/defra.png'
     ),
     PublisherStub(
         name='forestry-commission', 
+        dgu_name='',
         title='Forestry Commission',
         image_url='/images/forestry-commission.png'
     ),    
     PublisherStub(
         name='the-water-services-regulation-authority', 
+        dgu_name='',
         title='The Water Services Regulation Authority',
         image_url='/images/the-water-services-regulation-authority.png'
     ),        
     PublisherStub(
-        name='apha', 
+        name='apha',
+        dgu_name='', 
         title='Animal and Plant Health Agency',
         image_url='/images/apha.png'
     ),        
     PublisherStub(
-        name='cefas', 
+        name='cefas',
+        dgu_name='', 
         title='Centre for Environment, Fisheries and Aquaculture Science',
         image_url='/images/cefas.png'
     ),        
     PublisherStub(
         name='rpa', 
+        dgu_name='',
         title='Rural Payments Agency',
         image_url='/images/rpa.png'
     ),        
     PublisherStub(
         name='vmd', 
+        dgu_name='',
         title='Veterinary Medicines Directorate',
         image_url='/images/vmd.png'
     ),        
     PublisherStub(
-        name='ahdb', 
+        name='ahdb',
+        dgu_name='', 
         title='Agriculture and Horticulture Development Board',
         image_url=''
     ),                            
     PublisherStub(
         name='kew', 
+        dgu_name='',
         title='Board of Trustees of the Royal Botanic Gardens Kew',
         image_url=''
     ),                            
     PublisherStub(
         name='ccw', 
+        dgu_name='',
         title='Consumer Council for Water',
         image_url=''
     ),                            
     PublisherStub(
         name='ea', 
+        dgu_name='',
         title='Environment Agency',
         image_url=''
     ),                            
     PublisherStub(
-        name='jncc', 
+        name='jncc',
+        dgu_name='', 
         title='Joint Nature Conservation Committee',
         image_url=''
     ),                            
     PublisherStub(
         name='mmo', 
+        dgu_name='',
         title='Marine Management Organisation',
         image_url=''
     ),                            
     PublisherStub(
         name='nfc', 
+        dgu_name='',
         title='National Forest Company',
         image_url=''
     ),                                                    
     PublisherStub(
         name='ne', 
+        dgu_name='',
         title='Natural England',
         image_url=''
     ),
     PublisherStub(
-        name='sfia', 
+        name='sfia',
+        dgu_name='', 
         title='Sea Fish Industry Authority',
         image_url=''
     ),
     PublisherStub(
-        name='acre', 
+        name='acre',
+        dgu_name='', 
         title='Advisory Committee on Releases to the Environment',
         image_url=''
     ),
     PublisherStub(
         name='iaap', 
+        dgu_name='',
         title='Independent Agricultural Appeals Panel',
         image_url=''
     ),
     PublisherStub(
         name='sac', 
+        dgu_name='',
         title='Science Advisory Council',
         image_url=''
     ),                  
     PublisherStub(
         name='vpc', 
+        dgu_name='',
         title='Veterinary Products Committee',
         image_url=''
     ),                  
     PublisherStub(
-        name='pvst', 
+        name='pvst',
+        dgu_name='', 
         title='Plant Varieties and Seeds Tribunal',
         image_url=''
     ),                  
     PublisherStub(
-        name='dnpa', 
+        name='dnpa',
+        dgu_name='', 
         title='Dartmoor National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
         name='dwi', 
+        dgu_name='',
         title='Drinking Water Inspectorate',
         image_url=''
     ),                  
     PublisherStub(
-        name='enpa', 
+        name='enpa',
+        dgu_name='', 
         title='Exmoor National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
-        name='ldnpa', 
+        name='ldnpa',
+        dgu_name='', 
         title='Lake District National Park Authority',
         image_url=''
     ),
     PublisherStub(
-        name='nfnpa', 
+        name='nfnpa',
+        dgu_name='', 
         title='New Forest National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
         name='nymnpa', 
+        dgu_name='',
         title='North York Moors National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
-        name='nnpa', 
+        name='nnpa',
+        dgu_name='', 
         title='Northumberland National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
-        name='pdnpa', 
+        name='pdnpa',
+        dgu_name='', 
         title='Peak District National Park Authority',
         image_url=''
     ),
     PublisherStub(
-        name='sdnpa', 
+        name='sdnpa',
+        dgu_name='', 
         title='South Downs National Park Authority',
         image_url=''
     ),                  
     PublisherStub(
-        name='ukcb', 
+        name='ukcb',
+        dgu_name='', 
         title='UK Co-ordinating Body',
         image_url=''
     ),                  
     PublisherStub(
-        name='ydnpa', 
+        name='ydnpa',
+        dgu_name='', 
         title='Yorkshire Dales National Park Authority',
         image_url=''
     ),                                                                      
     PublisherStub(
         name='ba', 
+        dgu_name='',
         title='Broads Authority',
         image_url=''
     ),                                                                      
     PublisherStub(
-        name='cgma', 
+        name='cgma',
+        dgu_name='', 
         title='Covent Garden Market Authority',
         image_url=''
     ),                                                                              

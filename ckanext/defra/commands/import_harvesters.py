@@ -33,7 +33,6 @@ class ImportHarvestersCommand(toolkit.CkanCommand):
         for source in existing_sources:
             existing_source_urls[source['url'].strip().lower()] = source
 
-        print existing_source_urls.keys()
         for harvester in HARVESTERS:
             print 'Checking "{}"'.format(harvester.url)
             action = 'harvest_source_create'
