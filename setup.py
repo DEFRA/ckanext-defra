@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from setuptools import setup, find_packages  
-from codecs import open  
+from setuptools import setup, find_packages
+from codecs import open
 from os import path
 
 here = path.abspath(path.dirname(__file__))
@@ -43,6 +43,7 @@ setup(
         [paste.paster_command]
         import_publishers = ckanext.defra.commands.import_publishers:ImportPublishersCommand
         import_harvesters = ckanext.defra.commands.import_harvesters:ImportHarvestersCommand
+        import_data = ckanext.defra.commands.import_data:ImportDataCommand
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
