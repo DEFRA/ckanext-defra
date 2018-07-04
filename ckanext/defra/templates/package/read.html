@@ -1,0 +1,26 @@
+{% ckan_extends %}
+
+{% block package_notes %}
+    {% if pkg.notes %}
+    <div class="notes embedded-content">
+        {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
+    </div>
+    {% endif %}
+
+    {% set release_notes = h.release_notes(pkg) %}
+    {% if release_notes %}
+        <h3>Release notes</h3>
+        <div class="notes embedded-content">
+        {{ release_notes }}
+        </div>
+    {% endif %}
+
+    {% set access_constraints = h.access_constraints(pkg) %}
+    {% if access_constraints %}
+        <h3>Access constraints</h3>
+        <div class="notes embedded-content">
+        {{ access_constraints }}
+        </div>
+    {% endif %}
+
+{% endblock %}

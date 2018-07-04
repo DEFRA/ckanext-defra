@@ -4680,3 +4680,84 @@ msgstr "Search Users"
 #: ckan/views/user.py:588
 msgid "Your password must be 8 characters or longer."
 msgstr ""
+
+msgid "contact-email"
+msgstr "Contact Email"
+
+msgid "contact-name"
+msgstr "Contact Name"
+
+msgid "contact-phone"
+msgstr "Contact Telephone"
+
+msgid "foi-email"
+msgstr "FOI Team Email"
+
+msgid "foi-phone"
+msgstr "FOI Team Telephone"
+
+msgid "publish-date"
+msgstr "Date published"
+
+msgid "coupled-resource"
+msgstr "Coupled resource"
+
+msgid "dataset-reference-date"
+msgstr "Dataset Reference Date"
+
+msgid "frequency-of-update"
+msgstr "Update Frequency"
+
+msgid "guid"
+msgstr "Harvester ID"
+
+msgid "harvest_source_reference"
+msgstr "Harvest Source URL"
+
+msgid "import_source"
+msgstr "Import Source"
+
+msgid "licence"
+msgstr "Extra Licence Info"
+
+msgid "metadata-date"
+msgstr "Metadata Date"
+
+msgid "metadata-language"
+msgstr "Metadata Language"
+
+msgid "provider"
+msgstr "Provider"
+
+msgid "resource-type"
+msgstr "Resource Type"
+
+msgid "responsible-party"
+msgstr "Responsible Party"
+
+msgid "temporal_coverage-to"
+msgstr "Temporal Coverage (To)"
+
+msgid "temporal_coverage-from"
+msgstr "Temporal Coverage (From)"
+
+msgid "spatial-reference-system"
+msgstr "Spatial Reference System"
+
+msgid "spatial-data-service-type"
+msgstr "Spatial Data Service Type"
+
+msgid "bbox-east-long"
+msgstr "Bounding Box - Eastern Longitude"
+
+msgid "bbox-north-lat"
+msgstr "Bounding Box - Northern Latitude"
+
+msgid "bbox-south-lat"
+msgstr "Bounding Box - Southern Latitude"
+
+msgid "bbox-west-long"
+msgstr "Bounding Box - Western Longitude"
+
+msgid "spatial"
+msgstr "Spatial"

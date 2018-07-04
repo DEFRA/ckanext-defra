@@ -10,7 +10,7 @@
   margin-top: -30px;
 }
 
-.hero { 
+.hero {
   min-height: 0;
 }
 
@@ -19,7 +19,7 @@ body {
   font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serifm;
   font-size: 16px;
   background: none;
-  background-color: #fff; 
+  background-color: #fff;
   color: #333;
   padding-bottom: 124px;   /* Height of the footer */
 }
@@ -47,11 +47,11 @@ body {
 }
 
 a.btn-primary, a.btn-primary:hover, a.btn-primary:visited {
-  background-color: green; 
+  background-color: green;
   background-image: none;
 }
 
-li a{ 
+li a{
   color: #333;
 }
 
@@ -103,3 +103,16 @@ li.media-item {
 .activity a {
   font-weight: 700;
 }
+
+.dataset-publisher-heading {
+  color: #999;
+  margin-top: -8px;
+}
+
+.dataset-publisher-heading a {
+  color: #999;
+}
+
+dt, dd { float: left }
+dt { clear:both; }
+dd {  margin-left: 20px; }

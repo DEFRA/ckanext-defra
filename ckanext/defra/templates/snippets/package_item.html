@@ -1,0 +1,36 @@
+{% ckan_extends %}
+
+{% block heading %}
+    <h3 class="dataset-heading">
+    {% block heading_private %}
+        {% if package.private %}
+        <span class="dataset-private label label-inverse">
+            <i class="fa fa-lock"></i>
+            {{ _('Private') }}
+        </span>
+        {% endif %}
+    {% endblock %}
+    {% block heading_title %}
+        {{ h.link_to(h.truncate(title, 100), h.url_for(package.type + '_read', controller='package', action='read', id=package.name)) }}
+        <h3 class="dataset-heading dataset-publisher-heading">
+            Published by {{ h.link_to(package.get('organization').get('title'), h.url_for('organization_read', controller='organization', action='read', id=package.organization.name)) }}
+        </h3>
+    {% endblock %}
+    {% block heading_meta %}
+        {% if package.get('state', '').startswith('draft') %}
+        <span class="label label-info">{{ _('Draft') }}</span>
+        {% elif package.get('state', '').startswith('deleted') %}
+        <span class="label label-danger">{{ _('Deleted') }}</span>
+        {% endif %}
+        {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
+    {% endblock %}
+    </h3>
+{% endblock %}
+
+{% block resources_inner %}
+    {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+    <li>
+        <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default" data-format="{{ resource.lower() }}">{{ resource.upper() }}</a>
+    </li>
+    {% endfor %}
+{% endblock %}

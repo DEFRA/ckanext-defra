@@ -1,4 +1,5 @@
 import re
+from ckan.plugins.toolkit import _
 
 def get_licence_fields_from_free_text(licence_str):
     '''Using a free text licence (e.g. harvested), this func returns license_id
@@ -77,3 +78,50 @@ def detect_license_id(licence_str):
         is_wholely_identified = None
 
     return license_id, is_wholely_identified
+
+
+def _find_extra(pkg, key):
+    for extra in pkg['extras']:
+        if extra['key'] ==key:
+            return extra['value']
+    return None
+
+def access_constraints(pkg):
+    import json
+
+    e = _find_extra(pkg, 'access_constraints')
+    if not e:
+        return None
+    ac = json.loads(e)
+    if ac:
+        return ac[0]
+    return ""
+
+def release_notes(pkg):
+    return _find_extra(pkg, 'release-notes')
+
+def clean_extra(extra):
+    import json
+    key, value = extra
+
+    if key in ['release-notes', 'unpublished', 'theme-primary', 'theme-secondary', 'foi-name', 'foi-web', 'access_constraints']:
+        return None, None
+
+    if key == 'harvest_source_reference':
+        return key, '<a href="{}">{}</a>'.format(value, value)
+
+    if key == 'dataset-reference-date' and value:
+        val = ['<dl>']
+        blob = json.loads(value)
+        for d in blob:
+            val.append('<dt>{}</dt>'.format(d['type'].title()))
+            val.append('<dd>{}</dd>'.format(d['value']))
+        val.append('</dl>')
+        return key, ''.join(val)
+
+    if key in ['temporal_coverage-from', 'temporal_coverage-to']:
+        b = json.loads(value)
+        if b:
+            return key, b[0]
+
+    return _(key), value
