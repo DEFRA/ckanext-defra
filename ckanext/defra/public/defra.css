@@ -113,10 +113,16 @@ li.media-item {
   color: #999;
 }
 
-dt, dd { float: left }
-dt { clear:both; }
-dd {  margin-left: 20px; }
+.dataset-details dt, .dataset-details dd { float: left }
+.dataset-details dt { clear:both; }
+.dataset-details dd {  margin-left: 20px; }
 
 .small-search {
   min-width: 200px;
+}
+
+.context-info h1.heading {
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: normal;
 }
