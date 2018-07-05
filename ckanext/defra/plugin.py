@@ -13,6 +13,22 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
     plugins.implements(plugins.IRoutes, inherit=True)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IDatasetForm, inherit=True)
+
+    def package_types(self):
+        return []
+
+    def is_fallback(self):
+        return True
+
+    def show_package_schema(self):
+        schema = super(DefraPlugin, self).show_package_schema()
+        existing = schema['resources']
+        existing['url'] = [presave_cleanup]
+        schema.update({
+            'resources': existing
+        })
+        return schema
 
     # IConfigurer
     def update_config(self, config):
@@ -24,7 +40,7 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
 
     # IRoutes
     def before_map(self, routes):
-        routes.redirect('/organization/{url:.*}', '/publisher/{url}')                
+        routes.redirect('/organization/{url:.*}', '/publisher/{url}')
         return routes
 
     def after_map(self, routes):
@@ -90,3 +106,21 @@ def delete_routes_by_path_startswith(map, path_startswith):
             matches_to_delete.append(match)
     for match in matches_to_delete:
         map.matchlist.remove(match)
+
+def presave_cleanup(key, data, errors, context):
+    k, p, _ = key
+    if data[(k, p, 'format')].lower() == 'wms':
+        new_url = cleanup_wms_url(data[key])
+        data[key] = new_url
+
+def cleanup_wms_url(old_url):
+    from urllib import urlencode
+    from urlparse import urlparse, urlunparse, parse_qs
+
+    u = urlparse(old_url)
+    query = parse_qs(u.query)
+    query.pop('request', None)
+    query.pop('SERVICE', None)
+
+    u = u._replace(query=urlencode(query, True))
+    return urlunparse(u)
