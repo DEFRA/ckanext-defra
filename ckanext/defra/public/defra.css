@@ -116,3 +116,7 @@ li.media-item {
 dt, dd { float: left }
 dt { clear:both; }
 dd {  margin-left: 20px; }
+
+.small-search {
+  min-width: 200px;
+}

@@ -1,5 +1,5 @@
 import re
-from ckan.plugins.toolkit import _
+from ckan.plugins.toolkit import _, request
 
 def get_licence_fields_from_free_text(licence_str):
     '''Using a free text licence (e.g. harvested), this func returns license_id
@@ -79,6 +79,8 @@ def detect_license_id(licence_str):
 
     return license_id, is_wholely_identified
 
+def show_small_search_bar(c):
+    return hasattr(c, 'action') or request.path.startswith('/dashboard')
 
 def _find_extra(pkg, key):
     for extra in pkg['extras']:
