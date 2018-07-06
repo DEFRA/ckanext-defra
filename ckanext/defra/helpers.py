@@ -1,5 +1,5 @@
 import re
-from ckan.plugins.toolkit import _, request
+from ckan.plugins.toolkit import _, request, get_action
 
 def get_licence_fields_from_free_text(licence_str):
     '''Using a free text licence (e.g. harvested), this func returns license_id
@@ -131,3 +131,33 @@ def clean_extra(extra):
 def is_publisher_show(c):
     return c.action == 'read' and \
         c.controller == 'ckanext.defra.controllers.publisher:PublisherController'
+
+def clean_extra_name(name):
+    if name in ['ckan recommended wms preview', 'has views']:
+        return None
+    names = {
+        'id': 'ID',
+        'package id': 'Package ID',
+        'wms base urls': 'WMS Base URLs'
+    }
+    return names.get(name, name.title())
+
+def popular_datasets(count=5):
+    results = get_action('package_search')(
+        {},
+        {
+            'sort': 'views_recent desc',
+            'rows': count
+        }
+    )
+    return results['results']
+
+def recent_datasets(count=5):
+    results = get_action('package_search')(
+        {},
+        {
+            'sort': 'metadata_created desc',
+            'rows': count
+        }
+    )
+    return results['results']
