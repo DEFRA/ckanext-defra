@@ -128,3 +128,6 @@ def clean_extra(extra):
 
     return _(key), value
 
+def is_publisher_show(c):
+    return c.action == 'read' and \
+        c.controller == 'ckanext.defra.controllers.publisher:PublisherController'
