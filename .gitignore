@@ -1,5 +1,5 @@
 .DS_Store
-
+.vscode
 .ropeproject
 node_modules
 bower_components
