@@ -66,7 +66,7 @@ PUBLISHERS = [
         image_url='/images/defra.png'
     ),
     PublisherStub(
-        name='gc',
+        name='forestry-commission',
         dgu_name='forestry-commission',
         title='Forestry Commission',
         image_url='/images/forestry-commission.png'
