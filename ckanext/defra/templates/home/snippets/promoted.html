@@ -2,7 +2,14 @@
 
 <div class="module-content box">
   <header>
-      <h1 class="page-heading">Popular data</h1>
+      <h1 class="page-heading">Popular datasets</h1>
   </header>
+
+  {% set datasets = h.popular_datasets(count=3) %}
+  <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
+  {% for dataset in datasets %}
+      {{ h.snippet('snippets/package_item.html', package=dataset, show_resources=False) }}
+  {% endfor %}
+  </ul>
 
 </div>
