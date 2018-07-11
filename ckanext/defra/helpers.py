@@ -123,7 +123,7 @@ def clean_extra(extra):
 
     if key in ['temporal_coverage-from', 'temporal_coverage-to']:
         b = json.loads(value)
-        if b:
+        if b and isinstance(b, list):
             return key, b[0]
 
     return _(key), value
