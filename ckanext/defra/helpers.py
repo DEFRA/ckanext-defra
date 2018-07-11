@@ -142,7 +142,8 @@ def clean_extra_name(name):
         'id': 'ID',
         'package id': 'Package ID',
         'wms base urls': 'WMS Base URLs',
-        'geographic_coverage': 'Geographic coverage'
+        'geographic_coverage': 'Geographic coverage',
+        'update_frequency': 'Update frequency'
     }
     return names.get(name, name.title())
 
