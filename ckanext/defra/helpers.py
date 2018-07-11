@@ -106,7 +106,10 @@ def clean_extra(extra):
     import json
     key, value = extra
 
-    if key in ['release-notes', 'unpublished', 'theme-primary', 'theme-secondary', 'foi-name', 'foi-web', 'access_constraints']:
+    if key in ['release-notes', 'unpublished', 'theme-primary', 
+               'theme-secondary', 'foi-name', 'foi-web', 
+               'access_constraints', 'its-dataset', 'register',
+               'sla']:
         return None, None
 
     if key == 'harvest_source_reference':
@@ -138,7 +141,8 @@ def clean_extra_name(name):
     names = {
         'id': 'ID',
         'package id': 'Package ID',
-        'wms base urls': 'WMS Base URLs'
+        'wms base urls': 'WMS Base URLs',
+        'geographic_coverage': 'Geographic coverage'
     }
     return names.get(name, name.title())
 
