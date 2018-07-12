@@ -125,10 +125,13 @@ def clean_extra(extra):
         return key, ''.join(val)
 
     if key in ['temporal_coverage-from', 'temporal_coverage-to']:
-        b = json.loads(value)
-        if b and isinstance(b, list):
-            return key, b[0]
-
+        try:
+            b = json.loads(value)
+            if b and isinstance(b, list):
+                return key, b[0]
+        except:
+            pass 
+            
     return _(key), value
 
 def is_publisher_show(c):
