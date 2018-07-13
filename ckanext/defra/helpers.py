@@ -109,7 +109,7 @@ def clean_extra(extra):
     if key in ['release-notes', 'unpublished', 'theme-primary', 
                'theme-secondary', 'foi-name', 'foi-web', 
                'access_constraints', 'its-dataset', 'register',
-               'sla']:
+               'sla', 'spatial_harvester']:
         return None, None
 
     if key == 'harvest_source_reference':
@@ -122,9 +122,53 @@ def clean_extra(extra):
             val.append('<dt>{}</dt>'.format(d['type'].title()))
             val.append('<dd>{}</dd>'.format(d['value']))
         val.append('</dl>')
-        return key, ''.join(val)
+        return "Dataset reference date", ''.join(val)
 
-    if key in ['temporal_coverage-from', 'temporal_coverage-to']:
+    if key == 'responsible-party':
+        val = ['<dl>']
+        blob = json.loads(value)
+        if blob:
+            for d in blob:
+                val.append('<dt>{}</dt>'.format(d['name'].title()))
+                val.append('<dd>{}</dd>'.format(','.join(d['roles'])))
+            val.append('</dl>')
+            return key, ''.join(val)
+
+    # FIXME!!!
+    if key == 'coupled-resource':
+        val = ['<ul class="list-unstyled">']
+        blob = json.loads(value)
+        if not blob:
+            return 'Coupled Resources', ''
+        if blob:
+            for d in blob:
+                href_list = d.get('href', [''])
+                title_list = d.get('title', [])
+                if not title_list:
+                    title_list = d.get('uuid', [])
+                    
+                if not href_list or not title_list:
+                    continue 
+
+                href = href_list[0]
+                title = title_list[0]
+
+                if href:
+                    if href.startswith('http'):
+                        if href.startswith('http://data.gov.uk'):
+                            href = href.replace('http://data.gov.uk', '')
+
+                        link = '<li><a href="{}">{}</a></li>'.format(href, title)
+                    else:
+                        link = '<li>{} - {}</li>'.format(href, title)
+                    val.append(link)
+            val.append('</ul>')
+            return 'Coupled Resources', ''.join(val)
+
+    if key == 'spatial' and value:
+        return None, None
+
+    if key in ['temporal_coverage-from', 'temporal_coverage-to', 'licence']:
         try:
             b = json.loads(value)
             if b and isinstance(b, list):
@@ -141,12 +185,19 @@ def is_publisher_show(c):
 def clean_extra_name(name):
     if name in ['ckan recommended wms preview', 'has views']:
         return None
+
+    # TODO: Move these to translations and remove the method
     names = {
         'id': 'ID',
         'package id': 'Package ID',
         'wms base urls': 'WMS Base URLs',
         'geographic_coverage': 'Geographic coverage',
-        'update_frequency': 'Update frequency'
+        'update_frequency': 'Update frequency',
+        'dcat_publisher_name': 'DCAT Publisher name',
+        'dcat_issued': 'DCAT Issue Date',
+        'frequency_of_update': 'Update frequency',
+        'temporal-extent-begin': 'Temporal extent - beginning',
+        'temporal-extent-end': 'Temporal extent - end'        
     }
     return names.get(name, name.title())
 
@@ -169,3 +220,28 @@ def recent_datasets(count=5):
         }
     )
     return results['results']
+
+def more_like_this(pkg, count=5):
+    from ckan.common import config
+    from ckan.lib.search.common import make_connection
+    
+    solr = make_connection()
+    query = 'id:"{}"'.format(pkg['id'])
+    fields_to_compare = 'text title notes'
+    fields_to_return = 'name title score'
+
+    site_id = config.get('ckan.site_id')
+    filter_query = '''
+        +site_id:"{}"
+        +dataset_type:dataset
+        +state:active
+        +capacity:public
+        '''.format(site_id)
+    
+    results = solr.more_like_this(q=query,
+                                  mltfl=fields_to_compare,
+                                  fl=fields_to_return,
+                                  fq=filter_query,
+                                  rows=count)
+
+    return results.docs

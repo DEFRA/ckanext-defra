@@ -14,6 +14,22 @@
   {% block package_info %}
   {% endblock %}
 
+  {% set more = h.more_like_this(pkg) %}
+  {% if more %}
+  <h2 class="module-heading">More like this</h2>
+  <section class="module-content" style="padding-top: 10px; padding-left: 8px; padding-right: 8px;">
+    <ul class="list-unstyled nav nav-simple nav-facet">
+      {% for dataset in more %}
+        <li class="nav-item" style="margin-top: 4px;">
+          <a href="{{ h.url_for(controller='package', action='read', id=dataset['name']) }}">
+            {{ dataset['title'] }}
+          </a>
+        </li>
+      {% endfor %}
+      </ul>
+  </section>
+  {% endif %}
+
   {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
   {% if dataset_extent %}
       {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=dataset_extent %}

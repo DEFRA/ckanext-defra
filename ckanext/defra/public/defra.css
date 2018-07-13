@@ -127,3 +127,11 @@ li.media-item {
   overflow-wrap: normal;
 }
 
+.item-count.badge {
+  float: right;
+}
+
+.module .read-more {
+  font-weight: normal;
+  font-size: smaller;
+}

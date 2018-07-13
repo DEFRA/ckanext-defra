@@ -2,7 +2,7 @@
 
 {% block heading %}
     {% if not organization.image_display_url %}
-        <h1 class="heading">{{ organization.title or organization.name }}
+        <h1 class="heading">{{ organization.title }}
         {% if organization.state == 'deleted' %}
             [{{ _('Deleted') }}]
         {% endif %}
