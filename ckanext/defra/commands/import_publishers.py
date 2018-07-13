@@ -105,7 +105,7 @@ PUBLISHERS = [
         name='ahdb',
         dgu_name='',
         title='Agriculture and Horticulture Development Board',
-        image_url=''
+        image_url='/images/ahdb.png'
     ),
     PublisherStub(
         name='kew',
@@ -117,43 +117,43 @@ PUBLISHERS = [
         name='ccw',
         dgu_name='consumer-council-for-water',
         title='Consumer Council for Water',
-        image_url=''
+        image_url='/images/consumer-council-water.png'
     ),
     PublisherStub(
         name='ea',
         dgu_name='environment-agency',
         title='Environment Agency',
-        image_url=''
+        image_url='/images/environment-agency.jpg'
     ),
     PublisherStub(
         name='jncc',
         dgu_name='joint-nature-conservation-committee',
         title='Joint Nature Conservation Committee',
-        image_url=''
+        image_url='/images/jncc.png'
     ),
     PublisherStub(
         name='mmo',
         dgu_name='marine-management-organisation',
         title='Marine Management Organisation',
-        image_url=''
+        image_url='/images/mmo.png'
     ),
     PublisherStub(
         name='nfc',
         dgu_name='national-forest-company',
         title='National Forest Company',
-        image_url=''
+        image_url='/images/national-forest.gif'
     ),
     PublisherStub(
         name='ne',
         dgu_name='natural-england',
         title='Natural England',
-        image_url=''
+        image_url='/images/natural-england.png'
     ),
     PublisherStub(
         name='sfia',
         dgu_name='sea-fish-industry-authority',
         title='Sea Fish Industry Authority',
-        image_url=''
+        image_url='/images/seafish.png'
     ),
     PublisherStub(
         name='acre',
@@ -165,25 +165,25 @@ PUBLISHERS = [
         name='iaap',
         dgu_name='',
         title='Independent Agricultural Appeals Panel',
-        image_url=''
+        image_url='/images/iaap.png'
     ),
     PublisherStub(
         name='sac',
         dgu_name='',
         title='Science Advisory Council',
-        image_url=''
+        image_url='/images/science-advisory-council.png'
     ),
     PublisherStub(
         name='vpc',
         dgu_name='',
         title='Veterinary Products Committee',
-        image_url=''
+        image_url='/images/vpc.png'
     ),
     PublisherStub(
         name='pvst',
         dgu_name='',
         title='Plant Varieties and Seeds Tribunal',
-        image_url=''
+        image_url='/images/plant-varieties.png'
     ),
     PublisherStub(
         name='dnpa',
@@ -195,7 +195,7 @@ PUBLISHERS = [
         name='dwi',
         dgu_name='',
         title='Drinking Water Inspectorate',
-        image_url=''
+        image_url='/images/dwi.gif'
     ),
     PublisherStub(
         name='enpa',
@@ -243,7 +243,7 @@ PUBLISHERS = [
         name='ukcb',
         dgu_name='',
         title='UK Co-ordinating Body',
-        image_url=''
+        image_url='/images/ukco.png'
     ),
     PublisherStub(
         name='ydnpa',
@@ -255,12 +255,12 @@ PUBLISHERS = [
         name='ba',
         dgu_name='broads-authority',
         title='Broads Authority',
-        image_url=''
+        image_url='/images/broads-authority.png'
     ),
     PublisherStub(
         name='cgma',
         dgu_name='',
         title='Covent Garden Market Authority',
-        image_url=''
+        image_url='/images/covent-garden.png'
     ),
 ]

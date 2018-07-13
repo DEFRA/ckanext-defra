@@ -1,5 +1,6 @@
 import re
 from ckan.plugins.toolkit import _, request, get_action
+from ckanext.defra.lib import extras as ehelpers
 
 def get_licence_fields_from_free_text(licence_str):
     '''Using a free text licence (e.g. harvested), this func returns license_id
