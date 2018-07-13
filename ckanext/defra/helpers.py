@@ -117,53 +117,62 @@ def clean_extra(extra):
 
     if key == 'dataset-reference-date' and value:
         val = ['<dl>']
-        blob = json.loads(value)
-        for d in blob:
-            val.append('<dt>{}</dt>'.format(d['type'].title()))
-            val.append('<dd>{}</dd>'.format(d['value']))
-        val.append('</dl>')
-        return "Dataset reference date", ''.join(val)
-
+        try:
+            blob = json.loads(value)
+            for d in blob:
+                val.append('<dt>{}</dt>'.format(d['type'].title()))
+                val.append('<dd>{}</dd>'.format(d['value']))
+            val.append('</dl>')
+            return "Dataset reference date", ''.join(val)
+        except:
+            pass
+            
     if key == 'responsible-party':
         val = ['<dl>']
-        blob = json.loads(value)
-        if blob:
-            for d in blob:
-                val.append('<dt>{}</dt>'.format(d['name'].title()))
-                val.append('<dd>{}</dd>'.format(','.join(d['roles'])))
-            val.append('</dl>')
-            return key, ''.join(val)
+        try:
+            blob = json.loads(value)
+            if blob:
+                for d in blob:
+                    val.append('<dt>{}</dt>'.format(d['name'].title()))
+                    val.append('<dd>{}</dd>'.format(','.join(d['roles'])))
+                val.append('</dl>')
+                return key, ''.join(val)
+        except:
+            pass
 
     # FIXME!!!
     if key == 'coupled-resource':
         val = ['<ul class="list-unstyled">']
-        blob = json.loads(value)
-        if not blob:
-            return 'Coupled Resources', ''
-        if blob:
-            for d in blob:
-                href_list = d.get('href', [''])
-                title_list = d.get('title', [])
-                if not title_list:
-                    title_list = d.get('uuid', [])
-                    
-                if not href_list or not title_list:
-                    continue 
+        try:
+            blob = json.loads(value)
+            if not blob:
+                return 'Coupled Resources', ''
+            if blob:
+                for d in blob:
+                    href_list = d.get('href', [''])
+                    title_list = d.get('title', [])
+                    if not title_list:
+                        title_list = d.get('uuid', [])
+                        
+                    if not href_list or not title_list:
+                        continue 
 
-                href = href_list[0]
-                title = title_list[0]
+                    href = href_list[0]
+                    title = title_list[0]
 
-                if href:
-                    if href.startswith('http'):
-                        if href.startswith('http://data.gov.uk'):
-                            href = href.replace('http://data.gov.uk', '')
+                    if href:
+                        if href.startswith('http'):
+                            if href.startswith('http://data.gov.uk'):
+                                href = href.replace('http://data.gov.uk', '')
 
-                        link = '<li><a href="{}">{}</a></li>'.format(href, title)
-                    else:
-                        link = '<li>{} - {}</li>'.format(href, title)
-                    val.append(link)
-            val.append('</ul>')
-            return 'Coupled Resources', ''.join(val)
+                            link = '<li><a href="{}">{}</a></li>'.format(href, title)
+                        else:
+                            link = '<li>{} - {}</li>'.format(href, title)
+                        val.append(link)
+                val.append('</ul>')
+                return 'Coupled Resources', ''.join(val)
+        except:
+            pass
 
     if key == 'spatial' and value:
         return None, None
