@@ -5,20 +5,24 @@
   {% block image %}
     <div class="publisher-image">
     {% if organization.image_url %}
-        <img src="{{ organization.image_url }}" class="media-image" height="60px">
+        <img src="{{ organization.image_url }}" class="media-image">
     {% endif %}
     </div>
   {% endblock image %}
   {% block title %}
+    {% if not organization.image_url %}
     <h3 class="media-heading">{{ organization.display_name }}</h3>
+    {% endif %}
   {% endblock %}
   {% block description %}{% endblock description %}
   {% block datasets %}
+    <div class="organization-package-count">
     {% if organization.package_count %}
       <strong class="count">{{ ungettext('{num} Dataset', '{num} Datasets', organization.package_count).format(num=organization.package_count) }}</strong>
     {% else %}
       <span class="count">{{ _('0 Datasets') }}</span>
     {% endif %}
+    </div>
   {% endblock %}
   {% block capacity %}
     {% if show_capacity and organization.capacity %}

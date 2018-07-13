@@ -95,9 +95,27 @@ li a{
   border: none;
 }
 
-li.media-item {
+.media-item {
+  min-height: 240px;
+}
+
+.media-heading {
+  word-break: normal;
+  white-space: normal;
+  overflow-wrap: normal;
+}
+
+.publisher-image .media-image {
   width: 100%;
-  margin-left: 0;
+  text-align: center;
+}
+.publisher-image {
+  width: 100%;
+  padding-right: 0;
+}
+.organization-package-count { 
+  position: absolute;
+  bottom: 0;
 }
 
 .activity a {
