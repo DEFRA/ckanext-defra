@@ -41,6 +41,10 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
     # IRoutes
     def before_map(self, routes):
         routes.redirect('/organization/{url:.*}', '/publisher/{url}')
+
+        with SubMapper(routes, controller='ckanext.defra.controllers.location:LocationController') as m:
+            m.connect('location_index', '/location', action='index')
+            
         return routes
 
     def after_map(self, routes):

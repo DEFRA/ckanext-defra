@@ -197,3 +197,8 @@ div.site-title {
 div.site-title h1 {
   font-weight: 400;
 }
+
+.map-based-search {
+  min-height: 480px;
+  background-color: #ddd;
+}

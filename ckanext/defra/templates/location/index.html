@@ -1,0 +1,51 @@
+{% extends "page.html" %}
+{% import 'macros/form.html' as form %}
+
+{% block subtitle %}{{ _("Datasets") }}{% endblock %}
+
+{% block breadcrumb_content %}
+{% endblock %}
+
+{% block toolbar %}
+  <div class="searchby row">
+    <ul class="nav nav-tabs">
+      <li>
+        <a href="/dataset">Search by keyword</a>
+      </li>
+      <li class="active">
+          <a href="/location">Search by location</a>
+        </li>      
+    </ul>
+    <div class="separate-search module-content" style="padding-bottom: 20px">
+        <div class="map-based-search">
+
+        </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block primary_content %}
+  <section class="module">
+    <div class="module-content">
+      {# block package_search_results_list %}
+        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
+      {% endblock #}
+    </div>
+
+    {% block page_pagination %}
+     {#
+      {{ c.page.pager(q=c.q) }}
+      #}
+    {% endblock %}
+  </section>
+
+  {% block package_search_results_api %}
+  {% endblock %}
+{% endblock %}
+
+
+{% block form %}
+{% endblock %}
+
+{% block secondary_content %}
+{% endblock %}
