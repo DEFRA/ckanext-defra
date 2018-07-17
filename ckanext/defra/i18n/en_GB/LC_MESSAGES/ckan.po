@@ -2656,7 +2656,7 @@ msgstr "Datasets"
 
 #: ckan/templates/header.html:116
 msgid "Search Datasets"
-msgstr "Find Datasets"
+msgstr "Enter a search term"
 
 #: ckan/templates/header.html:117 ckan/templates/home/snippets/search.html:11
 #: ckan/templates/snippets/simple_search.html:5

@@ -1,11 +1,32 @@
 {% ckan_extends %}
+{% import 'macros/form.html' as form %}
+
+{% block subtitle %}{{ _("Datasets") }}{% endblock %}
+
+{% block toolbar %}
+  <div class="searchby row">
+    <ul class="nav nav-tabs">
+      <li class="active">
+        <a href="/dataset">Search by keyword</a>
+      </li>
+      <li>
+          <a href="/location">Search by location</a>
+        </li>      
+    </ul>
+    <div class="separate-search module-content">
+      {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}    
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block form %}
+{% endblock %}
 
 {% block secondary_content %}
-
-{% snippet "spatial/snippets/spatial_query.html", default_extent="[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]]" %}
-
 <div class="filters">
   <div>
+    <h2>FILTERS</h2>
     {% for facet in c.facet_titles %}
       {% if not facet in ['groups'] %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}

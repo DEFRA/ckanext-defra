@@ -1,33 +1,15 @@
 {% ckan_extends %}
 
 {% block header_site_navigation_tabs %}
-  {% if h.check_access('dashboard_show') %}
-    <li class="{{ 'active' if request.path.startswith('/dashboard') }} "><a href="{{ h.url_for('dashboard.index') }}">Dashboard</a></li>
-  {% endif %}
-  {{ h.build_nav_main(
-    ('search', _('Datasets')),
-    ('group_index', 'Collections'),
-    ('publisher_index', 'Publishers'),
-  ) }}
 {% endblock %}
 
 {% block header_site_search %}
-  {#
-  {% if h.show_small_search_bar(c) %}
-  <form class="section site-search simple-input" action="{% url_for controller='package', action='search' %}" method="get">
-    <div class="field">
-      <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
-      <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" />
-      <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
-    </div>
-  </form>
-  {% else %}
-    <div class="small-search"></div>
-  {% endif %}
-  #}
 {% endblock %}
 
 {% block header_logo %}
-  <a class="logo" href="{{ h.url_for('home.index') }}"><img src="/images/defra.png" width="180" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+  <a style="float:left;" class="logo" href="{{ h.url_for('home.index') }}"><img src="/images/defra.png" width="180" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+  <div class="site-title">
+    <h1>Defra Data</h1>
+</div>
 {% endblock %}
 

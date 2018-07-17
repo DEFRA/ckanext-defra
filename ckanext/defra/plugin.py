@@ -44,6 +44,7 @@ class DefraPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm, DefaultTr
         return routes
 
     def after_map(self, routes):
+        routes.redirect('/', '/dataset')                
         with SubMapper(routes, controller='ckanext.defra.controllers.publisher:PublisherController') as m:
             m.connect('publishers_index', '/publisher', action='index')
             m.connect('publisher_index', '/publisher', action='index')
