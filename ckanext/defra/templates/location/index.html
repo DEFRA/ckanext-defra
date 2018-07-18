@@ -16,9 +16,12 @@
           <a href="/location">Search by location</a>
         </li>      
     </ul>
-    <div class="separate-search module-content" style="padding-bottom: 20px">
-        <div class="map-based-search">
-
+    <div class="separate-search module-content row" style="padding-bottom: 20px">
+        <div class="col-md-3">
+            Instructions
+        </div>
+        <div class="col-md-9 map-based-search">
+            &nbsp;
         </div>
     </div>
   </div>
@@ -27,16 +30,7 @@
 {% block primary_content %}
   <section class="module">
     <div class="module-content">
-      {# block package_search_results_list %}
-        {{ h.snippet('snippets/package_list.html', packages=c.page.items) }}
-      {% endblock #}
     </div>
-
-    {% block page_pagination %}
-     {#
-      {{ c.page.pager(q=c.q) }}
-      #}
-    {% endblock %}
   </section>
 
   {% block package_search_results_api %}

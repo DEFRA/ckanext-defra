@@ -202,3 +202,8 @@ div.site-title h1 {
   min-height: 480px;
   background-color: #ddd;
 }
+
+.map-instructions {
+  float: left;
+  width: 33%;
+}
