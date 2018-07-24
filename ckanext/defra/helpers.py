@@ -1,6 +1,6 @@
 import re
 from ckan.plugins.toolkit import _, request, get_action
-from ckanext.defra.lib import extras as ehelpers
+
 
 def get_licence_fields_from_free_text(licence_str):
     '''Using a free text licence (e.g. harvested), this func returns license_id
@@ -80,14 +80,17 @@ def detect_license_id(licence_str):
 
     return license_id, is_wholely_identified
 
+
 def show_small_search_bar(c):
     return hasattr(c, 'action') or request.path.startswith('/dashboard')
 
+
 def _find_extra(pkg, key):
     for extra in pkg['extras']:
-        if extra['key'] ==key:
+        if extra['key'] == key:
             return extra['value']
     return None
+
 
 def access_constraints(pkg):
     import json
@@ -100,8 +103,10 @@ def access_constraints(pkg):
         return ac[0]
     return ""
 
+
 def release_notes(pkg):
     return _find_extra(pkg, 'release-notes')
+
 
 def clean_extra(extra):
     import json
@@ -166,7 +171,8 @@ def clean_extra(extra):
                             if href.startswith('http://data.gov.uk'):
                                 href = href.replace('http://data.gov.uk', '')
 
-                            link = '<li><a href="{}">{}</a></li>'.format(href, title)
+                            link = '<li><a href="{}">{}</a></li>'.format(href,
+                                                                         title)
                         else:
                             link = '<li>{} - {}</li>'.format(href, title)
                         val.append(link)
@@ -188,9 +194,12 @@ def clean_extra(extra):
 
     return _(key), value
 
+
 def is_publisher_show(c):
+    controller_name = 'ckanext.defra.controllers.publisher:PublisherController'
     return c.action == 'read' and \
-        c.controller == 'ckanext.defra.controllers.publisher:PublisherController'
+        c.controller == controller_name
+
 
 def clean_extra_name(name):
     if name in ['ckan recommended wms preview', 'has views']:
@@ -211,6 +220,7 @@ def clean_extra_name(name):
     }
     return names.get(name, name.title())
 
+
 def popular_datasets(count=5):
     results = get_action('package_search')(
         {},
@@ -221,6 +231,7 @@ def popular_datasets(count=5):
     )
     return results['results']
 
+
 def recent_datasets(count=5):
     results = get_action('package_search')(
         {},
@@ -230,6 +241,7 @@ def recent_datasets(count=5):
         }
     )
     return results['results']
+
 
 def more_like_this(pkg, count=5):
     from ckan.common import config
@@ -256,6 +268,7 @@ def more_like_this(pkg, count=5):
 
     return results.docs
 
+
 def query_has_bbox(r):
     params = request.environ.get('webob._parsed_query_vars')[0]
-    return params.get('ext_bbox', '')  != ''
+    return params.get('ext_bbox', '') != ''

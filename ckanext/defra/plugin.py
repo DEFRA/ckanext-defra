@@ -65,7 +65,8 @@ class DefraPlugin(plugins.SingletonPlugin,
                           '/publisher/' + action + '/{id}',
                           action=action)
 
-            m.connect('publisher_activity', '/publisher/activity/{id}/{offset}',
+            m.connect('publisher_activity',
+                      '/publisher/activity/{id}/{offset}',
                       action='activity')
             m.connect('publisher_read', '/publisher/{id}', action='read')
             m.connect('publisher_about', '/publisher/about/{id}',
