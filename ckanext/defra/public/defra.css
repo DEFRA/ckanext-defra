@@ -113,7 +113,7 @@ li a{
   width: 100%;
   padding-right: 0;
 }
-.organization-package-count { 
+.organization-package-count {
   position: absolute;
   bottom: 0;
 }
@@ -167,7 +167,6 @@ li a{
 }
 .separate-search {
   background-color: rgb(246, 246, 246);
-  margin-bottom: 20px;
   padding: 20px;
   padding-bottom: 0;
 }
@@ -180,17 +179,25 @@ li a{
 }
 
 .search-input-group .input-group-btn button.btn.btn-default {
-  margin-top: 26px;
+  margin-top: 31px;
   padding-bottom: 8px;
   color: #2fa450;
 }
 
+.search-form {
+  padding-bottom: 0;
+}
+
+.search-form .search-input-group {
+  margin-bottom: 0;
+}
+
 .dataset-heading a {
-  color: #2fa450;  
+  color: #2fa450;
 }
 
 div.site-title {
-  float:left; 
+  float:left;
   margin-left: 40px;
 }
 
@@ -206,4 +213,126 @@ div.site-title h1 {
 .map-instructions {
   float: left;
   width: 33%;
+}
+
+div.tags {
+  margin-left: 20px;
+  display: inline;
+}
+
+label::after {
+  content: ""
+}
+
+.nav-item.active > a {
+  background-color: #2fa450;
+}
+
+.location-cb label {
+  padding-left: 0;
+}
+
+div.location-search {
+  padding-bottom: 20px;
+}
+
+/* Map */
+.module-narrow #dataset-map-container {
+  height: 200px;
+}
+#dataset-map-container {
+  height: 480px;
+}
+#dataset-map-attribution {
+  font-size: 11px;
+  line-height: 1.5;
+}
+.module-heading .action {
+  float: right;
+  color: #888888;
+  font-size: 12px;
+  line-height: 20px;
+  text-decoration: underline;
+}
+.module-narrow #dataset-map-attribution {
+  margin: 5px 8px;
+  color: #666;
+}
+.leaflet-draw-label-single {
+  display: none;
+}
+.leaflet-draw-label-subtext {
+  display: none;
+}
+#field-location {
+  width: 190px;
+}
+.select2-results .select2-no-results {
+  padding: 3px 6px;
+}
+#dataset-map-edit {
+  margin: 5px 8px;
+}
+#dataset-map-edit-buttons {
+  display: none;
+}
+.leaflet-draw-toolbar a.leaflet-draw-draw-rectangle {
+  background-image: url("/images/pencil.png");
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 12px 12px;
+  border-radius: 4px;
+}
+.leaflet-draw-actions li {
+  display: none;
+}
+.dataset-map-expanded #dataset-map {
+  position: relative !important;
+  width: 100%;
+  height: 480px;
+  top: 0;
+  background-color: white;
+  border: 1px solid #CCC;
+  margin: 0;
+}
+.dataset-map-expanded #dataset-map #dataset-map-container {
+  height: 480px;
+}
+.dataset-map-expanded #dataset-map #dataset-map-attribution {
+  *zoom: 1;
+}
+.dataset-map-expanded #dataset-map #dataset-map-attribution:before,
+.dataset-map-expanded #dataset-map #dataset-map-attribution:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.dataset-map-expanded #dataset-map #dataset-map-attribution:after {
+  clear: both;
+}
+.dataset-map-expanded #dataset-map #dataset-map-attribution div {
+  float: left;
+  margin-right: 10px;
+}
+.dataset-map-expanded #dataset-map #dataset-map-edit-buttons {
+  display: block;
+  float: right;
+  padding: 10px;
+}
+.dataset-map-expanded #dataset-map #dataset-map-edit {
+  display: none;
+}
+.dataset-map-expanded #dataset-map .module-heading {
+  border-top-color: #000;
+}
+.dataset-map-expanded .wrapper {
+  margin-top: 0;
+}
+
+#dataset-map .module-heading {
+  display: none;
+}
+
+.module-content #dataset-map-container {
+  height: 480px;
 }

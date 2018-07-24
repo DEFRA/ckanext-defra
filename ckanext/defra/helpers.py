@@ -107,8 +107,8 @@ def clean_extra(extra):
     import json
     key, value = extra
 
-    if key in ['release-notes', 'unpublished', 'theme-primary', 
-               'theme-secondary', 'foi-name', 'foi-web', 
+    if key in ['release-notes', 'unpublished', 'theme-primary',
+               'theme-secondary', 'foi-name', 'foi-web',
                'access_constraints', 'its-dataset', 'register',
                'sla', 'spatial_harvester']:
         return None, None
@@ -127,7 +127,7 @@ def clean_extra(extra):
             return "Dataset reference date", ''.join(val)
         except:
             pass
-            
+
     if key == 'responsible-party':
         val = ['<dl>']
         try:
@@ -154,9 +154,9 @@ def clean_extra(extra):
                     title_list = d.get('title', [])
                     if not title_list:
                         title_list = d.get('uuid', [])
-                        
+
                     if not href_list or not title_list:
-                        continue 
+                        continue
 
                     href = href_list[0]
                     title = title_list[0]
@@ -184,8 +184,8 @@ def clean_extra(extra):
             if b and isinstance(b, list):
                 return key, b[0]
         except:
-            pass 
-            
+            pass
+
     return _(key), value
 
 def is_publisher_show(c):
@@ -207,7 +207,7 @@ def clean_extra_name(name):
         'dcat_issued': 'DCAT Issue Date',
         'frequency_of_update': 'Update frequency',
         'temporal-extent-begin': 'Temporal extent - beginning',
-        'temporal-extent-end': 'Temporal extent - end'        
+        'temporal-extent-end': 'Temporal extent - end'
     }
     return names.get(name, name.title())
 
@@ -234,7 +234,7 @@ def recent_datasets(count=5):
 def more_like_this(pkg, count=5):
     from ckan.common import config
     from ckan.lib.search.common import make_connection
-    
+
     solr = make_connection()
     query = 'id:"{}"'.format(pkg['id'])
     fields_to_compare = 'text title notes'
@@ -247,7 +247,7 @@ def more_like_this(pkg, count=5):
         +state:active
         +capacity:public
         '''.format(site_id)
-    
+
     results = solr.more_like_this(q=query,
                                   mltfl=fields_to_compare,
                                   fl=fields_to_return,
@@ -255,3 +255,7 @@ def more_like_this(pkg, count=5):
                                   rows=count)
 
     return results.docs
+
+def query_has_bbox(r):
+    params = request.environ.get('webob._parsed_query_vars')[0]
+    return params.get('ext_bbox', '')  != ''
