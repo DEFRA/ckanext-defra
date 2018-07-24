@@ -5,7 +5,16 @@
   color:#333;
 }
 
-.account-masthead .account ul li  a { color: #333;}
+a.btn-primary {
+  background-color: #2fa450 !important;
+  color: #fff !important;
+}
+
+.account-masthead .account ul li {
+  border-left: none;
+}
+
+.account-masthead .account ul li  a { color: #333; margin-top: 10px;  }
 .header-image {
   margin-top: -30px;
 }
@@ -36,6 +45,10 @@ body {
 .masthead .navigation .nav-pills li.active a,
 .masthead .navigation .nav-pills li a:hover {
   background-color: rgb(0, 163, 59);
+}
+
+.nav-tabs > li.active > a:hover {
+  background-color: rgb(246, 246, 246);
 }
 
 .header-logo {
@@ -335,4 +348,28 @@ div.location-search {
 
 .module-content #dataset-map-container {
   height: 480px;
+}
+
+.result-border {
+  padding: 8px;
+  margin-top: 20px;
+  border: solid 1px #ddd;
+}
+
+.result-border h2 {
+  margin-left: 30px;
+  margin-bottom: 0;
+}
+
+div.normal {
+  xborder: solid 2px #ddd;
+  padding: 4px;
+  font-weight: normal;
+  font-size: 14px;
+  width: 208px;
+}
+
+img.side-image {
+  width: 200px;
+  margin-bottom: 8px;
 }

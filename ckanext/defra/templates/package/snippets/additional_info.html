@@ -1,6 +1,6 @@
 {% ckan_extends %}
 
-{% block extras scoped %}
+{% block extras  %}
   {% for extra in h.sorted_extras(pkg_dict.extras) %}
     {% set key, value = h.clean_extra(extra) %}
     {% if key %}

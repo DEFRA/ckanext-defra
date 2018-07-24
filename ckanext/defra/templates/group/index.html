@@ -1,6 +1,7 @@
 {% ckan_extends %}
 
-{% block organizations_search_form %}
+
+{% block groups_search_form %}
 {% endblock %}
 
 {% block secondary %}
@@ -12,10 +13,10 @@
       <li>
         <a href="/dataset">Datasets</a>
       </li>
-      <li>
+      <li class="active">
           <a href="/group">Collections</a>
       </li>
-      <li class="active">
+      <li>
         <a href="/publisher">Publishers</a>
       </li>
     </ul>
@@ -27,7 +28,7 @@
   {% block primary_content %}
     <div class="result-border row">
         {% set total = c.page.collection|length %}
-        <h2>{{ total }} Publisher{{ 's' if total > 1 }} </h2>
+        <h2>{{ total }} Collection{{ 's' if total > 1 }} </h2>
         {{ super() }}
     </div>
   {% endblock %}
