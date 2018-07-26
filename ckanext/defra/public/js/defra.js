@@ -4,8 +4,8 @@ var mapshow = $('#show-map')
 mapshow.on('click', function () {
     if (mapshow.is(':checked')) {
         fake_show("#location-search")
-        $('.leaflet-draw-draw-rectangle').get(0).click();
-        $('.cancel').get(0).click();
+        //$('.leaflet-draw-draw-rectangle').get(0).click();
+        //$('.cancel').get(0).click();
     } else {
         fake_hide("#location-search")
 
