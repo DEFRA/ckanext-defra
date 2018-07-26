@@ -11,22 +11,7 @@
 
   {% block search_input %}
     <div class="input-group search-input-group">
-      {% if c.controller not in ['organization', 'group'] %}
-        <label for="field-giant-search">{% block header_site_search_label %}Enter a search term{% endblock %} or
-          select a tag
-          <div class="tags">
-            {% set tags = h.get_facet_items_dict('tags', limit=3) %}
-            {% if tags %}
-                {% set tags = h.get_facet_items_dict('tags', limit=3) %}
-                {% for tag in tags %}
-                <a class="tag" href="{% url_for controller='package', action='search', tags=tag.name %}">{{ h.truncate(tag.display_name.lower(), 22) }}</a>
-                {% endfor %}
-            {% endif %}
-          </div>
-        </label>
-      {% else %}
-        <label for="field-giant-search">Enter a search term</label>
-      {% endif %}
+      <label for="field-giant-search">Enter a search term</label>
       <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off">
       {% block search_input_button %}
       <span class="input-group-btn">

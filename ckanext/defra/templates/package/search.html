@@ -31,7 +31,7 @@
   <div>
     <h2>FILTERS</h2>
     {% for facet in c.facet_titles %}
-      {% if not facet in ['groups'] %}
+      {% if not facet in ['groups', 'tags'] %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endif %}
     {% endfor %}
