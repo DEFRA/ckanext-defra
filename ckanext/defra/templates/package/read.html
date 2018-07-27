@@ -41,7 +41,7 @@
         {% if access_constraints %}
             <h3>Access constraints</h3>
             <div class="notes embedded-content">
-            {{ access_constraints }}
+            {{ h.linked_access_constraints(access_constraints)|safe }}
             </div>
         {% endif %}
     {% endblock %}

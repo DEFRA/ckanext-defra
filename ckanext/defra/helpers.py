@@ -272,3 +272,18 @@ def more_like_this(pkg, count=5):
 def query_has_bbox(r):
     params = request.environ.get('webob._parsed_query_vars')[0]
     return params.get('ext_bbox', '') != ''
+
+def linked_access_constraints(ac):
+    refs = {
+        'http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html': 'Inspire Licence',
+         # Handle the typo
+        'http://www.ordnancesurvey.couk/business-and-government/public-sector/mapping-agreements/inspire-licence.html': 'Inspire Licence',
+        'http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/end-user-licence.html': 'Public Sector Mapping Agreement'
+    }
+
+    for k, v in refs.iteritems():
+        if k in ac:
+            ac = ac.replace(k,
+                            '<a href="{}">{}</a><br/>'.format(k, v))
+    #
+    return ac
