@@ -1,17 +1,20 @@
 
-
 var mapshow = $('#show-map')
 mapshow.on('click', function () {
-    if (mapshow.is(':checked')) {
-        fake_show("#location-search")
-        //$('.leaflet-draw-draw-rectangle').get(0).click();
-        //$('.cancel').get(0).click();
-    } else {
-        fake_hide("#location-search")
+    var field = "#location-search"
 
+    if (mapshow.is(':checked')) {
+        fake_show(field)
+    } else {
+        fake_hide(field)
+
+        /*
+            Clear the values in the spatial search, although we really
+            want to reset the map itself (but it is hidden away in a CKAN
+            sandbox)
+        */
         $('#ext_bbox').val("");
         $('#ext_prev_extent').val("");
-
     }
 })
 
@@ -33,5 +36,4 @@ function fake_hide(e) {
         visibility: 'hidden',
         display: 'block'
     });
-
 }

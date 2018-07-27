@@ -25,7 +25,7 @@ a.btn-primary {
 
 
 body {
-  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serifm;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica !important;
   font-size: 16px;
   background: none;
   background-color: #fff;
@@ -251,7 +251,7 @@ div.location-search {
 
 /* Map */
 .module-narrow #dataset-map-container {
-  height: 200px;
+
 }
 #dataset-map-container {
   height: 480px;
@@ -310,6 +310,7 @@ div.location-search {
 }
 .dataset-map-expanded #dataset-map #dataset-map-container {
   height: 480px;
+  width: 100%;
 }
 .dataset-map-expanded #dataset-map #dataset-map-attribution {
   *zoom: 1;
@@ -371,4 +372,14 @@ div.normal {
 img.side-image {
   width: 200px;
   margin-bottom: 8px;
+}
+
+.mlt {
+  padding: 8px;
+}
+
+.mlt .inner {
+  background-color: #eee;
+  padding: 8px;
+  min-height: 160px;
 }

@@ -63,11 +63,13 @@
   <h3>More like this ({{ more|length }})</h3>
   <div class="row">
     {% for dataset in more %}
-    <div class="col-md-3">
+    <div class="col-md-3 mlt">
+        <div class="inner">
         <a href="{{ h.url_for(controller='package', action='read', id=dataset['name']) }}">
             {{ dataset['title'] }}
         </a>
         <br/>
+        </div>
     </div>
     {% endfor %}
   </div>
