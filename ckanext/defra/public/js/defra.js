@@ -1,4 +1,23 @@
 
+$(document).ready(function(){
+    $('.resource-expand').on('click', function(){
+        var toggle = $(this).siblings('.resource-expando').get(0)
+
+        $('.resource-expando').not($(toggle)).each(function(idx, val){
+            $(this).hide();
+        })
+
+        var chev = $(this).find('.chevron').get(0)
+        $('.chevron').not($(chev)).each(function (idx, val){
+            $(this).removeClass("fa-chevron-down")
+            $(this).addClass("fa-chevron-right")
+        })
+
+        $(chev).toggleClass("fa-chevron-right fa-chevron-down")
+        $(toggle).toggle()
+    });
+});
+
 var mapshow = $('#show-map')
 mapshow.on('click', function () {
     var field = "#location-search"

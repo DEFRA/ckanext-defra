@@ -937,7 +937,7 @@ msgstr "Formats"
 #: ckan/controllers/group.py:309 ckan/controllers/home.py:65
 #: ckan/controllers/package.py:244 ckan/lib/helpers.py:837
 msgid "Licenses"
-msgstr "Licenses"
+msgstr "Licences"
 
 #: ckan/controllers/group.py:395 ckan/controllers/group.py:512
 #: ckan/controllers/package.py:326 ckan/controllers/package.py:767
@@ -2295,19 +2295,19 @@ msgstr "Valid API key needed to edit a collection"
 
 #: ckan/model/license.py:222
 msgid "License not specified"
-msgstr "License not specified"
+msgstr "Licence not specified"
 
 #: ckan/model/license.py:232
 msgid "Open Data Commons Public Domain Dedication and License (PDDL)"
-msgstr "Open Data Commons Public Domain Dedication and License (PDDL)"
+msgstr "Open Data Commons Public Domain Dedication and Licence (PDDL)"
 
 #: ckan/model/license.py:242
 msgid "Open Data Commons Open Database License (ODbL)"
-msgstr "Open Data Commons Open Database License (ODbL)"
+msgstr "Open Data Commons Open Database Licence (ODbL)"
 
 #: ckan/model/license.py:252
 msgid "Open Data Commons Attribution License"
-msgstr "Open Data Commons Attribution License"
+msgstr "Open Data Commons Attribution Licence"
 
 #: ckan/model/license.py:263
 msgid "Creative Commons CCZero"
@@ -2323,7 +2323,7 @@ msgstr "Creative Commons Attribution Share-Alike"
 
 #: ckan/model/license.py:291
 msgid "GNU Free Documentation License"
-msgstr "GNU Free Documentation License"
+msgstr "GNU Free Documentation Licence"
 
 #: ckan/model/license.py:301
 msgid "Other (Open)"
@@ -3761,7 +3761,7 @@ msgstr "Format"
 #: ckan/templates/package/snippets/package_basic_fields.html:30
 #: ckan/templates/snippets/license.html:21
 msgid "License"
-msgstr "License"
+msgstr "Licence"
 
 #: ckan/templates/package/resource_views.html:10
 msgid "New view"
@@ -3904,7 +3904,7 @@ msgid ""
 " License definitions and additional information can be found at <a "
 "href=\"http://opendefinition.org/licenses/\">opendefinition.org</a> "
 msgstr ""
-" License definitions and additional information can be found at <a "
+" Licence definitions and additional information can be found at <a "
 "href=\"http://opendefinition.org/licenses/\">opendefinition.org</a> "
 
 #: ckan/templates/package/snippets/package_basic_fields.html:70
@@ -3936,11 +3936,11 @@ msgid ""
 "under the <a href=\"http://opendatacommons.org/licenses/odbl/1-0/\">Open "
 "Database License</a>."
 msgstr ""
-"The <i>data license</i> you select above only applies to the contents of any"
+"The <i>data licence</i> you select above only applies to the contents of any"
 " resource files that you add to this dataset. By submitting this form, you "
 "agree to release the <i>metadata</i> values that you enter into the form "
 "under the <a href=\"http://opendatacommons.org/licenses/odbl/1-0/\">Open "
-"Database License</a>."
+"Database Licence</a>."
 
 #: ckan/templates/package/snippets/package_form.html:39
 msgid "Are you sure you want to delete this dataset?"
@@ -4243,7 +4243,7 @@ msgstr "Go"
 
 #: ckan/templates/snippets/license.html:14
 msgid "No License Provided"
-msgstr "No License Provided"
+msgstr "No Licence Provided"
 
 #: ckan/templates/snippets/license.html:28
 msgid "This dataset satisfies the Open Definition."

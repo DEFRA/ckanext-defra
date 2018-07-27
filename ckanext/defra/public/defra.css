@@ -5,6 +5,10 @@
   color:#333;
 }
 
+.resource-expand {
+  cursor: pointer;
+}
+
 a.btn-primary {
   background-color: #2fa450 !important;
   color: #fff !important;

@@ -1,7 +1,8 @@
 {% ckan_extends %}
 
 {% block resource_item_title %}
-<a class="heading" href="" title="{{ res.name or res.description }}">
+<a class="heading resource-expand" title="{{ res.name or res.description }}">
+  <i class="fa fa-chevron-right chevron" aria-hidden="true"></i>
   {{ h.resource_display_name(res) | truncate(50) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
 </a>
 {% endblock %}
@@ -11,38 +12,80 @@
 <div class="btn-group">
   <ul class="list-inline">
     {% block resource_item_explore_links %}
-    {% if res.has_views %}
-    <li>
-        <a href="{{ url }}" class="btn btn-default">
-          <i class="fa fa-eye"></i>
-          {{ _('Preview') }}
-        </a>
-    </li>
-    {% endif %}
+      {% if res.has_views %}
+        <li>
+            <a href="{{ url }}" class="btn btn-default">
+              <i class="fa fa-eye"></i>
+              {{ _('Preview') }}
+            </a>
+        </li>
+      {% endif %}
 
-    {% if res.url and h.is_url(res.url) %}
-    <li>
-      <a href="{{ res.url }}" class="resource-url-analytics btn btn-default" target="_blank">
-        {% if res.has_views or res.url_type == 'upload' %}
-          <i class="fa fa-arrow-circle-o-down"></i>
-          {{ _('Download') }}
-        {% else %}
-          <i class="fa fa-external-link"></i>
-          {{ _('Go to resource') }}
+      {% if res.url and h.is_url(res.url) %}
+        <li>
+          <a href="{{ res.url }}" class="resource-url-analytics btn btn-default" target="_blank">
+            {% if res.has_views or res.url_type == 'upload' %}
+              <i class="fa fa-arrow-circle-o-down"></i>
+              {{ _('Download') }}
+            {% else %}
+              <i class="fa fa-external-link"></i>
+              {{ _('Go to resource') }}
+            {% endif %}
+          </a>
+        </li>
+      {% endif %}
+
+      {% if can_edit %}
+        <li>
+          <a class="btn btn-default" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+            <i class="fa fa-pencil-square-o"></i>
+            {{ _('Edit') }}
+          </a>
+        </li>
         {% endif %}
-      </a>
-    </li>
-    {% endif %}
-    {% if can_edit %}
-    <li>
-      <a class="btn btn-default" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
-        <i class="fa fa-pencil-square-o"></i>
-        {{ _('Edit') }}
-      </a>
-    </li>
-    {% endif %}
-    {% endblock %}
-  </ul>
+      {% endblock %}
+    </ul>
+  </div>
+  {% endif %}
+
+<div class="resource-expando" style="display: none;">
+  <section class="module" style="padding-top: 20px;">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">{{ _('Field') }}</th>
+          <th scope="col">{{ _('Value') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">{{ _('Data last updated') }}</th>
+          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Metadata last updated') }}</th>
+          <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Created') }}</th>
+          <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('Format') }}</th>
+          <td>{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
+        </tr>
+        <tr>
+          <th scope="row">{{ _('License') }}</th>
+          <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+        </tr>
+        {% for key, value in h.format_resource_items(res.items()) %}
+          {% if key not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}
+          <tr><th scope="row">{{ key }}</th><td>{{ value }}</td></tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
 </div>
-{% endif %}
+
 {% endblock %}
