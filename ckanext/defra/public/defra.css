@@ -5,6 +5,10 @@
   color:#333;
 }
 
+.nav-buttons a.active {
+  background-color: #015e23 !important;
+}
+
 .resource-expand {
   cursor: pointer;
 }
@@ -386,4 +390,8 @@ img.side-image {
   background-color: #eee;
   padding: 8px;
   min-height: 160px;
+}
+
+.resource-action-buttons {
+  margin-bottom: 20px;
 }

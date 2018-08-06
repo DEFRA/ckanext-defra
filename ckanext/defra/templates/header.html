@@ -1,15 +1,21 @@
 {% ckan_extends %}
 
 {% block header_site_navigation_tabs %}
+<div class="nav-buttons pull-right">
+  <a href="/group" class="btn btn-primary {% if c.controller =='group' %}active{% endif %}">Collections</a>
+  <a href="/publisher" class="btn btn-primary {% if c.controller =='ckanext.defra.controllers.publisher:PublisherController' %}active{% endif %}">Publishers</a>
+</div>
 {% endblock %}
 
 {% block header_site_search %}
+
 {% endblock %}
 
 {% block header_logo %}
   <a style="float:left;" class="logo" href="{{ h.url_for('home.index') }}"><img src="/images/defra.png" width="180" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
   <div class="site-title">
     <h1>Defra Data</h1>
-</div>
+  </div>
+
 {% endblock %}
 

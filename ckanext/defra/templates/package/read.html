@@ -12,14 +12,6 @@
       </span>
     {% endif %}
     <h1>
-        {% set org = h.get_organization(pkg.organization.name) %}
-        <div class="pull-right normal">
-            {% if org.image_url %}
-                <img class="side-image" src="{{ org.image_url }}"><br/>
-            {% endif %}
-            Published by
-            <a href="/publisher/{{org.name}}">{{ org.title }}</a>
-        </div>
         {{ pkg.title }}
     </h1>
     {% block package_notes %}
@@ -50,6 +42,7 @@
   {% block package_resources %}
     <div style="clear: both;">&nbsp;</div>
     {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+    <hr/>
   {% endblock %}
 
   {% block package_tags %}

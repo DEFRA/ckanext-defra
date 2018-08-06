@@ -1,18 +1,17 @@
-{% ckan_extends %}
 {% import 'macros/form.html' as form %}
 
-{% set placeholder = '' %}
 {% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
+{% set action = action if action else ''%}
 
-<form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get" data-module="select-switch">
+<form action='/dataset' {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
 
   {% block search_input %}
     <div class="input-group search-input-group">
       <label for="field-giant-search">Enter a search term</label>
-      <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off">
+      <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
       {% block search_input_button %}
       <span class="input-group-btn">
         <button class="btn btn-default" type="submit" value="search">
@@ -49,7 +48,6 @@
 
   {% block search_title %}
     {% set has_bbox = h.query_has_bbox(request) %}
-    {% if c.controller in ['package'] %}
       <div class="checkbox location-cb" style="margin-top: 0;">
         <label>
           <input id="show-map" type="checkbox" {% if has_bbox %}checked="checked"{% endif %}> Search within a geographic area
@@ -75,7 +73,6 @@
             {% snippet "spatial/snippets/spatial_query.html", default_extent=[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]] %}
         </div>
       </div>
-    {% endif %}
   {% endblock %}
 
   {% block search_facets %}

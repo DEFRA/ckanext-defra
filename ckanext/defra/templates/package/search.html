@@ -5,17 +5,6 @@
 
 {% block toolbar %}
   <div class="searchby row">
-    <ul class="nav nav-tabs">
-      <li class="active">
-        <a href="/dataset">Datasets</a>
-      </li>
-      <li>
-          <a href="/group">Collections</a>
-      </li>
-      <li>
-        <a href="/publisher">Publishers</a>
-      </li>
-    </ul>
     <div class="separate-search module-content">
       {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
     </div>

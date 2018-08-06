@@ -20,6 +20,11 @@
   {% endblock %}
 
   {% block package_organization %}
+    <section class="module module-narrow">
+      <h2 class="module-heading">Publisher</h2>
+      {% set org = h.get_organization(pkg.organization.name) %}
+      {% snippet "snippets/organization.html", organization=org %}
+    </section>
   {% endblock %}
 
   {% block package_info %}

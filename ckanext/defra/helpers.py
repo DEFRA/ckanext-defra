@@ -269,9 +269,22 @@ def more_like_this(pkg, count=5):
     return results.docs
 
 
+def get_resource_name(res):
+    if res['name'] == 'Unnamed resource':
+        if res['url'].lower().find('/wms') >= 0:
+            return 'WMS Service'
+        elif res['url'].lower().find('/wfs') >= 0:
+            return 'WFS Service'
+        elif res['description']:
+            return res['description']
+
+    return res['name']
+
+
 def query_has_bbox(r):
     params = request.environ.get('webob._parsed_query_vars')[0]
     return params.get('ext_bbox', '') != ''
+
 
 def linked_access_constraints(ac):
     refs = {
@@ -285,5 +298,4 @@ def linked_access_constraints(ac):
         if k in ac:
             ac = ac.replace(k,
                             '<a href="{}">{}</a><br/>'.format(k, v))
-    #
     return ac
