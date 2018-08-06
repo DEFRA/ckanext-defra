@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block header_site_search %}
-
 {% endblock %}
 
 {% block header_logo %}
@@ -16,6 +15,9 @@
   <div class="site-title">
     <h1>Defra Data</h1>
   </div>
-
 {% endblock %}
 
+
+{% block header_account_notlogged %}
+  {% link_for _('Log in'), named_route='user.login' %} / {% link_for _('Register'), named_route='user.register', class_='sub' %}
+{% endblock %}

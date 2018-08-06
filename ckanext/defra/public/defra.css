@@ -5,6 +5,10 @@
   color:#333;
 }
 
+a.resource-expand {
+  color: #2fa450 !important;
+}
+
 .nav-buttons a.active {
   background-color: #015e23 !important;
 }
@@ -394,4 +398,21 @@ img.side-image {
 
 .resource-action-buttons {
   margin-bottom: 20px;
+}
+
+.pagination li a {
+  color: #2fa450 !important;
+}
+
+.pagination li.active a {
+  color: #fff !important;
+}
+
+.pagination > .active > a {
+  background-color: #015e23 !important;
+}
+
+.account.not-authed a {
+  color: #2fa450;
+  font-size: smaller;
 }

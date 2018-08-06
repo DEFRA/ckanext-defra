@@ -1,10 +1,10 @@
 {% ckan_extends %}
 
 {% block resource_item_title %}
-<a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
-  <i class="fa fa-chevron-right chevron" aria-hidden="true"></i>
-  {{ h.get_resource_name(res) | truncate(100) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
-</a>
+  <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
+    <i class="pull-right fa fa-chevron-right chevron" aria-hidden="true"></i>
+    {{ h.get_resource_name(res) | truncate(100) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+  </a>
 {% endblock %}
 
 {% block resource_item_description %}

@@ -277,8 +277,14 @@ def get_resource_name(res):
             return 'WFS Service'
         elif res['description']:
             return res['description']
+        else:
+            return _get_filename(res['url'])
 
     return res['name']
+
+
+def _get_filename(url):
+    return url.split('/')[-1]
 
 
 def query_has_bbox(r):
