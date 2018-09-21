@@ -2,9 +2,10 @@
 
 {% block resource_item_title %}
   <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
-    <i class="pull-right fa fa-chevron-right chevron" aria-hidden="true"></i>
-    {{ h.get_resource_name(res) | truncate(100) }}<span class="format-label" property="dc:format" data-format="{{ res.format.lower() or 'data' }}">{{ h.get_translated(res, 'format') }}</span>
+    <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
+    {{ h.get_resource_name(res) | truncate(100) }}
   </a>
+  <span class="subheading">Data type: {{ res.format }}</span>
 {% endblock %}
 
 {% block resource_item_description %}
@@ -18,15 +19,14 @@
 {% block resource_item_explore %}
 
 <div class="resource-expando">
-  <section class="module" style="padding-top: 20px;">
+  <section class="module" style="padding-top: 20px; padding-left: 12px; border-left: solid 4px #eee;">
     {% if not url_is_edit %}
     <div class="resource-action-buttons">
       <ul class="list-inline">
         {% block resource_item_explore_links %}
           {% if res.has_views %}
             <li>
-                <a href="{{ url }}" class="btn btn-primary">
-                  <i class="fa fa-eye"></i>
+                <a href="{{ url }}" class="resource-link">
                   {{ _('Preview') }}
                 </a>
             </li>
@@ -34,12 +34,10 @@
 
           {% if res.url and h.is_url(res.url) %}
             <li>
-              <a href="{{ res.url }}" class="resource-url-analytics btn btn-primary" target="_blank">
+              <a href="{{ res.url }}" class="resource-link resource-url-analytics" target="_blank">
                 {% if res.has_views or res.url_type == 'upload' %}
-                  <i class="fa fa-arrow-circle-o-down"></i>
                   {{ _('Download') }}
                 {% else %}
-                  <i class="fa fa-external-link"></i>
                   {{ _('Go to resource') }}
                 {% endif %}
               </a>
@@ -48,8 +46,7 @@
 
           {% if can_edit %}
             <li>
-              <a class="btn btn-primary" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
-                <i class="fa fa-pencil-square-o"></i>
+              <a class="resource-link xbtn xbtn-primary" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
                 {{ _('Edit') }}
               </a>
             </li>
@@ -59,13 +56,7 @@
       </div>
       {% endif %}
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">{{ _('Field') }}</th>
-          <th scope="col">{{ _('Value') }}</th>
-        </tr>
-      </thead>
+    <table class="resource-table" cellpaddding="10" cellspacing="10" width="100%" >
       <tbody>
         <tr>
           <th scope="row">{{ _('Data last updated') }}</th>

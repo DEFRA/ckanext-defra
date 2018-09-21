@@ -3,7 +3,9 @@
 {% block content_primary_nav %}
 {% endblock %}
 
-{% block content_action %}
+{% block breadcrumb_content %}
+<li><a href="/publisher/{{ c.pkg_dict.organization.name }}">{{ c.pkg_dict.organization.title }}</a></li>
+  <li class="active"><a href="/dataset/{{ c.pkg_dict.organization.name }}/{{c.pkg_dict.name}}">{{ c.pkg_dict.title }}</a></li>
 {% endblock %}
 
 {% block secondary_content %}

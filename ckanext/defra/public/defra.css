@@ -6,7 +6,7 @@
 }
 
 a.resource-expand {
-  color: #2fa450 !important;
+  color: #0F7D41 !important;
 }
 
 .nav-buttons a.active {
@@ -18,7 +18,7 @@ a.resource-expand {
 }
 
 a.btn-primary {
-  background-color: #2fa450 !important;
+  background-color: #0F7D41 !important;
   color: #fff !important;
 }
 
@@ -28,7 +28,7 @@ a.btn-primary {
 
 .account-masthead .account ul li  a { color: #333; margin-top: 10px;  }
 .header-image {
-  margin-top: -30px;
+  xmargin-top: -30px;
 }
 
 .hero {
@@ -218,7 +218,7 @@ li a{
 }
 
 .dataset-heading a {
-  color: #2fa450;
+  color: #0F7D41;
 }
 
 div.site-title {
@@ -409,10 +409,65 @@ img.side-image {
 }
 
 .pagination > .active > a {
-  background-color: #015e23 !important;
+  background-color: #0F7D41 !important;
 }
 
 .account.not-authed a {
   color: #2fa450;
   font-size: smaller;
+}
+
+.account-masthead {
+  height: 40px;
+  line-height: 40px;
+  background-color: #0F7D41;
+  color: white;
+}
+
+.account-masthead * a {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+li.resource-item {
+  padding-left: 12px;
+}
+
+li.resource-item-spacer {
+  border-bottom: solid 2px #ddd;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.resource-link, .resource-expand {
+  text-decoration: underline;
+  color: #0F7D41 !important;
+}
+
+span.subheading {
+  display: block;
+  font-size: smaller;
+  padding-left: 16px;
+  color: #666;
+}
+
+.resource-table tr {
+    height: 30px;
+}
+
+.module-narrow {
+  padding-left: 0;
+}
+
+h2.module-heading {
+  background-color: #fff;
+  border: none;
+  font-weight: 700;
+  font-size: larger;
+  padding-left: 0 !important;
+  margin-left: 0;
+}
+
+.wrapper:before {
+  border-right: 1px solid #dddddd;
 }

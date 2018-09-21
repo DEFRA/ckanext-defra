@@ -1,23 +1,27 @@
 {% ckan_extends %}
 
 {% block header_site_navigation_tabs %}
+
+{#
 <div class="nav-buttons pull-right">
   <a href="/group" class="btn btn-primary {% if c.controller =='group' %}active{% endif %}">Collections</a>
   <a href="/publisher" class="btn btn-primary {% if c.controller =='ckanext.defra.controllers.publisher:PublisherController' %}active{% endif %}">Publishers</a>
 </div>
+#}
 {% endblock %}
 
 {% block header_site_search %}
 {% endblock %}
 
 {% block header_logo %}
-  <a style="float:left;" class="logo" href="{{ h.url_for('home.index') }}"><img src="/images/defra.png" width="180" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
-  <div class="site-title">
-    <h1>Defra Data</h1>
+  <a style="float:left; margin-top: 20px;" class="logo" href="{{ h.url_for('home.index') }}">
+    <img src="/images/defra.png" width="160" alt="{{ g.site_title }}" title="{{ g.site_title }}" /></a>
+  <div style="min-height: 80px; height: 80px;" class="site-title">
+    <h1 style="padding-top: 65px;">Defra Data</h1>
   </div>
 {% endblock %}
 
 
 {% block header_account_notlogged %}
-  {% link_for _('Log in'), named_route='user.login' %} / {% link_for _('Register'), named_route='user.register', class_='sub' %}
+  {% link_for _('Log in'), named_route='user.login' %} | {% link_for _('Register'), named_route='user.register', class_='sub' %}
 {% endblock %}

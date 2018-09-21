@@ -1,13 +1,7 @@
 
 <section class="additional-info">
     <h3>{{ _('Additional Info') }}</h3>
-    <table class="table xtable-striped xtable-bordered xtable-condensed" data-module="table-toggle-more">
-      <thead>
-        <tr>
-          <th scope="col">{{ _('Field') }}</th>
-          <th scope="col">{{ _('Value') }}</th>
-        </tr>
-      </thead>
+    <table class="resource-table" data-module="table-toggle-more">
       <tbody>
         {% block package_additional_info %}
           {% if pkg_dict.url %}
