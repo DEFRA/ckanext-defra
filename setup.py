@@ -39,6 +39,7 @@ setup(
     entry_points='''
         [ckan.plugins]
         defra=ckanext.defra.plugin:DefraPlugin
+        rds_harvester=ckanext.defra.harvesters.reference_harvester:ReferenceDataHarvester
 
         [paste.paster_command]
         import_publishers = ckanext.defra.commands.import_publishers:ImportPublishersCommand

@@ -6,7 +6,7 @@ import ckan.controllers.organization as org
 
 import ckan.plugins.toolkit as toolkit
 import ckan.plugins as plugins
-from ckan import model 
+from ckan import model
 
 from ckan.lib.base import h
 
@@ -35,6 +35,9 @@ class PublisherController(org.OrganizationController):
 
     def _guess_group_type(self, expecting_name=False):
         return 'organization'
+
+    def read(self, id):
+        return super(org.OrganizationController, self).read(id)
 
     def index(self):
         group_type = self._guess_group_type()

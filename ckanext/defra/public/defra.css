@@ -27,9 +27,6 @@ a.btn-primary {
 }
 
 .account-masthead .account ul li  a { color: #333; margin-top: 10px;  }
-.header-image {
-  xmargin-top: -30px;
-}
 
 .hero {
   min-height: 0;
@@ -262,9 +259,6 @@ div.location-search {
 }
 
 /* Map */
-.module-narrow #dataset-map-container {
-
-}
 #dataset-map-container {
   height: 480px;
 }
@@ -429,6 +423,12 @@ img.side-image {
   font-weight: bold;
 }
 
+.authed ul {
+  margin-top: -5px;
+  height: 40px;
+  line-height: 40px;
+}
+
 li.resource-item {
   padding-left: 12px;
 }
@@ -470,4 +470,8 @@ h2.module-heading {
 
 .wrapper:before {
   border-right: 1px solid #dddddd;
+}
+
+ol.breadcrumb {
+  font-size: 16px !important;
 }

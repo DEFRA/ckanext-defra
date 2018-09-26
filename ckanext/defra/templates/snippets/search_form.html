@@ -47,6 +47,7 @@
   {% endblock %}
 
   {% block search_title %}
+    {% if c.controller != "ckanext.defra.controllers.publisher:PublisherController" %}
     {% set has_bbox = h.query_has_bbox(request) %}
       <div class="checkbox location-cb" style="margin-top: 0;">
         <label>
@@ -73,6 +74,7 @@
             {% snippet "spatial/snippets/spatial_query.html", default_extent=[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]] %}
         </div>
       </div>
+      {% endif %}
   {% endblock %}
 
   {% block search_facets %}

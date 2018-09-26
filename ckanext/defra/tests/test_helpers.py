@@ -1,9 +1,6 @@
-import ckan.plugins.toolkit as toolkit
-import ckan.tests.factories as factories
 from ckan.tests.helpers import FunctionalTestBase
 
 import ckanext.defra.helpers as h
-import ckanext.defra.lib.extras as e
 
 
 def fake_package():
