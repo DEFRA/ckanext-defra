@@ -86,7 +86,14 @@ def show_small_search_bar(c):
 
 
 def _find_extra(pkg, key):
-    for extra in pkg['extras']:
+    if pkg is None:
+        return None
+
+    extras = pkg.get('extras', [])
+    if isinstance(extras, dict):
+        return extras.get(key, None)
+
+    for extra in extras:
         if extra['key'] == key:
             return extra['value']
     return None
@@ -245,6 +252,7 @@ def recent_datasets(count=5):
 
 def more_like_this(pkg, count=5):
     from ckan.common import config
+    import ckan.plugins.toolkit as toolkit
     from ckan.lib.search.common import make_connection
 
     solr = make_connection()
@@ -266,7 +274,14 @@ def more_like_this(pkg, count=5):
                                   fq=filter_query,
                                   rows=count)
 
-    return results.docs
+    # we want the dataset objects for each item in docs
+    datasets = []
+    for record in results.docs:
+        print record
+        context = {}
+        d = toolkit.get_action('package_show')(context, {'id': record['name']})
+        datasets.append( context['package'] )
+    return datasets
 
 
 def get_resource_name(res):
@@ -286,6 +301,14 @@ def get_resource_name(res):
 def _get_filename(url):
     return url.split('/')[-1]
 
+def is_reference_dataset(pkg):
+    e = _find_extra(pkg, "reference")
+    return e and e.lower() == 'true'
+
+
+def is_gdpr_dataset(pkg):
+    e = _find_extra(pkg, "gdpr")
+    return e and e.lower() == 'true'
 
 def query_has_bbox(r):
     params = request.environ.get('webob._parsed_query_vars')[0]

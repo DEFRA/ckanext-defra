@@ -2,11 +2,11 @@
 
 {% block heading %}
     {% if not organization.image_display_url %}
-        <h1 class="heading">{{ organization.title }}
+        <a class="large" href="/publisher/{{organization.name}}">{{ organization.title }}
         {% if organization.state == 'deleted' %}
             [{{ _('Deleted') }}]
         {% endif %}
-        </h1>
+        </a>
     {% endif %}
 {% endblock %}
 

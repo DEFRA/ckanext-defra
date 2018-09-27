@@ -5,6 +5,12 @@
   color:#333;
 }
 
+a {
+  color: #0F7D41;
+  text-decoration: underline;
+}
+
+
 a.resource-expand {
   color: #0F7D41 !important;
 }
@@ -34,7 +40,7 @@ a.btn-primary {
 
 
 body {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica !important;
+  font-family: 'Helvetica Neue', Helvetica !important;
   font-size: 16px;
   background: none;
   background-color: #fff;
@@ -459,6 +465,23 @@ span.subheading {
   padding-left: 0;
 }
 
+span.label-blue {
+  background-color: #009fe3;
+  float: right;
+  font-size: 12px;
+}
+
+span.label-blueleft {
+  background-color: #009fe3;
+  font-size: 12px;
+}
+
+span.label-red {
+  background-color: #d9534f;
+  float: right;
+  font-size: 12px;
+}
+
 h2.module-heading {
   background-color: #fff;
   border: none;
@@ -469,9 +492,64 @@ h2.module-heading {
 }
 
 .wrapper:before {
-  border-right: 1px solid #dddddd;
+  border-right: 1px solid #ddd;
 }
 
 ol.breadcrumb {
   font-size: 16px !important;
 }
+
+.dataset-item {
+  border-bottom: none !important;
+  padding-top: 0;
+  margin-bottom: 10px;
+}
+
+li.resource-item-spacer {
+  border-bottom: solid 1px #ddd;
+}
+
+.gdpr-container {
+  line-height: 36px;
+   border: solid 1px #ddd;
+   border-radius: 4px;
+   padding-left: 8px;
+}
+
+  .gdpr-container .gdpr-label {
+    padding-left: 10px;
+  }
+
+.rds-container {
+  line-height: 36px;
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  padding-left: 8px;
+}
+
+  .rds-container .rds-label {
+    padding-left: 10px;
+  }
+
+  .dataset-tab-container {
+    background-color: #efefef;
+    margin: 0;
+    padding: 8px;
+    min-height: 200px;
+  }
+
+  .nav-tabs > li > a
+  {
+    color: #0F7D41;
+  }
+
+  .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus
+  {
+    background-color: #efefef;
+    color: #0F7D41;
+    text-decoration: none;
+  }
+
+  .resource-expando {
+    border-left: solid 3px #ccc;
+  }

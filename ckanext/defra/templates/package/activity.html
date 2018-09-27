@@ -1,0 +1,47 @@
+{% extends "/package/read_base.html" %}
+
+{% set pkg = c.pkg_dict %}
+
+{% block primary_content_inner %}
+  {% block package_description %}
+    {% if pkg.private %}
+      <span class="dataset-private label label-inverse pull-right">
+        <i class="fa fa-lock"></i>
+        {{ _('Private') }}
+      </span>
+    {% endif %}
+    <h1>
+        {{ pkg.title }}
+    </h1>
+
+    <ul class="nav nav-tabs">
+        <li><a href="/dataset/{{c.pkg_dict.name}}">Dataset</a></li>
+        <li><a href="/dataset/{{c.pkg_dict.name}}/more">More like this</a></li>
+        <li class="active"><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+    </ul>
+
+
+    <div class="dataset-tab-container">
+        <h1 class="hide-heading">{% block page_heading %}{{ _('Activity Stream') }}{% endblock %}</h1>
+
+        <table width="70%" style="margin-bottom: 20px;">
+            <tr>
+                <th>Record created</th>
+                <td>{{ h.render_datetime(pkg.metadata_created) }}</td>
+            </tr>
+            <tr>
+                <th>Record modified</th>
+                <td>{{ h.render_datetime(pkg.metadata_modified) }}</td>
+            </tr>
+        </table>
+
+        {% block activity_stream %}
+            {{ c.package_activity_stream | safe }}
+        {% endblock %}
+
+    </div>
+
+  {% endblock %}
+
+    </div>
+  {% endblock %}
