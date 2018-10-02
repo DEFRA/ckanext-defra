@@ -1,7 +1,15 @@
 
 <section class="additional-info">
-    <h3>{{ _('Additional Info') }}</h3>
-    <table class="resource-table" data-module="table-toggle-more">
+    <h3>{{ _('Additional Information') }}</h3>
+
+    <!-- Expando toggle here-->
+    <a class="heading" id="additional-expando" href="javascript:void(0);" style="font-weight: bold;">
+      <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
+      View additional metadata
+    </a>
+
+    <div id="additional-info" style="display:none;">
+    <table class="resource-table" data-module="xtable-toggle-more">
       <tbody>
         {% block package_additional_info %}
           {% if pkg_dict.url %}
@@ -90,6 +98,7 @@
         {% endblock %}
       </tbody>
     </table>
+  </div>
   </section>
 
 

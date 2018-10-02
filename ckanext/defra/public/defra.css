@@ -222,6 +222,13 @@ li a{
 
 .dataset-heading a {
   color: #0F7D41;
+  text-decoration: none;
+  font-size: larger;
+}
+
+.dataset-publisher-heading a {
+  text-decoration: underline;
+  font-size: 14px;
 }
 
 div.site-title {
@@ -465,6 +472,9 @@ span.subheading {
   padding-left: 0;
 }
 
+span.label {
+  margin-top: 4px;
+}
 span.label-blue {
   background-color: #009fe3;
   float: right;
@@ -553,3 +563,47 @@ li.resource-item-spacer {
   .resource-expando {
     border-left: solid 3px #ccc;
   }
+
+  nav.account ul a {
+    text-decoration: none;
+  }
+
+  div.avatar ul li a {
+    text-decoration: none;
+  }
+
+  ul.nav-facet li.nav-item a {
+    margin-left: -40px;
+    text-decoration: none;
+    color: #0F7D41
+  }
+
+  a.read-more {
+    text-decoration: none;
+    color: #0F7D41 !important;
+  }
+
+  ol.breadcrumb li a {
+    text-decoration: none;
+  }
+
+#additional-info {
+  padding-left: 16px;
+}
+
+
+/* Search styling */
+.search-input-group {
+  width: 66%;
+}
+
+#field-giant-search {
+  border: solid 2px #333;
+}
+
+.btn-search {
+  margin-left: -20px !important;
+  background-color: #333;
+  color: #fff !important;
+  border: solid 1px #333;
+}

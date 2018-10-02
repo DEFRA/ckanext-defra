@@ -1,5 +1,12 @@
 
 $(document).ready(function(){
+    $('#additional-expando').on('click', function(){
+        var chev = $(this).find('.chevron').get(0)
+        $(chev).toggleClass("fa-chevron-right fa-chevron-down")
+
+        $('#additional-info').toggle();
+    });
+
     $('.resource-expand').on('click', function(){
         var toggle = $(this).siblings('.resource-expando').get(0)
 
