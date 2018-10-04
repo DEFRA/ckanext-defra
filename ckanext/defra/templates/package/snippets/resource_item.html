@@ -1,11 +1,17 @@
 {% ckan_extends %}
 
 {% block resource_item_title %}
+  <div style="float: right; font-size: large; margin-right: 20px;">
+    <i class="fa fa-lock"></i>
+  </div>
+
   <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
     <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
     {{ h.get_resource_name(res) | truncate(100) }}
   </a>
+  {% if not h.is_private_resource(pkg) %}
   <span class="subheading">Data type: {{ res.format }}</span>
+  {% endif %}
 {% endblock %}
 
 {% block resource_item_description %}
@@ -18,42 +24,51 @@
 
 {% block resource_item_explore %}
 
+{% set private=h.is_private_resource(pkg) %}
+
 <div class="resource-expando">
   <section class="module" style="padding-top: 20px; padding-left: 12px; border-left: solid 4px #eee;">
-    {% if not url_is_edit %}
-    <div class="resource-action-buttons">
-      <ul class="list-inline">
-        {% block resource_item_explore_links %}
-          {% if res.has_views %}
-            <li>
-                <a href="{{ url }}" class="resource-link">
-                  {{ _('Preview') }}
-                </a>
-            </li>
-          {% endif %}
-
-          {% if res.url and h.is_url(res.url) %}
-            <li>
-              <a href="{{ res.url }}" class="resource-link resource-url-analytics" target="_blank">
-                {% if res.has_views or res.url_type == 'upload' %}
-                  {{ _('Download') }}
-                {% else %}
-                  {{ _('Go to resource') }}
-                {% endif %}
-              </a>
-            </li>
-          {% endif %}
-
-          {% if can_edit %}
-            <li>
-              <a class="resource-link xbtn xbtn-primary" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
-                {{ _('Edit') }}
-              </a>
-            </li>
+    {% if private %}
+    <div class="private-resource">
+      <h3>This data is not publicly accessible</h3>
+      <p>Please <a href="mailto:">contact the data owner</a> to obtain access to this data</p>
+    </div>
+    {% else %}
+      {% if not url_is_edit %}
+      <div class="resource-action-buttons">
+        <ul class="list-inline">
+          {% block resource_item_explore_links %}
+            {% if res.has_views %}
+              <li>
+                  <a href="{{ url }}" class="resource-link">
+                    {{ _('Preview') }}
+                  </a>
+              </li>
             {% endif %}
-          {% endblock %}
-        </ul>
-      </div>
+
+            {% if res.url and h.is_url(res.url) %}
+              <li>
+                <a href="{{ res.url }}" class="resource-link resource-url-analytics" target="_blank">
+                  {% if res.has_views or res.url_type == 'upload' %}
+                    {{ _('Download') }}
+                  {% else %}
+                    {{ _('Go to resource') }}
+                  {% endif %}
+                </a>
+              </li>
+            {% endif %}
+
+            {% if can_edit %}
+              <li>
+                <a class="resource-link" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+                  {{ _('Edit') }}
+                </a>
+              </li>
+              {% endif %}
+            {% endblock %}
+          </ul>
+        </div>
+        {% endif %}
       {% endif %}
 
     <table class="resource-table" cellpaddding="10" cellspacing="10" width="100%" >

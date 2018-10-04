@@ -594,11 +594,11 @@ li.resource-item-spacer {
 
 /* Search styling */
 .search-input-group {
-  width: 66%;
 }
 
 #field-giant-search {
   border: solid 2px #333;
+  font-size: larger;
 }
 
 .btn-search {
@@ -606,4 +606,12 @@ li.resource-item-spacer {
   background-color: #333;
   color: #fff !important;
   border: solid 1px #333;
+}
+
+div.private-resource {
+  margin-top: -30px;
+  margin-bottom: 30px;
+  background-color: #ccc;
+  padding: 10px;
+  border-radius: 4px;
 }

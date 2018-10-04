@@ -2678,7 +2678,7 @@ msgstr "Load more"
 
 #: ckan/templates/activity_streams/activity_stream_items.html:23
 msgid "No activities are within this activity stream"
-msgstr "No activities are within this activity stream"
+msgstr "No activity"
 
 #: ckan/templates/admin/base.html:3
 msgid "Administration"

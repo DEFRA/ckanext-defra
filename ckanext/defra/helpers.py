@@ -99,6 +99,10 @@ def _find_extra(pkg, key):
     return None
 
 
+def is_private_resource(pkg):
+    return _find_extra(pkg, 'private-resources') == "True"
+
+
 def access_constraints(pkg):
     import json
 
