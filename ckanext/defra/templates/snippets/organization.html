@@ -2,7 +2,7 @@
 
 {% block heading %}
     {% if not organization.image_display_url %}
-        <a class="large" href="/publisher/{{organization.name}}">{{ organization.title }}
+        <a style="font-size: large;" href="/publisher/{{organization.name}}">{{ organization.title }}
         {% if organization.state == 'deleted' %}
             [{{ _('Deleted') }}]
         {% endif %}
@@ -14,7 +14,7 @@
   {% if organization.image_display_url %}
     <div class="image">
         <a href="{{ url }}">
-        <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" width="200" alt="{{ organization.title }}" title="{{ organization.title }}" />
+          <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" width="200" alt="{{ organization.title }}" title="{{ organization.title }}" />
         </a>
     </div>
   {% endif %}
