@@ -281,29 +281,34 @@ def more_like_this(pkg, count=5):
     # we want the dataset objects for each item in docs
     datasets = []
     for record in results.docs:
-        print record
         context = {}
-        d = toolkit.get_action('package_show')(context, {'id': record['name']})
-        datasets.append( context['package'] )
+        toolkit.get_action('package_show')(context, {'id': record['name']})
+        datasets.append(context['package'])
     return datasets
 
 
 def get_resource_name(res):
-    if res['name'] == 'Unnamed resource':
-        if res['url'].lower().find('/wms') >= 0:
+    if not res:
+        return ''
+
+    if res.get('name') == 'Unnamed resource':
+        if res.get('url', '').lower().find('/wms') >= 0:
             return 'WMS Service'
-        elif res['url'].lower().find('/wfs') >= 0:
+        elif res.get('url', '').lower().find('/wfs') >= 0:
             return 'WFS Service'
-        elif res['description']:
+        elif res.get('description', ''):
             return res['description']
         else:
-            return _get_filename(res['url'])
+            f = _get_filename(res.get('url', ''))
+            if f:
+                return f
 
-    return res['name']
+    return res.get('name', 'Unnamed resource')
 
 
 def _get_filename(url):
     return url.split('/')[-1]
+
 
 def is_reference_dataset(pkg):
     e = _find_extra(pkg, "reference")
@@ -314,6 +319,7 @@ def is_gdpr_dataset(pkg):
     e = _find_extra(pkg, "gdpr")
     return e and e.lower() == 'true'
 
+
 def query_has_bbox(r):
     params = request.environ.get('webob._parsed_query_vars')[0]
     return params.get('ext_bbox', '') != ''
@@ -322,7 +328,6 @@ def query_has_bbox(r):
 def linked_access_constraints(ac):
     refs = {
         'http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/inspire-licence.html': 'Inspire Licence',
-         # Handle the typo
         'http://www.ordnancesurvey.couk/business-and-government/public-sector/mapping-agreements/inspire-licence.html': 'Inspire Licence',
         'http://www.ordnancesurvey.co.uk/business-and-government/public-sector/mapping-agreements/end-user-licence.html': 'Public Sector Mapping Agreement'
     }
