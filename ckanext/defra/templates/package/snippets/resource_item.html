@@ -7,7 +7,7 @@
 
   <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
     <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
-    {{ h.get_resource_name(res) | truncate(100) }}
+    {{ h.get_resource_name(res) }}
   </a>
   {% if not h.is_private_resource(pkg) %}
   <span class="subheading">Data type: {{ res.format }}</span>
