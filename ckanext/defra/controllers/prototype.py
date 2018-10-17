@@ -1,13 +1,7 @@
 # encoding: utf-8
 
-import re
-
 import ckan.plugins.toolkit as toolkit
-import ckan.plugins as plugins
-from ckan import model
-
-from ckan.lib.base import h, c
-
+from ckan.lib.base import c
 
 
 class PrototypeController(toolkit.BaseController):
@@ -20,4 +14,18 @@ class PrototypeController(toolkit.BaseController):
         c.pkg = context['package']
 
         return toolkit.render('package/more.html',
-                          extra_vars={'pkg_dict': c.pkg_dict })
+                              extra_vars={'pkg_dict': c.pkg_dict})
+
+    def reports(self):
+        context = {}
+
+        c.organisation_list = toolkit.get_action('organization_list')(
+            context, {
+                'all_fields': True,
+                'include_dataset_count': True,
+                'sort': 'package_count'
+            }
+        )
+
+        return toolkit.render('reports/index.html',
+                              extra_vars={})

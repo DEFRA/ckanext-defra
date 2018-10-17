@@ -337,3 +337,25 @@ def linked_access_constraints(ac):
             ac = ac.replace(k,
                             '<a href="{}">{}</a><br/>'.format(k, v))
     return ac
+
+
+def org_private_record_count(org_id):
+    # Count all of the packages for this organisation that have some
+    # identifiable private flag
+    # model.Session
+    from ckan import model
+    p = model.Session.query(model.Package, model.PackageExtra)\
+        .filter(model.Package.owner_org == org_id)\
+        .filter(model.Package.type == 'dataset')\
+        .filter(model.PackageExtra.package_id == model.Package.id)\
+        .filter(model.PackageExtra.key == 'gdpr')\
+        .all()
+
+    # Need to join to include extras known to be private indicators
+    # q = select([extra]).where(extra.c.package_id == pkg.id)
+    print p
+
+    if len(p) == 0:
+        return 0
+
+    return len(p)

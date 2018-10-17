@@ -1,0 +1,27 @@
+{% extends "page.html" %}
+
+{% block secondary_content %}
+    {% include "reports/nav.html" %}
+{% endblock %}
+
+{% block primary %}
+<div class="primary col-sm-9 col-xs-12">
+        <h2>Overview</h2>
+
+        <h3>Records by volume</h3>
+        <table class="table table-striped">
+            <tr>
+                <th>Organisation</th>
+                <th style="text-align:center;">Recorded datasets</th>
+                <th style="text-align:center;">% private</th>
+            </tr>
+            {% for organisation in c.organisation_list %}
+            <tr>
+                <td>{{ organisation.title }} </td>
+                <td align="center">{{ organisation.package_count }}</td>
+                <td align="center">{{ h.org_private_record_count(organisation.id) }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+</div>
+{% endblock %}

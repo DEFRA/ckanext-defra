@@ -52,6 +52,7 @@ class DefraPlugin(plugins.SingletonPlugin,
 
         with SubMapper(routes, controller='ckanext.defra.controllers.prototype:PrototypeController') as m:
             m.connect('proto_more', '/dataset/{id}/more', action='more')
+            m.connect('reports_home', '/reports', action='reports')
 
         controller = 'ckanext.defra.controllers.publisher:PublisherController'
         with SubMapper(routes,
