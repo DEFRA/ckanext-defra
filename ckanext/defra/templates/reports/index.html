@@ -5,23 +5,68 @@
 {% endblock %}
 
 {% block primary %}
-<div class="primary col-sm-9 col-xs-12">
-        <h2>Overview</h2>
+<div class="primary col-sm-9 col-xs-12 report">
+    <h1>Overview</h1>
 
-        <h3>Records by volume</h3>
-        <table class="table table-striped">
-            <tr>
-                <th>Organisation</th>
-                <th style="text-align:center;">Recorded datasets</th>
-                <th style="text-align:center;">% private</th>
-            </tr>
-            {% for organisation in c.organisation_list %}
-            <tr>
-                <td>{{ organisation.title }} </td>
-                <td align="center">{{ organisation.package_count }}</td>
-                <td align="center">{{ h.org_private_record_count(organisation.id) }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <h3>Statistics</h3>
+
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Number of organisations</div>
+                <div class="panel-body report-number">
+                    {{ c.statistics.organisation_count }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Number of datasets</div>
+                <div class="panel-body report-number">
+                        {{ c.statistics.dataset_count }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Number of record sources</div>
+                <div class="panel-body report-number">
+                        {{ c.statistics.harvester_count }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Number of data files</div>
+                <div class="panel-body report-number">
+                        {{ c.statistics.resource_count }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <h3>Recently added datasets</h3>
+        <ul class="list-unstyled">
+        {% for p in c.new_packages %}
+           <li class="report-dataset">
+            <a href="">{{ p.title }}</a>
+           </li>
+        {% endfor %}
+        </ul>
+
+        <h3>Recently updated datasets</h3>
+        <ul class="list-unstyled">
+        {% for p in c.modified_packages %}
+           <li class="report-dataset">
+            <a href="">{{ p.title }}</a>
+           </li>
+        {% endfor %}
+    </div>
+        </ul>
 </div>
+
 {% endblock %}

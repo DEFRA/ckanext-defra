@@ -1,0 +1,46 @@
+{% extends "page.html" %}
+
+{% block secondary_content %}
+    {% include "reports/nav.html" %}
+{% endblock %}
+
+{% block primary %}
+<link href="c3.min.css" rel="stylesheet">
+<script src="/js/d3.min.js"></script>
+<script src="/js/c3.min.js"></script>
+
+
+<div class="primary col-sm-9 col-xs-12 report">
+    <h1>Publishing history</h1>
+    <p>Shows the publishing and updating of dataset records over time</p>
+
+    {% for organisation in c.organisation_list %}
+        <h3>{{ organisation.title }} </h3>
+
+        <div id="chart_{{organisation.id}}"></div>
+        <script>
+            c3.generate({
+                bindto: '#chart_{{organisation.id}}',
+                data: {
+                   x: 'x',
+                   columns: [
+                        ['x', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01'],
+                        ['New records', 30, 200, 100, 400, 150, 250],
+                        ['Updated records', 10, 20, 120, 300, 250, 150]
+                    ]
+                },
+                axis : {
+                    x : {
+                        type : 'timeseries',
+                        tick: {
+                            format: function (x) { return x.getFullYear(); }
+                           //format: '%Y' // format string is also available for timeseries data
+                        }
+                    }
+                }
+            });
+        </script>
+        <hr/>
+    {% endfor %}
+</div>
+{% endblock %}
