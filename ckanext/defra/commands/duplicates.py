@@ -6,7 +6,7 @@ ENDS_WITH_NUMBER = re.compile(".*[0-9]$")
 
 
 class RemoveDuplicatesCommand(toolkit.CkanCommand):
-    ''' Removes the older of any duplicates '''
+    ''' Removes the older of any duplicates - tactical, please make better'''
     summary = __doc__.split('\n')[0]
     usage = '\n'.join(__doc__.split('\n')[1:])
     max_args = None
@@ -33,31 +33,20 @@ class RemoveDuplicatesCommand(toolkit.CkanCommand):
 
             names = packages.keys()[:]
 
-            poss_matches = sorted([
-                n for n in names if ENDS_WITH_NUMBER.match(n) and n[0:-1] in names
-            ])
+            for name in names:
+                matches = sorted([n for n in names if n.startswith(name) and len(n) - len(name) == 1])
+                if not matches:
+                    continue
 
-            if not poss_matches:
-                continue
+                matches.insert(0, name)
+                titles = set([packages[n] for n in matches])
+                if len(titles) > 1:
+                    print "Mismatched titles"
+                    continue
 
-            todel = []
-
-            if len(poss_matches) > 1:
-                todel.extend(poss_matches[:-1])
-
-            todel.append(poss_matches[0][0:-1])
-
-            # Make sure all datasets in todel have the same title ...
-            todel.sort()
-            titles = [packages[n] for n in todel]
-            if len(set(titles)) > 1:
-                print "Bailing, titles not the same"
-                continue
-
-            for name in todel:
-                print " -------> Deleting {}".format(name)
-
-                #toolkit.get_action('package_delete')(
-                #    self.get_context(), {'id': name}
-                #)
-
+                # All but the latest
+                for pkg in matches[0:-1]:
+                    print "  Deleting {}".format(pkg)
+                    toolkit.get_action('package_delete')(
+                        self.get_context(), {'id': pkg}
+                    )
