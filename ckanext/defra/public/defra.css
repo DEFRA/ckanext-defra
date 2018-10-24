@@ -632,6 +632,21 @@ div.private-resource {
   font-size: 2em;
 }
 
+.dataset-publisher-heading {
+  font-weight: normal;
+}
+
+.search-count {
+  font-size: xlarge;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #ddd;
+}
+
+.nav-facet li.active a span.item-label {
+  color: white;
+}
+
 /* Charts */
 .c3 path, .c3 line {
   fill: none;

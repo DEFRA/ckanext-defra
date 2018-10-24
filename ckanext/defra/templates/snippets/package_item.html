@@ -13,7 +13,7 @@
       {% snippet 'snippets/package_item.html', package=c.datasets[0] %}
 
     #}
-    {% set truncate = truncate or 180 %}
+    {% set truncate = truncate or 300 %}
     {% set truncate_title = truncate_title or 80 %}
     {% set title = package.title or package.name %}
     {% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}

@@ -53,7 +53,7 @@
         <ul class="list-unstyled">
         {% for p in c.new_packages %}
            <li class="report-dataset">
-            <a href="">{{ p.title }}</a>
+            <a href="/dataset/{{ p.name }}">{{ p.title }}</a>
            </li>
         {% endfor %}
         </ul>
@@ -62,7 +62,7 @@
         <ul class="list-unstyled">
         {% for p in c.modified_packages %}
            <li class="report-dataset">
-            <a href="">{{ p.title }}</a>
+            <a href="/dataset/{{ p.name }}">{{ p.title }}</a>
            </li>
         {% endfor %}
     </div>

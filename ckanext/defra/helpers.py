@@ -357,3 +357,19 @@ def org_private_record_count(org_id):
         return 0
 
     return len(p)
+
+
+def plural(ch, count):
+    if count == 1:
+        return ''
+    return ch
+
+
+def item_range(page):
+    if page.item_count == 1:
+        return "1"
+    return "{} - {}".format(page.first_item, page.last_item)
+
+def publishing_stats(org_name, type):
+    from lib.reports.publishing_reports import PUBLISHING_HISTORY
+    return PUBLISHING_HISTORY[org_name][type]

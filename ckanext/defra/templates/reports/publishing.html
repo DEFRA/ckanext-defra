@@ -9,6 +9,10 @@
 <script src="/js/d3.min.js"></script>
 <script src="/js/c3.min.js"></script>
 
+<script>
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+</script>
 
 <div class="primary col-sm-9 col-xs-12 report">
     <h1>Publishing history</h1>
@@ -24,17 +28,19 @@
                 data: {
                    x: 'x',
                    columns: [
-                        ['x', '2010-01-01', '2011-01-01', '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01'],
-                        ['New records', 30, 200, 100, 400, 150, 250],
-                        ['Updated records', 10, 20, 120, 300, 250, 150]
+                        ['x', '2018-01-01', '2018-02-01', '2018-03-01',
+                              '2018-04-01', '2018-05-01', '2018-06-01',
+                              '2018-07-01', '2018-08-01', '2018-09-01',
+                              '2018-10-01', '2018-11-01', '2018-12-01'],
+                        {{ h.publishing_stats(organisation.name, "additions") | safe }},
+                        {{ h.publishing_stats(organisation.name, "updates") | safe }}
                     ]
                 },
                 axis : {
                     x : {
                         type : 'timeseries',
                         tick: {
-                            format: function (x) { return x.getFullYear(); }
-                           //format: '%Y' // format string is also available for timeseries data
+                            format: function (x) { return monthNames[x.getMonth()] + " " + x.getFullYear(); }
                         }
                     }
                 }

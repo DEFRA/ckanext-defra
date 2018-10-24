@@ -13,6 +13,13 @@
 
 
 {% block form %}
+{% if c.page.item_count == 0 %}
+  Your search did not match any records. Please try again with a different search.
+{% else %}
+  <div class="search-count">
+    Showing <strong>{{ h.item_range(c.page) }}</strong> of <strong>{{ h.SI_number_span(c.page.item_count) }}</strong> record{{ h.plural("s", c.page.item_count)}}
+  </div>
+{% endif %}
 {% endblock %}
 
 {% block secondary_content %}
