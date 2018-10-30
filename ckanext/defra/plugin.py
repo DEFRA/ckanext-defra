@@ -2,8 +2,9 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.config.routing import SubMapper
-
 import ckanext.defra.logic.auth as auth
+
+from ckanext.report.interfaces import IReport
 
 
 class DefraPlugin(plugins.SingletonPlugin,
@@ -16,6 +17,14 @@ class DefraPlugin(plugins.SingletonPlugin,
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IDatasetForm, inherit=True)
+    plugins.implements(IReport)
+
+    def register_reports(self):
+        from ckanext.defra.lib import reports
+
+        return [reports.publishing_report,
+                reports.access_history_report,
+                reports.broken_resource_report]
 
     def package_types(self):
         return []
@@ -53,9 +62,9 @@ class DefraPlugin(plugins.SingletonPlugin,
         with SubMapper(routes, controller='ckanext.defra.controllers.prototype:PrototypeController') as m:
             m.connect('proto_more', '/dataset/{id}/more', action='more')
             m.connect('reports_home', '/reports', action='reports')
-            m.connect('reports_publishing', '/reports/publishing', action='reports_publishing')
-            m.connect('reports_access', '/reports/access', action='reports_access')
-            m.connect('reports_broken', '/reports/broken', action='reports_broken')
+            m.connect('reports_publishing', '/report/publishing', action='reports_publishing')
+            m.connect('reports_access', '/report/access', action='reports_access')
+            m.connect('reports_broken', '/report/broken', action='reports_broken')
 
         controller = 'ckanext.defra.controllers.publisher:PublisherController'
         with SubMapper(routes,

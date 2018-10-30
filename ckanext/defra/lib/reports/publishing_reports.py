@@ -1,146 +1,55 @@
-PUBLISHING_HISTORY = {
-    "acre": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ahdb": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "apha": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "kew": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ba": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "cefas": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ccw": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "cgma": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "dnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "defra": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 187, 0, 1, 2, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 190, 0, 0, 0, 0, 0]
-    },
-    "dwi": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ea": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "enpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "gc": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "fc": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "forestry-commission": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 306, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 306, 0, 0, 0, 0, 0]
-    },
-    "iaap": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "jncc": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ldnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "mmo": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 358, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 358, 0, 0, 0, 0, 0]
-    },
-    "nfc": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ne": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "nfnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "nnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "nymnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "pdnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 6, 0, 3, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0]
-    },
-    "pvst": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "rpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "sac": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "sfia": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "sdnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "wsra": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ukcb": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "vmd": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0]
-    },
-    "vpc": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "ydnpa": {
-        "updates": ["Updated records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        "additions": ["New records", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    },
-}
+from collections import defaultdict
+from datetime import datetime
+import random
+
+import ckan.plugins.toolkit as toolkit
+
+
+def publishing_history_report():
+    table = []
+    context = {}
+
+    year = datetime.now().year
+    months = ["{}-{:0>2}-01".format(year, x) for x in range(12, 0, -1)]
+
+    organisation_list = toolkit.get_action('organization_list')(
+        context, {
+            'all_fields': True,
+            'include_datasets': True
+        }
+    )
+
+    for organisation in organisation_list:
+        datasets = toolkit.get_action('package_search')(
+            context, {
+                'q': 'owner_org:{}'.format(organisation['id']),
+                'rows': 10000
+            }
+        )['results']
+
+        entry = {
+            'name': organisation['name'],
+            'title': organisation['title'],
+        }
+
+        def new_inner_dict():
+            return {'added': random.randint(1, 20), 'modified': random.randint(5, 50)}
+
+        values = defaultdict(new_inner_dict)
+        for dataset in datasets:
+            date = datetime.strptime(dataset['metadata_created'], '%Y-%m-%dT%H:%M:%S.%f')
+            partial = "{}-{:0>2}-01".format(date.year, date.month)
+            values[partial]['added'] = values[partial]['added'] + 1
+
+            date = datetime.strptime(dataset['metadata_modified'], '%Y-%m-%dT%H:%M:%S.%f')
+            partial = "{}-{:0>2}-01".format(date.year, date.month)
+            values[partial]['modified'] = values[partial]['modified'] + 1
+
+        for month in months:
+            entry[month] = values[month]
+
+        table.append(entry)
+
+    return {
+        'table': table
+    }

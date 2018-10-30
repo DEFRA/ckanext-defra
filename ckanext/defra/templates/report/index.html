@@ -1,10 +1,12 @@
 {% extends "page.html" %}
 
 {% block secondary_content %}
-    {% include "reports/nav.html" %}
+    {% include "report/nav.html" %}
 {% endblock %}
 
 {% block primary %}
+    {% set data = h.get_report_index() %}
+
 <div class="primary col-sm-9 col-xs-12 report">
     <h1>Overview</h1>
 
@@ -15,7 +17,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of organisations</div>
                 <div class="panel-body report-number">
-                    {{ c.statistics.organisation_count }}
+                    {{ data.statistics.organisation_count }}
                 </div>
             </div>
         </div>
@@ -24,7 +26,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of datasets</div>
                 <div class="panel-body report-number">
-                        {{ c.statistics.dataset_count }}
+                        {{ data.statistics.dataset_count }}
                 </div>
             </div>
         </div>
@@ -33,7 +35,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of record sources</div>
                 <div class="panel-body report-number">
-                        {{ c.statistics.harvester_count }}
+                        {{ data.statistics.harvester_count }}
                 </div>
             </div>
         </div>
@@ -42,7 +44,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of data files</div>
                 <div class="panel-body report-number">
-                        {{ c.statistics.resource_count }}
+                        {{ data.statistics.resource_count }}
                 </div>
             </div>
         </div>
@@ -51,7 +53,7 @@
     <div class="col-md-6 col-sm-6 col-xs-6">
         <h3>Recently added datasets</h3>
         <ul class="list-unstyled">
-        {% for p in c.new_packages %}
+        {% for p in data.new_packages %}
            <li class="report-dataset">
             <a href="/dataset/{{ p.name }}">{{ p.title }}</a>
            </li>
@@ -60,7 +62,7 @@
 
         <h3>Recently updated datasets</h3>
         <ul class="list-unstyled">
-        {% for p in c.modified_packages %}
+        {% for p in data.modified_packages %}
            <li class="report-dataset">
             <a href="/dataset/{{ p.name }}">{{ p.title }}</a>
            </li>
