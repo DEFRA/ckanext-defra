@@ -1,16 +1,20 @@
 {% ckan_extends %}
 
 {% block header_site_navigation_tabs %}
-{#
-<div class="nav-buttons pull-right">
-  {% set protoC = 'ckanext.defra.controllers.prototype:PrototypeController' %}
-  <a href="/dataset" class="btn btn-primary {% if c.controller != protoC %}active{% endif %}">Data</a>
-  <a href="/reports" class="btn btn-primary {% if c.controller == protoC %}active{% endif %}">Reports</a>
-</div>
-#}
 {% endblock %}
 
 {% block header_site_search %}
+{% endblock %}
+
+{% block header_account_container_content %}
+  {% set protoC = 'ckanext.defra.controllers.prototype:PrototypeController' %}
+  {% set reportC = 'ckanext.report.controllers:ReportController' %}
+
+  <a href="/dataset" class="main-nav-link {% if c.controller != protoC and c.controller != reportC %}active{% endif %}">Data</a>
+  <a href="/collection" class="main-nav-link {% if c.controller == protoC %}active{% endif %}">Collections</a>
+  <a href="/report" class="main-nav-link {% if c.controller == reportC %}active{% endif %}">Reports</a>
+
+  {{ super() }}
 {% endblock %}
 
 {% block header_logo %}

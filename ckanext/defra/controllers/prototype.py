@@ -66,44 +66,6 @@ class PrototypeController(toolkit.BaseController):
         return toolkit.render('reports/index.html',
                               extra_vars={})
 
-    def reports_publishing(self):
-        context = {}
-
-        c.organisation_list = toolkit.get_action('organization_list')(
-            context, {
-                'all_fields': True,
-                'include_dataset_count': True,
-                'sort': 'package_count'
-            }
-        )
-
-        return toolkit.render('reports/publishing.html',
-                              extra_vars={})
-
-    def reports_access(self):
-        context = {}
-
-        c.organisation_list = toolkit.get_action('organization_list')(
-            context, {
-                'all_fields': True,
-                'include_dataset_count': True,
-                'sort': 'package_count'
-            }
-        )
-
-        return toolkit.render('reports/access.html',
-                              extra_vars={})
-
-    def reports_broken(self):
-        context = {}
-
-        c.organisation_list = toolkit.get_action('organization_list')(
-            context, {
-                'all_fields': True,
-                'include_dataset_count': True,
-                'sort': 'package_count'
-            }
-        )
-
-        return toolkit.render('reports/broken.html',
+    def collections_home(self):
+        return toolkit.render('collection/index.html',
                               extra_vars={})

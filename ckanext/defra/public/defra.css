@@ -647,6 +647,18 @@ div.private-resource {
   color: white;
 }
 
+a.main-nav-link {
+  text-decoration: none;
+  margin-right: 10px;
+  font-weight: normal;
+}
+
+a.main-nav-link.active {
+  text-decoration: underline;
+  xmargin-right: 10px;
+  xfont-weight: normal;
+}
+
 /* Charts */
 .c3 path, .c3 line {
   fill: none;
