@@ -21,6 +21,15 @@
     {% block package_item %}
       <li class="{{ item_class or "dataset-item" }}">
         {% block content %}
+
+        {% set private = h.is_private_resource(package) %}
+        {% if private %}
+        <div style="float: right; font-size: large; margin-right: 20px; ">
+          <i class="fa fa-lock text-danger"></i>
+        </div>
+        {% endif %}
+
+
           <div class="dataset-content {% if h.is_reference_dataset(package) %}reference-dataset{% endif %}">
                 {% block heading %}
                 <h3 class="dataset-heading">

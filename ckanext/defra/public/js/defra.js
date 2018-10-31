@@ -15,11 +15,11 @@ $(document).ready(function(){
         $(toggle).toggle()
     });
 
-    var first = $('.resource-expand').get(0);
-    var chev = $(first).find('.chevron').get(0)
-    $(chev).toggleClass("fa-chevron-right fa-chevron-down")
+    //var first = $('.resource-expand').get(0);
+    //var chev = $(first).find('.chevron').get(0)
+    //$(chev).toggleClass("fa-chevron-right fa-chevron-down")
 
-    $('.resource-expand').not($(first)).each(function(idx, val){
+    $('.resource-expand').each(function(idx, val){
         var toggle = $(this).siblings('.resource-expando').get(0)
         $(toggle).css('display', 'none')
     })

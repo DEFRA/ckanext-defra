@@ -1,15 +1,18 @@
 {% ckan_extends %}
 
 {% block resource_item_title %}
+  {% set private = h.is_private_resource(pkg) %}
+  {% if private %}
   <div style="float: right; font-size: large; margin-right: 20px;">
     <i class="fa fa-lock"></i>
   </div>
+  {% endif %}
 
   <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
     <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
     {{ h.get_resource_name(res) }}
   </a>
-  {% if not h.is_private_resource(pkg) %}
+  {% if not private %}
   <span class="subheading">Data type: {{ res.format }}</span>
   {% endif %}
 {% endblock %}
@@ -29,8 +32,8 @@
 <div class="resource-expando">
   <section class="module" style="padding-top: 20px; padding-left: 12px; border-left: solid 4px #eee;">
     {% if private %}
-    <div class="private-resource">
-      <h3>This data is not publicly accessible</h3>
+    <div class="alert alert-danger">
+      <strong>This data is not publicly accessible</strong>
       <p>Please <a href="mailto:">contact the data owner</a> to obtain access to this data</p>
     </div>
     {% else %}
