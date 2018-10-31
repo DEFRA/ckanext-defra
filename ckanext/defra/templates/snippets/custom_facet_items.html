@@ -1,0 +1,36 @@
+
+<section class="module module-narrow module-shallow">
+    <h2 class="module-heading">
+
+    </h2>
+
+    <nav>
+        <ul class="list-unstyled nav nav-simple nav-facet" style="margin-bottom: 20px;">
+            {% set active = ('extras_reference', 'True') in request.params.items() %}
+            {% set href = h.remove_url_param('extras_reference', 'True') if active
+                            else
+                            h.add_url_param(new_params={'extras_reference':'True'}) %}
+            <li class="nav-item{% if active %} active{% endif %}">
+                <a href="{{ href }}" title="Reference Data">
+                <span class="item-label">Core reference data</span>
+                <span class="hidden separator"> - </span>
+                <span class="item-count badge"></span>
+                </a>
+            </li>
+
+            {% set active = ('extras_gdpr', 'True') in request.params.items() %}
+            {% set href = h.remove_url_param('extras_gdpr', 'True') if active
+                            else
+                            h.add_url_param(new_params={'extras_gdpr':'True'}) %}
+            <li class="nav-item{% if active %} active{% endif %}" style="border-bottom: 1px dotted #dddddd;">
+                <a href="{{ href }}" title="GDPR">
+                <span class="item-label">GDPR data</span>
+                <span class="hidden separator"> - </span>
+                <span class="item-count badge"></span>
+                </a>
+            </li>
+
+        </ul>
+    </nav>
+
+</section>

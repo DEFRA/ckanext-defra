@@ -26,6 +26,9 @@
 <div class="filters">
   <div>
     <h2>FILTERS</h2>
+
+    {{ h.snippet('snippets/custom_facet_items.html')}}
+
     {% for facet in c.facet_titles %}
       {% if not facet in ['groups', 'tags'] %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}

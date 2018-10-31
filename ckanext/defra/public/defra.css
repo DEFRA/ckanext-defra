@@ -263,6 +263,12 @@ label::after {
   background-color: #2fa450;
 }
 
+
+.nav-facet .nav-item > a:hover:after,
+.nav-facet .nav-item.active > a:after {
+  background-image: url("/images/sprite-ckan-icons.png");
+}
+
 .location-cb label {
   padding-left: 0;
 }

@@ -433,4 +433,3 @@ def get_report_index():
         'resource_count': resource_count.count()
     }
     return results
-
