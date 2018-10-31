@@ -30,6 +30,7 @@ def access_history_report():
     table = []
     context = {}
 
+    current_month = datetime.now().month
     year = datetime.now().year
     months = ["{}-{:0>2}-01".format(year, x) for x in range(12, 0, -1)]
     entries = defaultdict(list)

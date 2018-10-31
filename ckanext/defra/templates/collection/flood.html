@@ -1,0 +1,20 @@
+{% extends "page.html" %}
+
+
+{%- block content %}
+<div role="main">
+    <div id="content" class="container">
+        <div class="toolbar">
+            <ol class="breadcrumb">
+                {% snippet 'snippets/home_breadcrumb_item.html' %}
+                <li><a href="/collection">Collections</a></li>
+                <li class="active"><a href="/collection/climate">Flooding</a></li>
+            </ol>
+        </div>
+
+        <div class="row wrapper" style="min-height: 800px;">
+            <h1>Flooding</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}

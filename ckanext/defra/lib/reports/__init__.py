@@ -5,7 +5,9 @@ from ckanext.defra.lib.reports.broken_resource_reports import broken_resource_re
 
 publishing_report = {
     'name': 'publishing',
-    'description': 'The publishing history of datasets for each organisation',
+    'description': ('For each organisation, this report shows both the addition on new dataset records and '
+                    'the modification of those records for the current year, 2018.'
+    ),
     'option_defaults': {},
     'option_combinations': None,
     'generate': publishing_history_report,
@@ -14,7 +16,9 @@ publishing_report = {
 
 access_history_report = {
     'name': 'access',
-    'description': 'The access history of datasets, by department',
+    'description': ('This report shows both how often a dataset record was viewed in a browser, '
+                    'and how often a dataset from that organisation appeared in search results'
+    ),
     'option_defaults': {},
     'option_combinations': None,
     'generate': access_history_report,
@@ -23,7 +27,10 @@ access_history_report = {
 
 broken_resource_report = {
     'name': 'broken',
-    'description': 'The percentage of broken records',
+    'description': ('The percentage of broken records, per organisation. A broken record is a link to '
+                    'a data resource which no longer works. This often happens when sites are redesigned'
+                    ' but the metadata record is not updated.'
+    ),
     'option_defaults': {},
     'option_combinations': None,
     'generate': broken_resource_report,

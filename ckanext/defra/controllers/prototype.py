@@ -69,3 +69,7 @@ class PrototypeController(toolkit.BaseController):
     def collections_home(self):
         return toolkit.render('collection/index.html',
                               extra_vars={})
+
+    def collections_page(self, id):
+        return toolkit.render('collection/{}.html'.format(id),
+                              extra_vars={})

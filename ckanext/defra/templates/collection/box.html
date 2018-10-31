@@ -1,0 +1,14 @@
+
+
+<div class="collection-box">
+        {% if count %}
+        <div class="dataset-count text-muted">
+            {{count}}
+            <p>datasets</p>
+        </div>
+        {% endif %}
+
+    <h2>{{ title }}</h2>
+    <p>A brief description of the collection goes here</p>
+    <p style="font-size: small"><a href="/collection/{{link}}">View more</a></p>
+</div>

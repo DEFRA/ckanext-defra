@@ -13,12 +13,25 @@
 
 {% block primary %}
 <div class="primary col-sm-9 col-xs-12 report">
-      <h1>{{ report.title }}</h1>
-      <p class="pull-right">
-            {{ _('Generated') }}: {{ h.report__render_datetime(report_date, '%d/%m/%Y %H:%M') }}
-      </p>
+     {% if are_some_results %}
+      <div class="pull-right">
+          {{ _('Download') }}:
+          <a class="btn btn-primary" href="{{ h.report__relative_url_for(format='csv') }}">CSV</a>
+          <a class="btn btn-primary" href="{{ h.report__relative_url_for(format='json') }}">JSON</a>
+      </div>
+     {% endif %}
 
-      <p>{{ report.description }}</p>
+      <h1>{{ report.title }}
+          <small>
+              {{ _('Generated') }}: {{ h.report__render_datetime(report_date, '%d/%m/%Y') }}
+          </small>
+      </h1>
+
+      <div class="row">
+        <p class="col-md-9">
+            {{ report.description }}
+        </p>
+      </div>
 
       {% if c.userobj.sysadmin %}
       <div class="panel panel-info" style="width=700px">
@@ -32,13 +45,7 @@
       </div>
       {% endif %}
 
-      {% if are_some_results %}
-        <div class="pull-right">
-            {{ _('Download') }}:
-            <a class="btn btn-primary" href="{{ h.report__relative_url_for(format='csv') }}">CSV</a>
-            <a class="btn btn-primary" href="{{ h.report__relative_url_for(format='json') }}">JSON</a>
-        </div>
-      {% endif %}
+      <hr/>
 
       {% if not are_some_results %}
         <p>{{ _('No results found.') }}</p>

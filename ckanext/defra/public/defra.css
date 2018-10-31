@@ -655,8 +655,32 @@ a.main-nav-link {
 
 a.main-nav-link.active {
   text-decoration: underline;
-  xmargin-right: 10px;
-  xfont-weight: normal;
+}
+
+.collection-box {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: solid 2px #2fa45099;
+  border-radius: 8px;
+}
+
+.collection-box h2 {
+  margin: 0;
+}
+
+.collection-box .dataset-count {
+  float:right;
+  font-size: 3em;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.collection-box .dataset-count p {
+  font-size: 12px;
+  padding: 0;
+  margin-top: -10px;
+  margin-left: 6px;
 }
 
 /* Charts */

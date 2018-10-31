@@ -4,11 +4,44 @@
 {%- block content %}
 <div role="main">
     <div id="content" class="container">
-        <div class="row wrapper">
+            <div class="toolbar">
+                    <ol class="breadcrumb">
+                        {% snippet 'snippets/home_breadcrumb_item.html' %}
+                        <li class="active"><a href="/collection">Collections</a></li>
+                    </ol>
+                </div>
+
+        <div class="row wrapper" style="min-height: 800px;">
             <h1>Collections</h1>
+            <p>
+                Collections of manually curated datasets grouped into topics by experts, with narrative on their use.
+            </p>
 
-            <div style="min-height: 800px;"></div>
+            <div class="row" style="margin-top: 20px;">
+                <div class="col-md-6">
+                    {% with count=5, title="Bathymetry",link="bathymetry" %}
+                        {% include "collection/box.html" %}
+                    {% endwith %}
+                </div>
 
+                <div class="col-md-6">
+                    {% with count=10, title="Climate change",link="climate" %}
+                        {% include "collection/box.html"%}
+                    {% endwith %}
+                </div>
+
+                <div class="col-md-6">
+                        {% with count=12, title="Land use",link="land" %}
+                            {% include "collection/box.html" %}
+                        {% endwith %}
+                    </div>
+
+                <div class="col-md-6">
+                    {% with count=7,title="Flood data and statistics",link="flood" %}
+                        {% include "collection/box.html" %}
+                    {% endwith %}
+                </div>
+            </div>
         </div>
     </div>
 </div>
