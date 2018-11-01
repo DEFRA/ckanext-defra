@@ -18,6 +18,18 @@
                 </a>
             </li>
 
+            {% set active = ('extras_private-resources', 'True') in request.params.items() %}
+            {% set href = h.remove_url_param('extras_private-resources', 'True') if active
+                            else
+                            h.add_url_param(new_params={'extras_private-resources':'True'}) %}
+            <li class="nav-item{% if active %} active{% endif %}">
+                <a href="{{ href }}" title="Private datasets">
+                <span class="item-label">Private datasets</span>
+                <span class="hidden separator"> - </span>
+                <span class="item-count badge"></span>
+                </a>
+            </li>
+
             {% set active = ('extras_gdpr', 'True') in request.params.items() %}
             {% set href = h.remove_url_param('extras_gdpr', 'True') if active
                             else
