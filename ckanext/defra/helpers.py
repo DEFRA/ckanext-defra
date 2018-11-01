@@ -103,6 +103,25 @@ def _find_extra(pkg, key):
 def is_private_resource(pkg):
     return _find_extra(pkg, 'private-resources') == "True"
 
+UPDATES = {
+    'irregular': 'Ad hoc',
+    'not planned': 'Not currently planned',
+    'continual': 'Continuously',
+    'monthly': 'Monthly',
+    'quarterly': 'Quarterly',
+    'annually': 'Annually',
+    'monthly (supersite)': 'Monthly',
+    'unknown': 'Not known',
+    'biannually': 'Biannually',
+    'as needed': 'As required',
+    '0': 'Unknown',
+}
+
+def update_frequency(pkg):
+    e = _find_extra(pkg, 'update_frequency')
+    if not e:
+        return e
+    return UPDATES.get(e.lower().strip(), 'Unspecified')
 
 def access_constraints(pkg):
     import json

@@ -51,7 +51,6 @@
         </div>
         {% endif %}
 
-
         {% set access_constraints = h.access_constraints(pkg) %}
         {% if access_constraints %}
             <h3>Access constraints</h3>
@@ -60,6 +59,13 @@
             </div>
         {% endif %}
 
+        {% set freq = h.update_frequency(pkg) %}
+        {% if freq %}
+        <h3>Update frequency</h3>
+        <div class="notes embedded-content">
+        {{ freq }}
+        </div>
+        {% endif %}
 
         {% block package_resources %}
         <div style="clear: both;">&nbsp;</div>
