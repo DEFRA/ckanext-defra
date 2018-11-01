@@ -71,5 +71,11 @@ class PrototypeController(toolkit.BaseController):
                               extra_vars={})
 
     def collections_page(self, id):
+
+        c.package1 = toolkit.get_action('package_show')({}, {'id': 'historic-flood-event-outlines'})
+        c.package2 = toolkit.get_action('package_show')({}, {'id': 'flood-defences'})
+        c.package3 = toolkit.get_action('package_show')({}, {'id': 'remotelysensedfloodestimates'})
+
+
         return toolkit.render('collection/{}.html'.format(id),
                               extra_vars={})

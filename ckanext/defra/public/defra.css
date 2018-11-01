@@ -713,3 +713,12 @@ a.main-nav-link.active {
 .c3 path, .c3 line {
   fill: none;
 }
+
+ul.collection li {
+  margin-bottom: 20px !important;
+}
+
+ul.collection li {
+  padding: 12px !important;
+  border: solid 1px #2fa450 !important;
+}
