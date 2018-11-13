@@ -15,14 +15,18 @@ $(document).ready(function(){
         $(toggle).toggle()
     });
 
-    //var first = $('.resource-expand').get(0);
-    //var chev = $(first).find('.chevron').get(0)
-    //$(chev).toggleClass("fa-chevron-right fa-chevron-down")
-
     $('.resource-expand').each(function(idx, val){
         var toggle = $(this).siblings('.resource-expando').get(0)
         $(toggle).css('display', 'none')
     })
+
+    if( $('.expando-report').length > 0 ) {
+        $('.expando-report').on('click', function(){
+            var chev = $(this).siblings('ul').get(0)
+            $(chev).toggle();
+        });
+
+    }
 });
 
 var mapshow = $('#show-map')

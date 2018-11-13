@@ -24,7 +24,8 @@ class DefraPlugin(plugins.SingletonPlugin,
 
         return [reports.publishing_report,
                 reports.access_history_report,
-                reports.broken_resource_report]
+                reports.broken_resource_report,
+                reports.quality_report]
 
     def package_types(self):
         return []

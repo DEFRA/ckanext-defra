@@ -1,7 +1,7 @@
 from ckanext.defra.lib.reports.publishing_reports import publishing_history_report
 from ckanext.defra.lib.reports.access_reports import access_history_report
 from ckanext.defra.lib.reports.broken_resource_reports import broken_resource_report
-
+from ckanext.defra.lib.reports.quality_report import quality_report
 
 publishing_report = {
     'name': 'publishing',
@@ -35,4 +35,16 @@ broken_resource_report = {
     'option_combinations': None,
     'generate': broken_resource_report,
     'template': 'report/broken.html'
+}
+
+quality_report = {
+    'name': 'quality',
+    'description': ('The quality of the metadata collected for each organisation. '
+                    'The score is calculated according to adherence to the published '
+                    '<a href="">Defra metadata standards</a>'
+    ),
+    'option_defaults': {},
+    'option_combinations': None,
+    'generate': quality_report,
+    'template': 'report/quality.html'
 }
