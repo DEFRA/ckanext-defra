@@ -9,6 +9,11 @@
         {% endif %}
 
     <h2>{{ title }}</h2>
-    <p>A brief description of the collection goes here</p>
-    <p style="font-size: small"><a href="/collection/{{link}}">View more</a></p>
+    <p>{% if description %}
+        {{ description }}
+        {% else %}
+            A brief description of the collection goes here
+        {% endif %}
+    </p>
+    <a style="font-size: small" href="/collection/{{link}}">View more</a>
 </div>
