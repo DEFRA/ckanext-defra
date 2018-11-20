@@ -58,6 +58,7 @@ function fake_show(e) {
         visibility: 'visible',
         display: 'block'
     });
+    if (map) map.invalidateSize();
 }
 
 function fake_hide(e) {
