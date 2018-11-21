@@ -146,7 +146,8 @@ def clean_extra(extra):
     if key in ['release-notes', 'unpublished', 'theme-primary',
                'theme-secondary', 'foi-name', 'foi-web',
                'access_constraints', 'its-dataset', 'register',
-               'sla', 'spatial_harvester']:
+               'sla', 'spatial_harvester', 'private-resources',
+               'gdpr', 'reference']:
         return None, None
 
     if key == 'harvest_source_reference':

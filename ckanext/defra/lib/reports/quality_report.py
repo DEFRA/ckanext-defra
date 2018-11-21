@@ -4,7 +4,7 @@
 # of criteria, but we can always add others in the rank_dataset function.
 
 import ckan.plugins.toolkit as toolkit
-
+from ckanext.defra.lib.quality import score_record
 
 def bad_record(dataset, reasons):
     return {
@@ -12,28 +12,6 @@ def bad_record(dataset, reasons):
         'title': dataset['title'],
         'reasons': reasons
     }
-
-
-def rank_dataset(dataset):
-    score = 100
-    reasons = []
-
-    if len(dataset['notes']) < 100:
-        score -= 10
-        reasons.append("The description is very short")
-
-    if len(dataset['resources']) == 0:
-        score -= 10
-        reasons.append("There are no data resources for this record")
-
-    freq_key = [
-        e for e in dataset['extras'] if e['key'] in ['frequency-of-update', 'frequency', 'update_frequency']
-    ]
-    if not freq_key:
-        score -= 5
-        reasons.append("The update frequency is not specified")
-
-    return (score or 0, reasons)
 
 
 def quality_report():
@@ -68,7 +46,7 @@ def quality_report():
 
         ranked = []
         for dataset in datasets:
-            (score, reasons) = rank_dataset(dataset)
+            (score, reasons) = score_record(dataset)
             entry['record_count'] += 1
             entry['average'] += score
 
