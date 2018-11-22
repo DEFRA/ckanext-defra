@@ -13,18 +13,21 @@
 <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
 
   {% block search_input %}
-    <div class="input-group search-input-group">
-      <label for="field-giant-search">Enter a search term</label>
-      <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
-      {% block search_input_button %}
-      <span class="input-group-btn">
-        <button class="btn btn-default btn-search" type="submit" value="search">
-          <i class="fa fa-search"></i>
-        </button>
-      </span>
-      {% endblock %}
+  <label for="field-giant-search">Enter a search term</label>
+    <div class="xzsearch-input-group">
+        <div class="row">
+        <div class="col-md-11" style="padding-right: 2px;">
+          <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
+        </div>
+        <div class="col-md-1" style="padding-left: 0;">
+          <button class="btn btn-default btn-search" type="submit" value="search">
+              <i class="fa fa-search"></i> Search
+          </button>
+        </div>
+      </div>
     </div>
   {% endblock %}
+
 
   {% block search_search_fields %}
     {% if fields -%}
