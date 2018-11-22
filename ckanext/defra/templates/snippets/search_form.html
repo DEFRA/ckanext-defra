@@ -5,6 +5,10 @@
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
 {% set action = action if action else ''%}
+{% set mapsearch = True %}
+{% if geosearch == False or c.controller == 'ckanext.defra.controllers.publisher:PublisherController' %}
+  {% set mapsearch = False %}
+{% endif %}
 
 <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
 
@@ -47,7 +51,7 @@
   {% endblock %}
 
   {% block search_title %}
-    {% if c.controller != "ckanext.defra.controllers.publisher:PublisherController" %}
+    {% if mapsearch %}
     {% set has_bbox = h.query_has_bbox(request) %}
       <div class="checkbox location-cb" style="margin-top: 0;">
         <label>
