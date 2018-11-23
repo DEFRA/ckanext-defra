@@ -47,6 +47,7 @@ class DefraPlugin(plugins.SingletonPlugin,
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('public/js', 'defra')
+        toolkit.add_resource('fanstatic', 'defra-libs')
 
     def get_auth_functions(self):
         return {'dashboard_show': auth.dashboard_show}
