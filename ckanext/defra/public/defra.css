@@ -192,6 +192,7 @@ li a{
 .searchby ul li.active a {
   background-color: rgb(246, 246, 246);
   font-weight: bold;
+  color: #333;
 }
 .separate-search {
   background-color: rgb(246, 246, 246);
