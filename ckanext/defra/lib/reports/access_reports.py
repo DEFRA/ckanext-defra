@@ -41,9 +41,12 @@ def access_history_report():
             if not dataset_name:
                 continue
 
-            pkg = toolkit.get_action('package_show')(context, {
-                'id': dataset_name
-            })
+            try:
+                pkg = toolkit.get_action('package_show')(context, {
+                    'id': dataset_name
+                })
+            except:
+                continue
 
             # We should really regex this out of the line with the name ....
             parts = line.split(' ')
