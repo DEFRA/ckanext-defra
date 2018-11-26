@@ -13,7 +13,7 @@
         </table>
 
         {% if row.worst_offenders %}
-            <h3 style="color: #666;">Records in need of improvement</h3>
+            <h3 style="color: #666;">{{ row.worst_offenders|length }} records most in need of improvement</h3>
             {% for (score, offender) in row.worst_offenders %}
             <div>
                 <a class="expando-report" href="javascript:void(0);">{{ offender.title }}</a> ({{score}}/100) - <a href="/dataset/{{offender.name}}" style="font-size: small;">View dataset</a>
