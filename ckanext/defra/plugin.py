@@ -2,6 +2,8 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 from ckan.config.routing import SubMapper
+from ckan.common import config
+
 import ckanext.defra.logic.auth as auth
 
 from ckanext.report.interfaces import IReport
@@ -47,6 +49,7 @@ class DefraPlugin(plugins.SingletonPlugin,
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
         toolkit.add_resource('public/js', 'defra')
+        toolkit.add_resource('fanstatic', 'defra-libs')
 
     def get_auth_functions(self):
         return {'dashboard_show': auth.dashboard_show}
@@ -106,7 +109,9 @@ class DefraPlugin(plugins.SingletonPlugin,
         from inspect import getmembers, isfunction
         import ckanext.defra.helpers as h
 
-        helper_dict = {}
+        helper_dict = {
+            'location_service_url': config.get('ckan.defra.location_service_url')
+        }
 
         functions_list = [o for o in getmembers(h, isfunction)]
         for name, fn in functions_list:
