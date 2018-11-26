@@ -12,9 +12,9 @@
         </ul>
         <ul class="list-unstyled">
             {% block footer_links_ckan %}
-            {% set api_url = 'http://docs.ckan.org/en/{0}/api/'.format(g.ckan_doc_version) %}
-            <li><a href="{{ api_url }}">{{ _('CKAN API') }}</a></li>
-            <li><a href="http://www.opendefinition.org/okd/"><img src="{{ h.url_for_static('/base/images/od_80x15_blue.png') }}" alt="Open Data"></a></li>
+                {% set api_url = 'http://docs.ckan.org/en/{0}/api/'.format(g.ckan_doc_version) %}
+                <li><a href="{{ api_url }}">Catalogue API Documentation</a></li>
+                <li><a href="/api">Catalogue API</a></li>
             {% endblock %}
         </ul>
         {% endblock %}

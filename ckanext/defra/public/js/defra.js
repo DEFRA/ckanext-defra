@@ -25,8 +25,46 @@ $(document).ready(function(){
             var chev = $(this).siblings('ul').get(0)
             $(chev).toggle();
         });
-
     }
+
+    $('.location-typeahead').typeahead({
+        displayText: function(item) {
+            return item.district ? item.name + ', ' + item.district : item.name;
+        },
+        source: function(query, cb) {
+            if (query && query.length > 3) {
+                $.ajax({
+                    url: this.$element.data('locationServiceUrl') + '?q=' + query.split(',')[0],
+                    dataType: 'json',
+                    crossDomain: true,
+                    success: function (resp) {
+                        if (resp.Results.Place && resp.Results.Place.length > 0) {
+                            return cb(resp.Results.Place)
+                        }
+                        return cb([]);
+                    },
+                    error: function () {
+                        return cb([]);
+                    }
+                });
+            }
+            return cb([]);
+        },
+        afterSelect: function(selectedItem) {
+            clear_map_layers();
+            if (selectedItem) {
+                var bounds = [
+                    [selectedItem.Xmin, selectedItem.Ymax],
+                    [selectedItem.Xmax, selectedItem.Ymin]
+                ];
+                L.rectangle(bounds, {color: '#ef6f64', weight: 2, opacity: 1}).addTo(map);
+                map.fitBounds(bounds);
+                var bbox = [selectedItem.Ymax, selectedItem.Xmin, selectedItem.Ymin, selectedItem.Xmax];
+                $('#ext_bbox,#ext_prev_extent').val(bbox.join(','));
+                $('.search-form').submit();
+            }
+        }
+    });
 });
 
 var mapshow = $('#show-map')
@@ -36,17 +74,12 @@ mapshow.on('click', function () {
     if (mapshow.is(':checked')) {
         fake_show(field)
     } else {
-        fake_hide(field)
-
-        /*
-            Clear the values in the spatial search, although we really
-            want to reset the map itself (but it is hidden away in a CKAN
-            sandbox)
-        */
-        $('#ext_bbox').val("");
-        $('#ext_prev_extent').val("");
+        fake_hide(field);
+        // Clear the location form and map
+        $('#ext_bbox,#ext_prev_extent,[name="loc"]').val("");
+        clear_map_layers();
     }
-})
+});
 
 if (!mapshow.is(':checked')) {
     fake_hide("#location-search")
@@ -58,6 +91,7 @@ function fake_show(e) {
         visibility: 'visible',
         display: 'block'
     });
+    if (map) map.invalidateSize();
 }
 
 function fake_hide(e) {
@@ -65,5 +99,16 @@ function fake_hide(e) {
         position: 'absolute',
         visibility: 'hidden',
         display: 'block'
+    });
+}
+
+/*
+ * Clear all but the base layer of the map
+ */
+function clear_map_layers() {
+    var count = 0;
+    map.eachLayer(function(layer){
+        if (count > 0) map.removeLayer(layer);
+        count++;
     });
 }

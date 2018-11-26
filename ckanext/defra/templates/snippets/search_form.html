@@ -64,8 +64,16 @@
       <div id="location-search" class="row location-search" {% if not has_bbox %}style="visibility:hidden;"{% endif %}>
         <div class="col-md-3">
           <h3>Enter a location</h3>
-          <span class="help-block" style="font-size:small">Example: London, or EH99 1SP</span>
-          <input type="text" class="form-control" placeholder="Place name, postcode or coordinates">
+          <span class="help-block" style="font-size:small">Start typing a location and select from the list</span>
+          <input
+            type="text"
+            class="location-typeahead"
+            autocomplete="off"
+            name="loc"
+            value="{{ request.params.get('loc', '') }}"
+            placeholder="Enter a place name"
+            data-location-service-url="{{ h.location_service_url }}"
+          />
 
           <h4>or</h4>
 
