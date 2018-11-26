@@ -628,10 +628,8 @@ li.resource-item-spacer {
 }
 
 .btn-search {
-  margin-left: -20px !important;
   background-color: #333;
   color: #fff !important;
-  border: solid 1px #333;
 }
 
 div.private-resource {
@@ -722,4 +720,8 @@ ul.collection li {
 ul.collection li {
   padding: 12px !important;
   border: solid 1px #2fa450 !important;
+}
+
+.btn-search:hover, .btn-search:active, .btn-search:visited, .btn-search:focus {
+  background-color: black;
 }

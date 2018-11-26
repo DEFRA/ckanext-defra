@@ -34,7 +34,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of datasets</div>
                 <div class="panel-body report-number">
-                        {{ data.statistics.dataset_count }}
+                        {{  '{0:,}'.format(data.statistics.dataset_count) }}
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="panel panel-success">
                 <div class="panel-heading">Number of data files</div>
                 <div class="panel-body report-number">
-                        {{ data.statistics.resource_count }}
+                        {{ '{0:,}'.format(data.statistics.resource_count) }}
                 </div>
             </div>
         </div>

@@ -1,0 +1,28 @@
+{% ckan_extends %}
+
+{% block subtitle %}{{ _('About') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('About'), controller='home', action='about' %}</li>
+{% endblock %}
+
+{% block about %}
+<div class="row">
+    <div class="col-md-9">
+        <h1 class="page-heading">{{ _('About') }} Defra Data</h1>
+
+        <p>
+            The 'finding data' demo catalogue exists to provide access to metadata, describing the
+            data held across the Defra group, to make it 'findable'.
+        </p>
+
+        <p>
+            The metadata extracted from other systems is translated into a common format, and
+            then made searchable. As a result of this aggregation it is possible to measure the quality
+            of the metadata, the underlying data, the processes that led to the creation of
+            this data as well as obtain a better understanding of the data Defra holds.
+        </p>
+
+    </div>
+</div>
+{% endblock %}
