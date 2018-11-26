@@ -76,7 +76,7 @@ mapshow.on('click', function () {
     } else {
         fake_hide(field);
         // Clear the location form and map
-        $('#ext_bbox,#ext_prev_extent,[name="loc"]').val("");
+        $('#ext_bbox,#ext_prev_extent,#location').val("");
         clear_map_layers();
     }
 });
