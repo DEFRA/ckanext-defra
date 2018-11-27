@@ -59,7 +59,7 @@ $(document).ready(function(){
                 ];
                 L.rectangle(bounds, {color: '#ef6f64', weight: 2, opacity: 1}).addTo(map);
                 map.fitBounds(bounds);
-                var bbox = [selectedItem.Ymax, selectedItem.Xmin, selectedItem.Ymin, selectedItem.Xmax];
+                var bbox = [selectedItem.Ymin, selectedItem.Xmin, selectedItem.Ymax, selectedItem.Xmax];
                 $('#ext_bbox,#ext_prev_extent').val(bbox.join(','));
                 $('.search-form').submit();
             }
