@@ -51,7 +51,7 @@ quality_report = {
 }
 
 system_stats_report = {
-    'name': 'system-stats-f',
+    'name': 'system-stats',
     'description': 'A compilation of the stats asked for in the planning meeting on Thu, 20 Dec 2018',
     'option_defaults': {},
     'option_combinations': None,
