@@ -1,0 +1,164 @@
+{% block primary %}
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="contact-info">Contact Info</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Datasets with contact info</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['with_contact_email'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="maintainer-details">Maintainer Details</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Datasets with maintainer name</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['with_maintainer_name'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Datasets with maintainer email</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['with_maintainer_email'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="dataset-access">Dataset Access</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Private Datasets</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['private_resources'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="resource-formats">Resource Formats</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Format</th>
+            <th scope="col">No. Resources</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for format, count in data['counts']['resource_formats'].items() %}
+            <tr>
+              <td>{% if format == '' %}Unknown{% else %}{{ format }}{% endif %}</td>
+              <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="licensing">Licensing</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">License</th>
+            <th scope="col">No. Datasets</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for lic, count in data['counts']['licenses'].items() %}
+            <tr>
+              <td>{% if lic == '' %}Unknown{% else %}{{ lic }}{% endif %}</td>
+              <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="data-import-sources">Data Import Sources</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Source</th>
+            <th scope="col">No. Datasets</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for source, count in data['counts']['import_sources'].items() %}
+            <tr>
+              <td>{{ source }}</td>
+              <td>{{ count }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 id="harvest-sources">Harvest Sources</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Last Harvest</th>
+            <th scope="col">Rows Added</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for source in data['harvest_sources'] %}
+            <tr>
+              <td><a href="{{ source['url'] }}" target="_blank">{{ source['title'] }}</a></td>
+              <td>{{ source['type'] }}</td>
+              <td>{% if source['publisher'] %}{{ source['publisher'] }}{% else %}Not Set{% endif %}</td>
+              <td>{{ source['status']['last_harvest_request'] }}</td>
+              <td>{% if source['status']['overall_statistics']['added']  %}{{ source['status']['overall_statistics']['added'] }}{% else %}0{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

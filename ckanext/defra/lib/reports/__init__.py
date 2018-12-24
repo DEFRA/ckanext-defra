@@ -2,6 +2,7 @@ from ckanext.defra.lib.reports.publishing_reports import publishing_history_repo
 from ckanext.defra.lib.reports.access_reports import access_history_report
 from ckanext.defra.lib.reports.broken_resource_reports import broken_resource_report
 from ckanext.defra.lib.reports.quality_report import quality_report
+from ckanext.defra.lib.reports.system_stats_report import system_stats_report
 
 publishing_report = {
     'name': 'publishing',
@@ -47,4 +48,13 @@ quality_report = {
     'option_combinations': None,
     'generate': quality_report,
     'template': 'report/quality.html'
+}
+
+system_stats_report = {
+    'name': 'system-stats',
+    'description': 'A compilation of the stats asked for in the planning meeting on Thu, 20 Dec 2018',
+    'option_defaults': {},
+    'option_combinations': None,
+    'generate': system_stats_report,
+    'template': 'report/system_stats.html'
 }

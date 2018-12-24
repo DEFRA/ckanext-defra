@@ -24,10 +24,13 @@ class DefraPlugin(plugins.SingletonPlugin,
     def register_reports(self):
         from ckanext.defra.lib import reports
 
-        return [reports.publishing_report,
-                reports.access_history_report,
-                reports.broken_resource_report,
-                reports.quality_report]
+        return [
+            reports.publishing_report,
+            reports.access_history_report,
+            reports.broken_resource_report,
+            reports.quality_report,
+            reports.system_stats_report
+        ]
 
     def package_types(self):
         return []
