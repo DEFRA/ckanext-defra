@@ -1,6 +1,14 @@
 {% ckan_extends %}
 {% import 'macros/form.html' as form %}
 
+{% set sorting = [
+  (_('Relevance'), 'score desc, metadata_modified desc'),
+  (_('Name Ascending'), 'title_string asc'),
+  (_('Name Descending'), 'title_string desc'),
+  (_('Last Modified'), 'metadata_modified desc'),
+  (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+%}
+
 {% block subtitle %}{{ _("Datasets") }}{% endblock %}
 
 {% block toolbar %}
@@ -16,8 +24,27 @@
 {% if c.page.item_count == 0 %}
   Your search did not match any records. Please try again with a different search.
 {% else %}
-  <div class="search-count">
-    Showing <strong>{{ h.item_range(c.page) }}</strong> of <strong>{{ h.SI_number_span(c.page.item_count) }}</strong> record{{ h.plural("s", c.page.item_count)}}
+  <div class="row search-count">
+    <div class="col-md-8 col-sm-12">
+      <div class="form-inline">
+        <p class="form-control-static">Showing <strong>{{ h.item_range(c.page) }}</strong> of <strong>{{ h.SI_number_span(c.page.item_count) }}</strong> record{{ h.plural("s", c.page.item_count)}}</p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <div class="form-inline">
+         <div class="form-select form-group control-order-by">
+          <label for="dataset-sort">{{ _('Order by') }}</label>
+          <select id="dataset-sort" class="form-control input-sm">
+            {% for label, value in sorting %}
+              {% if label and value %}
+                <option value="{{ value }}"{% if c.sort_by_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+          <button class="btn btn-default js-hide" type="submit">{{ _('Go') }}</button>
+         </div>
+      </div>
+    </div>
   </div>
 {% endif %}
 {% endblock %}

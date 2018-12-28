@@ -65,6 +65,14 @@ $(document).ready(function(){
             }
         }
     });
+
+    /**
+     * Dataset sort select
+     */
+    $('#dataset-sort').on('change', function() {
+      $('#field-order-by').val($(this).val());
+      $('#dataset-search-form').submit();
+    });
 });
 
 var mapshow = $('#show-map')

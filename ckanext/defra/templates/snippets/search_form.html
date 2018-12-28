@@ -1,6 +1,12 @@
 {% import 'macros/form.html' as form %}
 
-{% set sorting = sorting if sorting else [(_('Name Ascending'), 'name asc'), (_('Name Descending'), 'name desc')] %}
+{% set sorting = [
+  (_('Relevance'), 'score desc, metadata_modified desc'),
+  (_('Name Ascending'), 'title_string asc'),
+  (_('Name Descending'), 'title_string desc'),
+  (_('Last Modified'), 'metadata_modified desc'),
+  (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+%}
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
@@ -36,21 +42,13 @@
   {% endblock %}
 
   {% block search_sortby %}
-    {# if sorting %}
-      <div class="form-select form-group control-order-by">
-        <label for="field-order-by">{{ _('Order by') }}</label>
-        <select id="field-order-by" name="sort" class="form-control">
-          {% for label, value in sorting %}
-            {% if label and value %}
-              <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
-            {% endif %}
-          {% endfor %}
-        </select>
-        {% block search_sortby_button %}
-        <button class="btn btn-default js-hide" type="submit">{{ _('Go') }}</button>
-        {% endblock %}
-      </div>
-    {% endif #}
+    <select id="field-order-by" name="sort" class="form-control hidden">
+      {% for label, value in sorting %}
+        {% if label and value %}
+          <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+        {% endif %}
+      {% endfor %}
+    </select>
   {% endblock %}
 
   {% block search_title %}
