@@ -5,6 +5,10 @@
   color:#333;
 }
 
+.masthead .logo img {
+  max-height: 100%;
+}
+
 a {
   color: #0F7D41;
   text-decoration: underline;
@@ -273,14 +277,13 @@ label::after {
   .nav-aside li.active a:before {
       content: ' ';
       position: absolute;
-      border: (6*3 + 2) solid transparent;
       border-right: none;
       border-left-color: #2fa450;
       border-left-width: 6;
       top: 0;
-      bottom: 0;
-      right: -6;
-      width: 6;
+      bottom: 0px;
+      right: -6px;
+      width: 6px;
       height: 34px;
   }
 
@@ -662,7 +665,6 @@ div.private-resource {
 }
 
 .search-count {
-  font-size: xlarge;
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: solid 1px #ddd;
