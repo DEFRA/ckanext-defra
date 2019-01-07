@@ -2,20 +2,10 @@
 # retrieved.  Currently this just gives every dataset a score of 100 and
 # then removes points for bad metadata.  At present we only have a couple
 # of criteria, but we can always add others in the rank_dataset function.
-import json
-from pprint import pprint
-
 import ckan.plugins.toolkit as toolkit
 
-from ckanext.defra.helpers import is_private_resource, get_resource_name
-
-
-def _get_records(offset=0):
-    return toolkit.get_action('package_search')({}, {
-        'q': '',
-        'rows': 10000,
-        'start': offset
-    })
+from ckanext.defra.helpers import is_private_resource
+from ckanext.defra.lib.reports.utils import get_all_datasets
 
 
 def system_stats_report():
@@ -37,16 +27,7 @@ def system_stats_report():
         'all': True
     })
 
-    # Load all datasets for processing
-    response = _get_records(0)
-    total_records = response['count']
-    datasets = response['results']
-
-    while len(datasets) != total_records:
-        response = _get_records(len(datasets))
-        datasets += response['results']
-
-    for dataset in datasets:
+    for dataset in get_all_datasets():
         extras = {extra['key']: extra['value'] for extra in dataset['extras']}
 
         if extras.get('contact-email', None) not in [None, '']:
