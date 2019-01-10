@@ -21,6 +21,8 @@ def system_stats_report():
         'open_datasets': 0,
         'private_resources': 0,
         'resource_formats': {},
+        'temporal_datasets': 0,
+        'geospatial_datasets': 0,
     }
 
     harvest_sources = toolkit.get_action('harvest_source_list')({}, {
@@ -61,6 +63,12 @@ def system_stats_report():
 
         if is_private_resource(dataset):
             counts['private_resources'] += 1
+
+        if extras.get('temporal-extent-begin') is not None and extras.get('temporal-extent-end') is not None:
+            counts['temporal_datasets'] += 1
+
+        if extras.get('spatial') is not None:
+            counts['geospatial_datasets'] += 1
 
         for resource in dataset['resources']:
             if resource['format'] not in counts['resource_formats']:

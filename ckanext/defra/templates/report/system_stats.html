@@ -66,6 +66,33 @@
 
   <div class="row">
     <div class="col-md-12">
+      <h3 id="dataset-access">Coverage</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Temporal Coverage</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['temporal_datasets'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-xs-6">
+      <div class="panel panel-success">
+        <div class="panel-heading">Geospatial Coverage</div>
+        <div class="panel-body report-number">
+          {{ data['counts']['geospatial_datasets'] }} / {{ data['counts']['total_datasets'] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <hr />
+
+  <div class="row">
+    <div class="col-md-12">
       <h3 id="resource-formats">Resource Formats</h3>
       <table class="table">
         <thead>
