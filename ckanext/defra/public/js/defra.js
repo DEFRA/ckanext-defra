@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     $('#additional-expando').on('click', function(){
         var chev = $(this).find('.chevron').get(0)
@@ -19,13 +18,6 @@ $(document).ready(function(){
         var toggle = $(this).siblings('.resource-expando').get(0)
         $(toggle).css('display', 'none')
     })
-
-    if( $('.expando-report').length > 0 ) {
-        $('.expando-report').on('click', function(){
-            var chev = $(this).siblings('ul').get(0)
-            $(chev).toggle();
-        });
-    }
 
     $('.location-typeahead').typeahead({
         displayText: function(item) {

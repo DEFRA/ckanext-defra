@@ -46,7 +46,6 @@ setup(
         import_harvesters = ckanext.defra.commands.import_harvesters:ImportHarvestersCommand
         import_data = ckanext.defra.commands.import_data:ImportDataCommand
         remove_duplicates = ckanext.defra.commands.duplicates:RemoveDuplicatesCommand
-        generate_publish_report = ckanext.defra.commands.generate_publishing_data:GeneratePublishingDataCommand
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan

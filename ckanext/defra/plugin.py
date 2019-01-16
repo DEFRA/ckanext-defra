@@ -6,8 +6,6 @@ from ckan.common import config
 
 import ckanext.defra.logic.auth as auth
 
-from ckanext.report.interfaces import IReport
-
 
 class DefraPlugin(plugins.SingletonPlugin,
                   toolkit.DefaultDatasetForm,
@@ -19,18 +17,6 @@ class DefraPlugin(plugins.SingletonPlugin,
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IAuthFunctions)
     plugins.implements(plugins.IDatasetForm, inherit=True)
-    plugins.implements(IReport)
-
-    def register_reports(self):
-        from ckanext.defra.lib import reports
-
-        return [
-            reports.publishing_report,
-            reports.access_history_report,
-            reports.broken_resource_report,
-            reports.quality_report,
-            reports.system_stats_report
-        ]
 
     def package_types(self):
         return []
@@ -68,7 +54,6 @@ class DefraPlugin(plugins.SingletonPlugin,
 
         with SubMapper(routes, controller='ckanext.defra.controllers.prototype:PrototypeController') as m:
             m.connect('proto_more', '/dataset/{id}/more', action='more')
-            m.connect('reports_home', '/reports', action='reports')
             m.connect('collection_home', '/collection', action='collections_home')
             m.connect('collection_page', '/collection/{id}', action='collections_page')
 

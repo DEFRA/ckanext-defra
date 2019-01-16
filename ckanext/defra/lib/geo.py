@@ -14,6 +14,7 @@ from shapely.geometry import Polygon
 
 log = logging.getLogger(__name__)
 
+
 def get_boundary(url):
     """
     Gets the geographic boundary from the specified URL which is described for

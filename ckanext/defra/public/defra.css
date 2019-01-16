@@ -648,18 +648,6 @@ div.private-resource {
     border-right: none;
 }}
 
-.report-dataset {
-  margin-bottom: 10px;
-}
-
-.report a {
-  color: #0F7D41;
-}
-
-.report .report-number {
-  font-size: 2em;
-}
-
 .dataset-publisher-heading {
   font-weight: normal;
 }
@@ -708,11 +696,6 @@ a.main-nav-link.active {
   padding: 0;
   margin-top: -10px;
   margin-left: 6px;
-}
-
-/* Charts */
-.c3 path, .c3 line {
-  fill: none;
 }
 
 ul.collection li {
