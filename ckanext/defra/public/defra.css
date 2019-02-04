@@ -9,7 +9,7 @@
   max-height: 100%;
 }
 
-a {
+a:not(.btn) {
   color: #0F7D41;
   text-decoration: underline;
 }
@@ -279,7 +279,6 @@ label::after {
       position: absolute;
       border-right: none;
       border-left-color: #2fa450;
-      border-left-width: 6;
       top: 0;
       bottom: 0px;
       right: -6px;
