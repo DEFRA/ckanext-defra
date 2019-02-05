@@ -37,7 +37,7 @@ class DefraPlugin(plugins.SingletonPlugin,
     def update_config(self, config):
         toolkit.add_template_directory(config, 'templates')
         toolkit.add_public_directory(config, 'public')
-        toolkit.add_resource('public/js', 'defra')
+        toolkit.add_resource('public', 'defra')
         toolkit.add_resource('fanstatic', 'defra-libs')
 
     def get_auth_functions(self):
