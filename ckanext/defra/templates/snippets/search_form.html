@@ -17,9 +17,8 @@
 {% endif %}
 
 <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
-
   {% block search_input %}
-  <label for="field-giant-search">Enter a search term</label>
+    <label for="field-giant-search">Enter a search term</label>
     <div class="xzsearch-input-group">
         <div class="row">
         <div class="col-md-11" style="padding-right: 2px;">
@@ -33,7 +32,6 @@
       </div>
     </div>
   {% endblock %}
-
 
   {% block search_search_fields %}
     {% if fields -%}
