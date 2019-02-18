@@ -2,45 +2,54 @@
 
 
 {% block breadcrumb_content %}
-<li><a href="/publisher/{{ c.pkg_dict.organization.name }}">{{ c.pkg_dict.organization.title }}</a></li>
+  <li><a href="/publisher/{{ c.pkg_dict.organization.name }}">{{ c.pkg_dict.organization.title }}</a></li>
   <li class="active"><a href="/dataset/{{c.pkg_dict.name}}">{{ c.pkg_dict.title }}</a></li>
 {% endblock %}
 
 {% block secondary_content %}
 
-  {% block secondary_help_content %}{% endblock %}
+  <div class="row">
+    {% block secondary_help_content %}{% endblock %}
 
-  {% block page_header %}
-  {% endblock %}
+    {% block page_header %}
+    {% endblock %}
 
-  {% block package_organization %}
-    <section class="module module-narrow">
-      {% set org = h.get_organization(pkg.organization.name) %}
-      {% snippet "snippets/organization.html", organization=org %}
-    </section>
-  {% endblock %}
+    {% block package_organization %}
+      <div class="col-md-12">
+        <section class="module module-narrow">
+          {% set org = h.get_organization(pkg.organization.name) %}
+          {% snippet "snippets/organization.html", organization=org %}
+        </section>
+      </div>
+    {% endblock %}
+
+    {% set extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
+    {% if extent %}
+      <div class="col-md-12">
+        <section class="module module-narrow dataset-map">
+          <div class="module module-narrow module-shallow context-info">
+            <h2>{{ _('Dataset Extent') }}</h2>
+            {% snippet "spatial/snippets/dataset_map_base.html", extent=extent %}
+          </div>
+        </section>
+      </div>
+    {% endif %}
+
+    {% block package_license %}
+      {% snippet "snippets/license.html", pkg_dict=pkg %}
+    {% endblock %}
+
+    <div class="col-md-12">
+     {% snippet "snippets/dataset_contact.html", pkg_dict=c.pkg_dict %}
+    </div>
+
+    {% block package_info %}{% endblock %}
+
+    {% block package_social %}{% endblock %}
 
 
-  {% set dataset_extent = h.get_pkg_dict_extra(c.pkg_dict, 'spatial', '') %}
-  {% if dataset_extent %}
-      {% snippet "spatial/snippets/dataset_map_sidebar.html", extent=dataset_extent %}
-  {% endif %}
-
-
-  {% block package_info %}
-  {% endblock %}
-
-  {% block package_social %}
-    {# snippet "snippets/social.html" #}
-  {% endblock %}
-
-  {% block package_license %}
-    {% snippet "snippets/license.html", pkg_dict=pkg %}
-  {% endblock %}
-
-  {% if h.check_access('package_update', {'id':pkg.id }) %}
-    {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
-  {% endif %}
-
-
+    {% if h.check_access('package_update', {'id':pkg.id }) %}
+      {% link_for _('Manage'), controller='package', action='edit', id=pkg.name, class_='btn btn-default', icon='wrench' %}
+    {% endif %}
+  </div>
 {% endblock %}

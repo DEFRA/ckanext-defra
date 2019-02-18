@@ -93,15 +93,44 @@ a.btn-primary {
   min-height: 0;
 }
 
+[role="main"] .secondary {
+  padding-top: 7px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.secondary h2 {
+  font-family: "Helvetica Neue", Helvetica;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.secondary .context-info .module-content {
+  padding: 0;
+}
+.module-content {
+  padding: 20px 15px;
+}
+div.primary article.module div.module-content h1,
+div.primary article.module div.module-content h3,
+div.primary.col-sm-9.col-xs-12 article.module div.module-content ul.nav.nav-tabs li a,
+.mdf-page-head-title {
+  font-family: "Helvetica Neue", Helvetica;
+}
+li.active:nth-child(1) > a:nth-child(1) {
+
+}
 
 body {
-  font-family: 'Helvetica Neue', Helvetica !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
   background: none;
   background-color: #fff;
   color: #333;
   padding-bottom: 124px;   /* Height of the footer */
 }
+
+/*h1, h2, h3, h4, h5 {*/
+  /*font-family: "HelveticaNeue-Bold", "Helvetica Neue Bold", "Helvetica Neue", "HelveticaNeue",  "Arial", "Helvetica", sans-serif;*/
+/*}*/
 
 [role=main] {
   background-color: #fff;
@@ -121,12 +150,8 @@ body {
   background-color: rgb(246, 246, 246);
 }
 
-.header-logo {
-  font-family: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
-  font-weight: normal;
-  font-size: 24px;
-  position: absolute;
-  bottom: 10px;
+.mdf-page-head-title {
+  font-weight: bold;
 }
 
 a.btn-primary, a.btn-primary:hover, a.btn-primary:visited {
@@ -638,10 +663,6 @@ li.resource-item-spacer {
     background-color: #efefef;
     color: #0F7D41;
     text-decoration: none;
-  }
-
-  .resource-expando {
-    border-left: solid 3px #ccc;
   }
 
   nav.account ul a {
