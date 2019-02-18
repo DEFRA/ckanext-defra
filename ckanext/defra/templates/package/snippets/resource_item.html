@@ -13,7 +13,7 @@
     {{ h.get_resource_name(res) }}
   </a>
   {% if not private %}
-  <span class="subheading">Data type: {{ res.format }}</span>
+    <span class="subheading">Data type: {% if res.format %}{{ res.format }}{% else %}Unknown{% endif %}</span>
   {% endif %}
 {% endblock %}
 
