@@ -78,26 +78,18 @@
       <tbody>
         <tr>
           <th scope="row">{{ _('Data last updated') }}</th>
-          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
+          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.Created) or _('Unknown') }}</td>
         </tr>
         <tr>
           <th scope="row">{{ _('Metadata last updated') }}</th>
-          <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
-        </tr>
-        <tr>
-          <th scope="row">{{ _('Created') }}</th>
-          <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
+          <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.Created) or _('u=Unknown') }}</td>
         </tr>
         <tr>
           <th scope="row">{{ _('Format') }}</th>
-          <td>{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
-        </tr>
-        <tr>
-          <th scope="row">{{ _('License') }}</th>
-          <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
+          <td>{{ res.mimetype_inner or res.mimetype or res.format or _('Unknown') }}</td>
         </tr>
         {% for key, value in h.format_resource_items(res.items()) %}
-          {% if key not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}
+          {% if key.lower() not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}
           <tr><th scope="row">{{ key }}</th><td>{{ value }}</td></tr>
           {% endif %}
         {% endfor %}
