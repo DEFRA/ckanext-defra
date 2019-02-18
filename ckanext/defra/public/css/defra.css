@@ -607,9 +607,8 @@ ol.breadcrumb {
   padding-bottom: 0;
   margin-top: 20px;
 }
-.dataset-item .mdf-dataset-resources {
+.dataset-item .mdf-dataset-resources, .dataset-item .mdf-dataset-modified {
   margin-top: 20px;
-  margin-bottom: 20px;
 }
 li.resource-item-spacer {
   border-bottom: solid 1px #ddd;

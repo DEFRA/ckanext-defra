@@ -75,7 +75,7 @@
         {% endblock %}
       </div>
       {% block resources %}
-        {% if package.resources and not h.is_reference_dataset(package) %}
+        {% if package.resources and not h.is_reference_dataset(package) and h.dict_list_reduce(package.resources, 'format') %}
           {% block resources_outer %}
             <div class="mdf-dataset-resources">
               Available Data Types:&nbsp;
