@@ -1,0 +1,19 @@
+{% set contact = h.get_pkg_dict_extra(pkg_dict, 'contact-email', None) %}
+<section class="module module-narrow dataset-map">
+  <div class="module module-narrow module-shallow context-info">
+    <h2>{{ _('Contact') }}</h2>
+    <p>
+      {% if contact %}
+        <a href="mailto:{{ contact }}">{{ contact }}</a>
+      {% elif pkg_dict.maintainer and pkg_dict.maintainer_email %}
+        <a href="mailto:{{ pkg_dict.maintainer_email }}">{{ pkg_dict.maintainer }}</a>
+      {% elif pkg_dict.maintainer_email %}
+        <a href="mailto:{{ pkg_dict.maintainer_email }}">{{ pkg_dict.maintainer_email }}</a>
+      {% elif pkg_dict.maintainer %}
+        {{ pkg_dict.maintainer }}
+      {% else %}
+        {{ _('Not Set') }}
+      {% endif %}
+    </p>
+  </div>
+</section>
