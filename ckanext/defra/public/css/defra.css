@@ -57,7 +57,7 @@
 }
 
 
-a:not(.btn) {
+a:not(.btn):not(.label) {
   color: #0F7D41;
   text-decoration: none;
 }
@@ -604,8 +604,13 @@ ol.breadcrumb {
   border-bottom: none !important;
   padding-top: 0;
   margin-bottom: 10px;
+  padding-bottom: 0;
+  margin-top: 20px;
 }
-
+.dataset-item .mdf-dataset-resources {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 li.resource-item-spacer {
   border-bottom: solid 1px #ddd;
 }
