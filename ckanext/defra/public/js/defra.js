@@ -17,7 +17,11 @@ $(document).ready(function(){
     $('.resource-expand').each(function(idx, val){
         var toggle = $(this).siblings('.resource-expando').get(0)
         $(toggle).css('display', 'none')
-    })
+    });
+
+    if($('.resource-expand').length > 0) {
+       $('.resource-expand').first().click();
+    }
 
     $('.location-typeahead').typeahead({
         displayText: function(item) {
