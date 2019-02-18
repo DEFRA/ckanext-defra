@@ -75,22 +75,26 @@
         {% endblock %}
       </div>
       {% block resources %}
-        {% if package.resources and not h.is_reference_dataset(package) and h.dict_list_reduce(package.resources, 'format') %}
+        {% if package.resources and not h.is_reference_dataset(package) %}
           {% block resources_outer %}
             <div class="mdf-dataset-resources">
               Available Data Types:&nbsp;
               {% block resources_inner %}
-                {% for resource in h.dict_list_reduce(package.resources, 'format') %}
-                  <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default">{{ resource.upper() }}</a>
-                  &nbsp;
-                {% endfor %}
+                {% if h.dict_list_reduce(package.resources, 'format') %}
+                  {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                    <a href="{{ h.url_for(controller='package', action='read', id=package.name) }}" class="label label-default">{{ resource.upper() }}</a>
+                    &nbsp;
+                  {% endfor %}
+                {% else %}
+                  Unknown
+                {% endif %}
               {% endblock %}
             </div>
           {% endblock %}
         {% endif %}
       {% endblock %}
       <div class="mdf-dataset-modified">
-        Modified: {{ h.render_datetime(package.metadata_modified, with_hours=False) }}
+        Modified: <strong>{{ h.render_datetime(package.metadata_modified, with_hours=False) }}</strong>
       </div>
     {% endblock %}
   </li>
