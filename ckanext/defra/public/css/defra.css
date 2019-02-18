@@ -722,6 +722,17 @@ div.private-resource {
 .nav-facet li.active a span.item-label {
   color: white;
 }
+.nav-facet .item-label {
+  width: 200px;
+  display: inline-block;
+}
+
+.nav-facet .item-count.badge {
+  float: right;
+  top: 11px;
+  position: absolute;
+  right: 20px;
+}
 
 a.main-nav-link {
   text-decoration: none;
@@ -770,4 +781,7 @@ ul.collection li {
 
 .btn-search:hover, .btn-search:active, .btn-search:visited, .btn-search:focus {
   background-color: black;
+}
+.resource-item:hover {
+  background-color: transparent;
 }
