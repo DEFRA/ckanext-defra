@@ -10,7 +10,12 @@
 .mdf-navbar .navbar-nav.navbar-left > li {
   min-width: 150px;
   text-align: center;
+  border-right: 1px solid #ffffff;
 }
+.mdf-navbar .navbar-nav.navbar-left > li:first-child {
+  border-left: 1px solid #ffffff;
+}
+
 .mdf-navbar .navbar-nav > .active > a,
 .mdf-navbar .navbar-nav > .active > a:hover,
 .mdf-navbar .navbar-nav > .active > a:focus:not(.open) {
@@ -19,6 +24,9 @@
 }
 .mdf-navbar .dropdown .dropdown-menu {
   background-color: #0F7D41;
+}
+.mdf-navbar .dropdown-menu > li > a {
+  border-bottom: 1px solid #ffffff;
 }
 .mdf-navbar .navbar-nav > li > a:hover,
 .mdf-navbar .navbar-nav > li > a:focus,
