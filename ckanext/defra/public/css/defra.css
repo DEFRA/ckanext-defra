@@ -112,7 +112,8 @@ a.btn-primary {
 div.primary article.module div.module-content h1,
 div.primary article.module div.module-content h3,
 div.primary.col-sm-9.col-xs-12 article.module div.module-content ul.nav.nav-tabs li a,
-.mdf-page-head-title {
+.mdf-page-head-title,
+.heading.resource-expand {
   font-family: "Helvetica Neue", Helvetica;
 }
 li.active:nth-child(1) > a:nth-child(1) {
