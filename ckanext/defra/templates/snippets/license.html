@@ -5,7 +5,7 @@
     <span property="dc:rights">{{ pkg_dict.license_title }}</span>
   {% endif %}
 {% endmacro %}
-
+{% set extras_license = h.extras_license(pkg_dict) %}
 {% block license %}
   <div class="col-md-12">
     <section class="module module-narrow dataset-map">
@@ -33,6 +33,8 @@
                 </p>
               {% endblock %}
             {% endblock %}
+          {% elif extras_license %}
+            <p>{{ extras_license }}</p>
           {% else %}
             {{ _('No License Provided') }}
           {% endif %}

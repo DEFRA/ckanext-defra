@@ -391,3 +391,12 @@ def item_range(page):
         return "1"
     return "{} - {}".format(page.first_item, page.last_item)
 
+
+def extras_license(pkg):
+    lic = _find_extra(pkg, 'licence')
+    if lic is not None:
+        try:
+            return json.loads(lic)[0]
+        except (ValueError, IndexError):
+            return None
+    return None
