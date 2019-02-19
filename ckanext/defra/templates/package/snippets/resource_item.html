@@ -1,101 +1,127 @@
-{% ckan_extends %}
+{#{% ckan_extends %}#}
+{% set private = h.is_private_resource(pkg) %}
+{% set contact_email = h.get_contact_email(pkg) %}
 
-{% block resource_item_title %}
-  {% set private = h.is_private_resource(pkg) %}
-  {% if private %}
-  <div style="float: right; font-size: large; margin-right: 20px;">
-    <i class="fa fa-lock"></i>
-  </div>
-  {% endif %}
-
-  <a class="heading resource-expand" title="{{ h.get_resource_name(res) }}">
-    <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
-    {{ h.get_resource_name(res) }}
-  </a>
-  {% if not private %}
-    <span class="subheading">Data type: {% if res.format %}{{ res.format }}{% else %}Unknown{% endif %}</span>
-  {% endif %}
-{% endblock %}
-
-{% block resource_item_description %}
-    <p class="description">
-      {% if res.description and h.get_resource_name(res) != res.description %}
-        {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
+<div class="panel panel-default mdf-resource">
+  <div class="panel-heading" role="tab">
+    <div class="panel-title">
+      <a class="collapsed" role="button" data-toggle="collapse" data-parent="#resource-accordion" href="#resource-{{ res.id }}">
+        <i class="fa fa-caret-right"></i> {{ h.get_resource_name(res) }}
+      </a>
+      {% if private %}
+        <span class="private-label label label-default pull-right">
+          {{ _('Private') }}
+        </span>
       {% endif %}
-    </p>
-{% endblock %}
-
-{% block resource_item_explore %}
-
-{% set private=h.is_private_resource(pkg) %}
-
-<div class="resource-expando">
-  <section class="module" style="padding-top: 20px; padding-left: 12px; border-left: solid 4px #eee;">
-    {% if private %}
-    <div class="alert alert-danger">
-      <strong>This data is not publicly accessible</strong>
-      <p>Please <a href="mailto:">contact the data owner</a> to obtain access to this data</p>
-    </div>
-    {% else %}
-      {% if not url_is_edit %}
-      <div class="resource-action-buttons">
-        <ul class="list-inline">
-          {% block resource_item_explore_links %}
-            {% if res.has_views %}
-              <li>
-                  <a href="{{ url }}" class="resource-link">
-                    {{ _('Preview') }}
-                  </a>
-              </li>
-            {% endif %}
-
-            {% if res.url and h.is_url(res.url) %}
-              <li>
-                <a href="{{ res.url }}" class="resource-link resource-url-analytics" target="_blank">
-                  {% if res.has_views or res.url_type == 'upload' %}
-                    {{ _('Download') }}
-                  {% else %}
-                    {{ _('Go to resource') }}
-                  {% endif %}
-                </a>
-              </li>
-            {% endif %}
-
-            {% if can_edit %}
-              <li>
-                <a class="resource-link" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
-                  {{ _('Edit') }}
-                </a>
-              </li>
-              {% endif %}
-            {% endblock %}
-          </ul>
+      {% if not private %}
+        <div class="data-type">
+          <small>
+            Data type: {% if res.format %}{{ res.format }}{% else %}Unknown{% endif %}
+          </small>
         </div>
-        {% endif %}
       {% endif %}
 
-    <table class="resource-table" cellpaddding="10" cellspacing="10" width="100%" >
-      <tbody>
-        <tr>
-          <th scope="row">{{ _('Data last updated') }}</th>
-          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.Created) or _('Unknown') }}</td>
-        </tr>
-        <tr>
-          <th scope="row">{{ _('Metadata last updated') }}</th>
-          <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.Created) or _('u=Unknown') }}</td>
-        </tr>
-        <tr>
-          <th scope="row">{{ _('Format') }}</th>
-          <td>{{ res.mimetype_inner or res.mimetype or res.format or _('Unknown') }}</td>
-        </tr>
-        {% for key, value in h.format_resource_items(res.items()) %}
-          {% if key.lower() not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}
-          <tr><th scope="row">{{ key }}</th><td>{{ value }}</td></tr>
+    </div>
+  </div>
+  <div id="resource-{{ res.id }}" class="panel-collapse collapse" role="tabpanel">
+    <div class="panel-body">
+      {% if res.description and h.get_resource_name(res) != res.description %}
+        <p class="description">
+          {{ h.markdown_extract(h.get_translated(res, 'description'), extract_length=80) }}
+        </p>
+      {% endif %}
+      {% if private %}
+        <div class="alert alert-danger">
+          <strong>This data is not publicly accessible</strong>
+          {% if contact_email %}
+            <p>Please <a href="mailto:{{ contact_email }}">contact the data owner</a> to obtain access to this data</p>
           {% endif %}
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
+        </div>
+      {% else %}
+        {% if not url_is_edit %}
+          <div class="resource-action-buttons">
+            <ul class="list-inline">
+              {% if res.has_views %}
+                <li>
+                    <a href="{{ url }}" class="btn btn-default">
+                      <i class="fa fa-eye-slash"></i> {{ _('Preview') }}
+                    </a>
+                </li>
+              {% endif %}
+
+              {% if res.url and h.is_url(res.url) %}
+                <li>
+                  <a href="{{ res.url }}" class="btn btn-default resource-url-analytics" target="_blank">
+                    {% if res.has_views or res.url_type == 'upload' %}
+                      <i class="fa fa-cloud-download"></i> {{ _('Download') }}
+                    {% else %}
+                      <i class="fa fa-share-square-o"></i> {{ _('Go to resource') }}
+                    {% endif %}
+                  </a>
+                </li>
+              {% endif %}
+
+              {% if can_edit %}
+                <li>
+                  <a class="btn btn-default" href="{{ h.url_for(controller='package', action='resource_edit', id=pkg.name, resource_id=res.id) }}">
+                    {{ _('Edit') }}
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th scope="row">{{ _('Data last updated') }}</th>
+              <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.Created) or _('Unknown') }}</td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Metadata last updated') }}</th>
+              <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.Created) or _('u=Unknown') }}</td>
+            </tr>
+            <tr>
+              <th scope="row">{{ _('Format') }}</th>
+              <td>{{ res.mimetype_inner or res.mimetype or res.format or _('Unknown') }}</td>
+            </tr>
+            {% for key, value in h.format_resource_items(res.items()) %}
+              {% if key.lower() not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}
+                <tr>
+                  <th scope="row">{{ key.title() }}</th>
+                  <td>{{ value }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+  </div>
 </div>
 
-{% endblock %}
+{#    <table class="resource-table" cellpaddding="10" cellspacing="10" width="100%" >#}
+{#      <tbody>#}
+{#        <tr>#}
+{#          <th scope="row">{{ _('Data last updated') }}</th>#}
+{#          <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.Created) or _('Unknown') }}</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <th scope="row">{{ _('Metadata last updated') }}</th>#}
+{#          <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.Created) or _('u=Unknown') }}</td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#          <th scope="row">{{ _('Format') }}</th>#}
+{#          <td>{{ res.mimetype_inner or res.mimetype or res.format or _('Unknown') }}</td>#}
+{#        </tr>#}
+{#        {% for key, value in h.format_resource_items(res.items()) %}#}
+{#          {% if key.lower() not in ["revision id", "package id", "state", "id", "created", "has views", "position", "format"] %}#}
+{#          <tr><th scope="row">{{ key }}</th><td>{{ value }}</td></tr>#}
+{#          {% endif %}#}
+{#        {% endfor %}#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </section>#}
+{#</div>#}
+{##}
+{#{% endblock %}#}

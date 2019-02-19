@@ -1,104 +1,212 @@
-
 <section class="additional-info">
-    <h3>{{ _('Additional Information') }}</h3>
-
-    <!-- Expando toggle here-->
-    <a class="heading" id="additional-expando" href="javascript:void(0);" style="font-weight: bold;">
-      <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>
-      View additional metadata
-    </a>
-
-    <div id="additional-info" style="display:none;">
-    <table class="resource-table" data-module="xtable-toggle-more">
-      <tbody>
-        {% block package_additional_info %}
-          {% if pkg_dict.url %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _('Source') }}</th>
-              {% if h.is_url(pkg_dict.url) %}
-                <td class="dataset-details" property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>
-              {% else %}
-                <td class="dataset-details" property="foaf:homepage">{{ pkg_dict.url }}</td>
+  <h3>{{ _('Additional Information') }}</h3>
+  <div class="panel-group" id="additional-info-accordion" role="tablist">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab">
+        <div class="panel-title">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#additional-info-accordion" href="#additional-info">
+            <i class="fa fa-caret-right"></i> View additional metadata
+          </a>
+        </div>
+      </div>
+      <div id="additional-info" class="panel-collapse collapse" role="tabpanel">
+        <table class="table table-bordered" data-module="xtable-toggle-more">
+          <tbody>
+            {% block package_additional_info %}
+              {% if pkg_dict.url %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _('Source') }}</th>
+                  {% if h.is_url(pkg_dict.url) %}
+                    <td class="dataset-details"
+                        property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>
+                  {% else %}
+                    <td class="dataset-details" property="foaf:homepage">{{ pkg_dict.url }}</td>
+                  {% endif %}
+                </tr>
               {% endif %}
-            </tr>
-          {% endif %}
 
-          {% if pkg_dict.author_email %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("Author") }}</th>
-              <td class="dataset-details" property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
-            </tr>
-          {% elif pkg_dict.author %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("Author") }}</th>
-              <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
-            </tr>
-          {% endif %}
-
-          {% if pkg_dict.maintainer_email %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
-              <td class="dataset-details" property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>
-            </tr>
-          {% elif pkg_dict.maintainer %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
-              <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>
-            </tr>
-          {% endif %}
-
-          {% if pkg_dict.version %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("Version") }}</th>
-              <td class="dataset-details">{{ pkg_dict.version }}</td>
-            </tr>
-          {% endif %}
-
-          {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("State") }}</th>
-              <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
-            </tr>
-          {% endif %}
-          {% if pkg_dict.metadata_modified %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
-              <td class="dataset-details">
-                  {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
-              </td>
-            </tr>
-          {% endif %}
-          {% if pkg_dict.metadata_created %}
-            <tr>
-              <th scope="row" class="dataset-label">{{ _("Created") }}</th>
-
-              <td class="dataset-details">
-                  {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
-              </td>
-            </tr>
-          {% endif %}
-
-          {% block extras scoped %}
-            {% for extra in h.sorted_extras(pkg_dict.extras) %}
-              {% set key, value = h.clean_extra(extra) %}
-              {% if key %}
-              <tr rel="dc:relation" resource="_:extra{{ i }}"  class="toggle-more">
-                {% set cleaned_key = h.clean_extra_name(key) %}
-                {% if cleaned_key %}
-                <th scope="row" class="dataset-label" property="rdfs:label">{{ cleaned_key }}</th>
-                {% else %}
-                <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
-                {% endif %}
-                <td class="dataset-details" property="rdf:value">{{ value|safe }}</td>
-              </tr>
+              {% if pkg_dict.author_email %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+                  <td class="dataset-details"
+                      property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>
+                </tr>
+              {% elif pkg_dict.author %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("Author") }}</th>
+                  <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>
+                </tr>
               {% endif %}
-            {% endfor %}
-          {% endblock %}
 
-        {% endblock %}
-      </tbody>
-    </table>
+              {% if pkg_dict.maintainer_email %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+                  <td class="dataset-details"
+                      property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>
+                </tr>
+              {% elif pkg_dict.maintainer %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>
+                  <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>
+                </tr>
+              {% endif %}
+
+              {% if pkg_dict.version %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("Version") }}</th>
+                  <td class="dataset-details">{{ pkg_dict.version }}</td>
+                </tr>
+              {% endif %}
+
+              {% if h.check_access('package_update',{'id':pkg_dict.id}) %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("State") }}</th>
+                  <td class="dataset-details">{{ _(pkg_dict.state) }}</td>
+                </tr>
+              {% endif %}
+              {% if pkg_dict.metadata_modified %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>
+                  <td class="dataset-details">
+                    {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}
+                  </td>
+                </tr>
+              {% endif %}
+              {% if pkg_dict.metadata_created %}
+                <tr>
+                  <th scope="row" class="dataset-label">{{ _("Created") }}</th>
+
+                  <td class="dataset-details">
+                    {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}
+                  </td>
+                </tr>
+              {% endif %}
+
+              {% block extras scoped %}
+                {% for extra in h.sorted_extras(pkg_dict.extras) %}
+                  {% set key, value = h.clean_extra(extra) %}
+                  {% if key %}
+                    <tr rel="dc:relation" resource="_:extra{{ i }}" class="toggle-more">
+                      {% set cleaned_key = h.clean_extra_name(key) %}
+                      {% if cleaned_key %}
+                        <th scope="row" class="dataset-label" property="rdfs:label">{{ cleaned_key }}</th>
+                      {% else %}
+                        <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>
+                      {% endif %}
+                      <td class="dataset-details" property="rdf:value">{{ value|safe }}</td>
+                    </tr>
+                  {% endif %}
+                {% endfor %}
+              {% endblock %}
+            {% endblock %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-  </section>
+
+
+
+{#  <!-- Expando toggle here-->#}
+{#  <a class="heading" id="additional-expando" href="javascript:void(0);" style="font-weight: bold;">#}
+{#    <i class="pull-left fa fa-chevron-right chevron" aria-hidden="true" style="margin-top: 4px;"></i>#}
+{#    View additional metadata#}
+{#  </a>#}
+{##}
+{#  <div id="additional-info" style="display:none;">#}
+{#    <table class="resource-table" data-module="xtable-toggle-more">#}
+{#      <tbody>#}
+{#      {% block package_additional_info %}#}
+{#        {% if pkg_dict.url %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _('Source') }}</th>#}
+{#            {% if h.is_url(pkg_dict.url) %}#}
+{#              <td class="dataset-details"#}
+{#                  property="foaf:homepage">{{ h.link_to(pkg_dict.url, pkg_dict.url, rel='foaf:homepage', target='_blank') }}</td>#}
+{#            {% else %}#}
+{#              <td class="dataset-details" property="foaf:homepage">{{ pkg_dict.url }}</td>#}
+{#            {% endif %}#}
+{#          </tr>#}
+{#        {% endif %}#}
+{##}
+{#        {% if pkg_dict.author_email %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("Author") }}</th>#}
+{#            <td class="dataset-details"#}
+{#                property="dc:creator">{{ h.mail_to(email_address=pkg_dict.author_email, name=pkg_dict.author) }}</td>#}
+{#          </tr>#}
+{#        {% elif pkg_dict.author %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("Author") }}</th>#}
+{#            <td class="dataset-details" property="dc:creator">{{ pkg_dict.author }}</td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{##}
+{#        {% if pkg_dict.maintainer_email %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>#}
+{#            <td class="dataset-details"#}
+{#                property="dc:contributor">{{ h.mail_to(email_address=pkg_dict.maintainer_email, name=pkg_dict.maintainer) }}</td>#}
+{#          </tr>#}
+{#        {% elif pkg_dict.maintainer %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _('Maintainer') }}</th>#}
+{#            <td class="dataset-details" property="dc:contributor">{{ pkg_dict.maintainer }}</td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{##}
+{#        {% if pkg_dict.version %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("Version") }}</th>#}
+{#            <td class="dataset-details">{{ pkg_dict.version }}</td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{##}
+{#        {% if h.check_access('package_update',{'id':pkg_dict.id}) %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("State") }}</th>#}
+{#            <td class="dataset-details">{{ _(pkg_dict.state) }}</td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{#        {% if pkg_dict.metadata_modified %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("Last Updated") }}</th>#}
+{#            <td class="dataset-details">#}
+{#              {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_modified %}#}
+{#            </td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{#        {% if pkg_dict.metadata_created %}#}
+{#          <tr>#}
+{#            <th scope="row" class="dataset-label">{{ _("Created") }}</th>#}
+{##}
+{#            <td class="dataset-details">#}
+{#              {% snippet 'snippets/local_friendly_datetime.html', datetime_obj=pkg_dict.metadata_created %}#}
+{#            </td>#}
+{#          </tr>#}
+{#        {% endif %}#}
+{##}
+{#        {% block extras scoped %}#}
+{#          {% for extra in h.sorted_extras(pkg_dict.extras) %}#}
+{#            {% set key, value = h.clean_extra(extra) %}#}
+{#            {% if key %}#}
+{#              <tr rel="dc:relation" resource="_:extra{{ i }}" class="toggle-more">#}
+{#                {% set cleaned_key = h.clean_extra_name(key) %}#}
+{#                {% if cleaned_key %}#}
+{#                  <th scope="row" class="dataset-label" property="rdfs:label">{{ cleaned_key }}</th>#}
+{#                {% else %}#}
+{#                  <th scope="row" class="dataset-label" property="rdfs:label">{{ _(key) }}</th>#}
+{#                {% endif %}#}
+{#                <td class="dataset-details" property="rdf:value">{{ value|safe }}</td>#}
+{#              </tr>#}
+{#            {% endif %}#}
+{#          {% endfor %}#}
+{#        {% endblock %}#}
+{##}
+{#      {% endblock %}#}
+{#      </tbody>#}
+{#    </table>#}
+{#  </div>#}
+</section>
 
 

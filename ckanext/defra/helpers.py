@@ -400,3 +400,13 @@ def extras_license(pkg):
         except (ValueError, IndexError):
             return None
     return None
+
+
+def get_contact_email(pkg):
+    contact_email = _find_extra(pkg, 'contact-email')
+    if contact_email is not None:
+        return contact_email
+    maintainer_email = pkg.get('maintainer_email')
+    if maintainer_email is not None:
+        return maintainer_email
+    return None
