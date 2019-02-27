@@ -130,6 +130,9 @@ h1, h2, h3, h4, h5 {
   background-color: #015e23;
 }
 
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus,
 .masthead .navigation .nav-pills li.active a,
 .masthead .navigation .nav-pills li a:hover {
   background-color: rgb(0, 163, 59);
@@ -330,6 +333,17 @@ label::after {
 }
 
 @media (min-width: 768px) {
+  .nav-item:not(.active) >a:hover::before,
+  .nav-item:not(.active) >a:hover:before {
+    border-left-color: #2fa450;
+    border-left-width: 199px;
+  }
+  .nav-item.active, .nav-aside li.active {
+    background-color: #ffffff;
+  }
+  .nav-simple > li, .nav-aside > li {
+    border-bottom: none;
+  }
   .nav-item.active>a:before,
   .nav-aside li.active a:before {
       content: ' ';
