@@ -19,7 +19,6 @@
           </small>
         </div>
       {% endif %}
-
     </div>
   </div>
   <div id="resource-{{ res.id }}" class="panel-collapse collapse" role="tabpanel">
@@ -40,11 +39,11 @@
         {% if not url_is_edit %}
           <div class="resource-action-buttons">
             <ul class="list-inline">
-              {% if res.has_views %}
+              {% if res.has_views and res.link_status == 'active'%}
                 <li>
-                    <a href="{{ url }}" class="btn btn-default">
-                      <i class="fa fa-eye-slash"></i> {{ _('Preview') }}
-                    </a>
+                  <a href="{{ h.url_for(controller='package', action='resource_read', id=pkg.name, resource_id=res.id) }}" class="btn btn-default">
+                    <i class="fa fa-eye-slash"></i> {{ _('Preview') }}
+                  </a>
                 </li>
               {% endif %}
 
