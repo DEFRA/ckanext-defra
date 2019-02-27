@@ -1,43 +1,53 @@
 {% ckan_extends %}
 
+{# Only show data preview if the resource link status is active #}
+{% block data_preview %}
+  {% if res.link_status == 'active' %}
+    {{ super() }}
+  {% endif %}
+{% endblock data_preview %}
+
 {% block resource_additional_information_inner %}
-        <div class="module-content">
-          <h2>{{ _('Additional Information') }}</h2>
-          <table class="table table-striped table-bordered table-condensed" data-module="table-toggle-more">
-            <thead>
-              <tr>
-                <th scope="col">{{ _('Field') }}</th>
-                <th scope="col">{{ _('Value') }}</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">{{ _('Data last updated') }}</th>
-                <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.created) or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th scope="row">{{ _('Metadata last updated') }}</th>
-                <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.created) or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th scope="row">{{ _('Created') }}</th>
-                <td>{{ h.render_datetime(res.created) or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th scope="row">{{ _('Format') }}</th>
-                <td>{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
-              </tr>
-              <tr>
-                <th scope="row">{{ _('License') }}</th>
-                <td>{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</td>
-              </tr>
-              {% for key, value in h.format_resource_items(res.items()) %}
-                {% set cleaned_key = h.clean_extra_name(key) %}
-                {% if cleaned_key %}
-                    <tr ><th scope="row">{{ cleaned_key }}</th><td>{{ value }}</td></tr>
-                {% endif %}
-              {% endfor %}
-            </tbody>
-          </table>
-        </div>
+  <div class="module-content">
+    <h2>{{ _('Additional Information') }}</h2>
+    <table class="table table-bordered" data-module="table-toggle-more">
+      <tbody>
+      <tr>
+        <th scope="row">{{ _('Data last updated') }}</th>
+        <td>{{ h.render_datetime(res.last_modified) or h.render_datetime(res.Created) or _('unknown') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{{ _('Metadata last updated') }}</th>
+        <td>{{ h.render_datetime(res.revision_timestamp) or h.render_datetime(res.Created) or _('unknown') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{{ _('Created') }}</th>
+        <td>{{ h.render_datetime(res.Created) or _('unknown') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{{ _('Format') }}</th>
+        <td>{{ res.mimetype_inner or res.mimetype or res.format or _('unknown') }}</td>
+      </tr>
+      <tr>
+        <th scope="row">{{ _('License') }}</th>
+        <td>
+          {% if pkg.license_id %}
+            {{ license_string(pkg, size='') }}
+          {% else %}
+            {{ _('No License Provided') }}
+          {% endif %}
+        </td>
+      </tr>
+      {% for key, value in h.format_resource_items(res.items()) %}
+        {% set cleaned_key = h.clean_extra_name(key) %}
+        {% if cleaned_key %}
+          <tr ><th scope="row">{{ cleaned_key }}</th><td>{{ value }}</td></tr>
+        {% endif %}
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}
+{% block resource_license %}
+  {# Disable social section #}
+{% endblock resource_license %}
