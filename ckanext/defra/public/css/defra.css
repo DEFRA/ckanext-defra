@@ -827,3 +827,12 @@ ul.collection li {
 #additional-info .dataset-details dl dd:not(:last-child) {
   margin-bottom: 10px;
 }
+.dataset-contacts > div > div > p:first-child {
+  margin-top: 15px;
+}
+.dataset-contacts > div > div > p:not(:last-child) {
+  margin-bottom: 20px;
+}
+.module-narrow.resources .nav-item.active > a {
+  color: #ffffff;
+}
