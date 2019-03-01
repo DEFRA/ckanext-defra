@@ -1,5 +1,41 @@
 {% ckan_extends %}
 
+{% block subtitle %}
+  {{ h.dataset_display_name(pkg) }} - {{ h.get_resource_name(res) }}
+{% endblock %}
+
+{% block head_extras %}
+  {{ g.template_head_end | safe }}
+  {% set description = h.markdown_extract(h.get_translated(res, 'description'), extract_length=200) if res.description else h.markdown_extract(h.get_translated(pkg, 'notes'), extract_length=200) %}
+  <meta property="og:title" content="{{ h.dataset_display_name(pkg) }} - {{ h.get_resource_name(res) }} - {{ g.site_title }}">
+  <meta property="og:description" content="{{ description|forceescape }}">
+{% endblock %}
+
+{% block resource_read_title %}
+  <h1 class="page-heading">
+    {{ h.get_resource_name(res) | truncate(50) }}
+  </h1>
+{% endblock %}
+
+{% block breadcrumb_content %}
+  {% if pkg %}
+    {% set dataset = h.dataset_display_name(pkg) %}
+    {% if pkg.organization %}
+      {% set organization = h.get_translated(pkg.organization, 'title') or pkg.organization.name %}
+      {% set group_type = pkg.organization.type %}
+      <li>{% link_for _('Organizations'), named_route='organization.index' %}</li>
+      <li>{% link_for organization|truncate(30), named_route='organization.read', id=pkg.organization.name %}</li>
+    {% else %}
+      <li>{% link_for _('Datasets'), named_route='dataset.search' %}</li>
+    {% endif %}
+    <li{{ self.breadcrumb_content_selected() }}>{% link_for dataset|truncate(30), named_route='dataset.read', id=pkg.name %}</li>
+  {% else %}
+    <li>{% link_for _('Datasets'), named_route='dataset.search' %}</li>
+    <li class="active"><a href="">{{ _('Create Dataset') }}</a></li>
+  {% endif %}
+  <li class="active"><a href="">{{ h.get_resource_name(res)|truncate(30) }}</a></li>
+{% endblock %}
+
 {# Only show data preview if the resource link status is active #}
 {% block data_preview %}
   {% if res.link_status == 'active' %}
