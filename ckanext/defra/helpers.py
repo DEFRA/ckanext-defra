@@ -410,3 +410,7 @@ def get_contact_email(pkg):
     if maintainer_email is not None:
         return maintainer_email
     return None
+
+
+def list_letters():
+    return [chr(o) for o in range(ord('a'), ord('z') + 1)]

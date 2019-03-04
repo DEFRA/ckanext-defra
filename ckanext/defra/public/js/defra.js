@@ -63,6 +63,11 @@ $(document).ready(function () {
     $('#field-order-by').val($(this).val());
     $('#dataset-search-form').submit();
   });
+
+  /**
+   * Init tooltips
+   */
+  $('[data-toggle="tooltip"]').tooltip()
 });
 
 var mapshow = $('#show-map')
