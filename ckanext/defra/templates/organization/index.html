@@ -1,27 +1,75 @@
 {% ckan_extends %}
-
-{% block organizations_search_form %}
-{% endblock %}
+{% set total = c.page.collection|length %}
+{% set sorting = [
+  (_('Name Ascending'), 'title asc'),
+  (_('Name Descending'), 'title desc'),
+  (_('Datasets Ascending'), 'package_count asc'),
+  (_('Datasets Descending'), 'package_count desc'),
+] %}
+{% set startswith = request.params.get('startswith', '') %}
+{% block bodytag %}{{ super() }} class="organisations"{% endblock bodytag %}
+{% block organizations_search_form %}{% endblock %}
 
 {% block secondary %}
 {% endblock %}
 
 {% block toolbar %}
-<div class="searchby row">
-    <div class="separate-search module-content">
-      {% snippet 'snippets/search_form.html', geosearch=False, form_id='dataset-search-form', type='dataset', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields, placeholder="Enter keywords to search for data" %}
+  <div class="searchby row">
+    <div class="module-content">
+      {% snippet 'snippets/search_form.html', geosearch=False, form_id='dataset-search-form', type='organization', query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields, placeholder="Enter a publishers name", title="Search for a specific publisher", startswith=startswith %}
     </div>
   </div>
 {% endblock %}
 
 {% block primary %}
-<div class="primary col-md-12 col-sm-12 col-xs-12">
-  {% block primary_content %}
-    <div class="result-border row">
-        {% set total = c.page.collection|length %}
-        <h2>{{ total }} Publisher{{ 's' if total > 1 }} </h2>
-        {{ super() }}
+  <div class="col-md-12 org-filter-header">
+    <p><strong>{{ total_orgs }}</strong> Publisher{{ 's' if total > 1 }}</p>
+  </div>
+  <div class="row org-filter">
+    <div class="col-md-8 col-sm-12">
+      <a class="btn org-filter-all btn-default{% if not startswith %} btn-dark{% endif %}" href="?{% for k, v in request.params.items() if k != 'startswith' %}{{ k }}={{ v }}{% if not loop.last %}&{% endif %}{% endfor %}">
+        ALL
+      </a>
     </div>
-  {% endblock %}
-</div>
-{% endblock %}
+    <div class="col-md-4 col-sm-12 text-right">
+      <div class="form-inline">
+         <div class="form-select form-group control-order-by">
+          <label for="dataset-sort">{{ _('Order by') }}</label>
+          <select id="dataset-sort" class="form-control input-sm">
+            {% for label, value in sorting %}
+              {% if label and value %}
+                <option value="{{ value }}"{% if c.sort_by_selected == value %} selected="selected"{% endif %}>
+                  {{ label }}
+                </option>
+              {% endif %}
+            {% endfor %}
+          </select>
+         </div>
+      </div>
+    </div>
+    <div class="col-md-12 org-name-filter">
+      {% for letter in h.list_letters() %}
+        <a
+          {% if startswith == letter %}
+            href="?{% for k, v in request.params.items() if k not in ['startswith', 'page'] %}{{ k }}={{ v }}{% if not loop.last %}&{% endif %}{% endfor %}"
+          {% else %}
+            href="?startswith={{ letter }}&{% for k, v in request.params.items() if k not in ['startswith', 'page'] %}{{ k }}={{ v }}{% if not loop.last %}&{% endif %}{% endfor %}"
+          {% endif %}
+          {% if letter.lower() not in org_initials %}disabled{% endif %}
+          class="btn btn-default{% if startswith.lower() == letter %} btn-dark{% endif %}"
+        >
+          {{ letter.upper() }}
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="primary col-md-12 col-sm-12 col-xs-12">
+    {% block primary_content %}
+      <div class="row">
+        <div class="col-md-12">
+          {{ super() }}
+        </div>
+      </div>
+    {% endblock primary_content %}
+  </div>
+{% endblock primary %}

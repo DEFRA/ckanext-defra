@@ -11,7 +11,6 @@ from ckan import model
 from ckan.lib.base import h
 
 
-
 class PublisherController(org.OrganizationController):
     ''' The organization controller is for Organizations, which are implemented
     as Groups with is_organization=True and group_type='organization'. It works
@@ -51,6 +50,8 @@ class PublisherController(org.OrganizationController):
 
         q = toolkit.c.q = toolkit.request.params.get('q', '')
         sort_by = toolkit.c.sort_by_selected = toolkit.request.params.get('sort')
+        startswith = toolkit.request.params.get('startswith')
+
         try:
             self._check_access('site_read', context)
             self._check_access('group_list', context)
@@ -65,10 +66,11 @@ class PublisherController(org.OrganizationController):
 
         try:
             data_dict_global_results = {
-                'all_fields': False,
+                'all_fields': True,
                 'q': q,
                 'sort': sort_by,
                 'type': group_type or 'group',
+                'include_extras': True,
             }
             global_results = self._action('group_list')(
                 context, data_dict_global_results)
@@ -79,27 +81,30 @@ class PublisherController(org.OrganizationController):
                 msg = str(e)
             h.flash_error(msg)
             toolkit.c.page = h.Page([], 0)
-            return toolkit.render(self._index_template(group_type),
-                          extra_vars={'group_type': group_type})
+            return toolkit.render(
+                self._index_template(group_type),
+                extra_vars={'group_type': group_type}
+            )
 
-        data_dict_page_results = {
-            'all_fields': True,
-            'q': q,
-            'sort': sort_by,
-            'type': group_type or 'group',
-            'limit': items_per_page,
-            'offset': items_per_page * (page - 1),
-            'include_extras': True
-        }
-        page_results = self._action('group_list')(context,
-                                                  data_dict_page_results)
+        start = items_per_page * (page - 1)
+        end = start + items_per_page
+        page_results = global_results
+        if startswith is not None:
+            page_results = [x for x in global_results if x['name'][0].lower() == startswith]
 
         toolkit.c.page = h.Page(
-            collection=global_results,
+            collection=page_results,
             page=page,
             url=h.pager_url,
             items_per_page=items_per_page,
         )
 
-        toolkit.c.page.items = page_results
-        return toolkit.render(self._index_template(group_type), extra_vars={'group_type': group_type})
+        toolkit.c.page.items = page_results[start:end]
+        return toolkit.render(
+            self._index_template(group_type),
+            extra_vars={
+                'total_orgs': len(global_results),
+                'group_type': group_type,
+                'org_initials': set([x['name'][0].lower() for x in global_results]),
+            }
+        )
