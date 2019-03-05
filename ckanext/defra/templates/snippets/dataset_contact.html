@@ -18,7 +18,7 @@
         {% if pkg_dict.maintainer and pkg_dict.maintainer_email %}
           <p>
             Maintainer Contact<br />
-            <a href="mailto:{{ contact }}">{{ contact }}</a>
+            <a href="mailto:{{ pkg_dict.maintainer_email }}">{{ pkg_dict.maintainer }}</a>
           </p>
         {% elif pkg_dict.maintainer_email %}
           <p>
