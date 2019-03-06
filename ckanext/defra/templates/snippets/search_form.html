@@ -57,40 +57,43 @@
 
     {% block search_title %}
       {% if mapsearch %}
-      {% set has_bbox = h.query_has_bbox(request) %}
-        <div class="checkbox location-cb" style="margin-top: 0;">
-          <label>
-            <input id="show-map" type="checkbox" {% if has_bbox %}checked="checked"{% endif %}> Search within a geographic area
-          </label>
+        {% set has_bbox = h.query_has_bbox(request) %}
+        <div class="checkbox location-search-toggle">
+          <a class="{% if not has_bbox %}collapsed{% endif %}" role="button" data-toggle="collapse" href="#location-search-collapse">
+            <i class="fa fa-caret-right"></i> Search within a geographic area
+          </a>
         </div>
-        <div id="location-search" class="row location-search" {% if not has_bbox %}style="visibility:hidden;"{% endif %}>
-          <div class="col-md-3">
-            <h3>Enter a location</h3>
-            <span class="help-block" style="font-size:small">Start typing a location and select from the list</span>
-            <input
-              type="text"
-              class="location-typeahead"
-              autocomplete="off"
-              id="location"
-              placeholder="Enter a place name"
-              data-location-service-url="{{ h.location_service_url }}"
-            />
-
-            <h4>or</h4>
-
-            <h3>Draw a search area</h3>
-            <ol style="font-size: small; padding-left: 10px;">
-              <li>Click on the pencil icon</li>
-              <li>Use the + and - buttons to zoom in and out as required</li>
-              <li>Draw a square by dragging from top left to top right</li>
-              <li>Click 'Apply' or 'Cancel'</li>
-            </ol>
-          </div>
-          <div class="col-md-9">
+        <div class="collapse{% if has_bbox %} in pre-opened{% endif %}" id="location-search-collapse">
+          <div id="location-search" class="row location-search">
+            <div class="col-md-12"><hr /></div>
+            <div class="col-md-3 location-search-help">
+              <h3>Enter a location</h3>
+              <span class="help-block" >Start typing a place name</span>
+              <input
+                type="text"
+                class="form-control location-typeahead"
+                autocomplete="off"
+                id="location"
+                placeholder="Enter a place name"
+                data-location-service-url="{{ h.location_service_url }}"
+              />
+              <h3 class="text-muted help-break">or</h3>
+              <h3>Draw a search area</h3>
+              <div class="help-block">
+                <ol>
+                  <li>Click on the pencil icon</li>
+                  <li>Zoom using the +/- buttons</li>
+                  <li>Click & drag to draw a square</li>
+                  <li>Click 'Apply' or 'Cancel'</li>
+                </ol>
+              </div>
+            </div>
+            <div class="col-md-9">
               {% snippet "spatial/snippets/spatial_query.html", default_extent=[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]] %}
+            </div>
           </div>
         </div>
-        {% endif %}
+      {% endif %}
     {% endblock %}
 
     {% block search_facets %}
