@@ -5,9 +5,16 @@
     <h2>{{ _('Contacts') }}</h2>
     <div>
       {% if not contact and not pkg_dict.maintainer_email %}
-        <p>
-          No contact info provided
-        </p>
+        {% if org_contacts %}
+          <p>
+            Publisher Contact{% if org_contacts.split(',')|length > 1 %}s{% endif %}<br />
+            {% for oc in org_contacts.split(',') %}
+              <a href="mailto:{{ oc }}">{{ oc }}</a><br />
+            {% endfor %}
+          </p>
+        {% else %}
+          <p>No contact info provided</p>
+        {% endif %}
       {% else %}
         {% if contact %}
           <p>
@@ -31,14 +38,6 @@
           <p>
             Maintainer<br />
             {{ pkg_dict.maintainer }}
-          </p>
-        {% endif %}
-        {% if org_contacts %}
-          <p>
-            Publisher Contact{% if org_contacts.split(',')|length > 1 %}s{% endif %}<br />
-            {% for oc in org_contacts.split(',') %}
-              <a href="mailto:{{ oc }}">{{ oc }}</a><br />
-            {% endfor %}
           </p>
         {% endif %}
       {% endif %}
