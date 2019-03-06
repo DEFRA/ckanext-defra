@@ -1,266 +1,88 @@
-import collections
-import sys
-import uuid
-from urlparse import urljoin
+import json
+import os
 
 import ckan.plugins.toolkit as toolkit
-
-
-PublisherStub = collections.namedtuple('PublisherStub', ['name', 'title', 'image_url', 'dgu_name'])
+from ckan.logic import NotFound
 
 
 class ImportPublishersCommand(toolkit.CkanCommand):
-    ''' Imports all of the publishers for Defra (inc. defra) '''
+    """
+    Imports all of the publishers for Defra (inc. defra) '''
+    """
     summary = __doc__.split('\n')[0]
     usage = '\n'.join(__doc__.split('\n')[1:])
     max_args = None
     min_args = 0
+    context = {
+        'ignore_auth': True
+    }
 
     def command(self):
-        self.context = {
-            'ignore_auth': True,
-        }
-
+        fixture = os.path.join(
+            os.path.dirname(os.path.dirname(__file__)), 'fixtures', 'publishers.json'
+        )
         self._load_config()
 
-        self.site_url = toolkit.config.get("ckan.site_url")
+        with open(fixture, 'r') as fh:
+            publishers = json.loads(fh.read())
 
-        for publisher in PUBLISHERS:
-            action = 'organization_update'
-            publisher_dict = self.existing_publisher(publisher)
-            if not publisher_dict:
-                action = 'organization_create'
-                publisher_dict = self.publisher_to_dict(publisher)
+        add_count = 0
+        update_count = 0
 
-            publisher_dict['name'] = publisher.name
-            publisher_dict['title'] = publisher.title
-            if publisher.image_url:
-                publisher_dict['image_url'] = urljoin(self.site_url, publisher.image_url)
-
-            toolkit.get_action(action)(
-                self.context, publisher_dict
-            )
-
-
-    def existing_publisher(self, publisher):
-        try:
-            pub = toolkit.get_action('group_show')(
-                self.context, {'id': publisher.name}
-            )
-            return pub
-        except:
-            pass
-
-        return None
-
-    def publisher_to_dict(self, publisher):
-        return {
-            'id': str(uuid.uuid4()),
+        existing_harvesters = {
+            x['url']: x for x in toolkit.get_action('harvest_source_list')(self.context, {})
         }
 
-PUBLISHERS = [
-    PublisherStub(
-        name='defra',
-        dgu_name='department-for-environment-food-and-rural-affairs',
-        title='Department for Environment, Food & Rural Affairs',
-        image_url='/images/defra.png'
-    ),
-    PublisherStub(
-        name='forestry-commission',
-        dgu_name='forestry-commission',
-        title='Forestry Commission',
-        image_url='/images/forestry-commission.png'
-    ),
-    PublisherStub(
-        name='wsra',
-        dgu_name='water-services-regulation-authority',
-        title='The Water Services Regulation Authority',
-        image_url='/images/the-water-services-regulation-authority.png'
-    ),
-    PublisherStub(
-        name='apha',
-        dgu_name='animal-and-plant-health-agency',
-        title='Animal and Plant Health Agency',
-        image_url='/images/apha.png'
-    ),
-    PublisherStub(
-        name='cefas',
-        dgu_name='centre-for-environment-fisheries-aquaculture-science',
-        title='Centre for Environment, Fisheries and Aquaculture Science',
-        image_url='/images/cefas.png'
-    ),
-    PublisherStub(
-        name='rpa',
-        dgu_name='rural-payments-agency',
-        title='Rural Payments Agency',
-        image_url='/images/rpa.png'
-    ),
-    PublisherStub(
-        name='vmd',
-        dgu_name='veterinary-medicines-directorate',
-        title='Veterinary Medicines Directorate',
-        image_url='/images/vmd.png'
-    ),
-    PublisherStub(
-        name='ahdb',
-        dgu_name='',
-        title='Agriculture and Horticulture Development Board',
-        image_url='/images/ahdb.png'
-    ),
-    PublisherStub(
-        name='kew',
-        dgu_name='royal-botanic-gardens-kew',
-        title='Board of Trustees of the Royal Botanic Gardens Kew',
-        image_url=''
-    ),
-    PublisherStub(
-        name='ccw',
-        dgu_name='consumer-council-for-water',
-        title='Consumer Council for Water',
-        image_url='/images/consumer-council-water.png'
-    ),
-    PublisherStub(
-        name='ea',
-        dgu_name='environment-agency',
-        title='Environment Agency',
-        image_url='/images/environment-agency.jpg'
-    ),
-    PublisherStub(
-        name='jncc',
-        dgu_name='joint-nature-conservation-committee',
-        title='Joint Nature Conservation Committee',
-        image_url='/images/jncc.png'
-    ),
-    PublisherStub(
-        name='mmo',
-        dgu_name='marine-management-organisation',
-        title='Marine Management Organisation',
-        image_url='/images/mmo.png'
-    ),
-    PublisherStub(
-        name='nfc',
-        dgu_name='national-forest-company',
-        title='National Forest Company',
-        image_url='/images/national-forest.gif'
-    ),
-    PublisherStub(
-        name='ne',
-        dgu_name='natural-england',
-        title='Natural England',
-        image_url='/images/natural-england.png'
-    ),
-    PublisherStub(
-        name='sfia',
-        dgu_name='sea-fish-industry-authority',
-        title='Sea Fish Industry Authority',
-        image_url='/images/seafish.png'
-    ),
-    PublisherStub(
-        name='acre',
-        dgu_name='',
-        title='Advisory Committee on Releases to the Environment',
-        image_url=''
-    ),
-    PublisherStub(
-        name='iaap',
-        dgu_name='',
-        title='Independent Agricultural Appeals Panel',
-        image_url='/images/iaap.png'
-    ),
-    PublisherStub(
-        name='sac',
-        dgu_name='',
-        title='Science Advisory Council',
-        image_url='/images/science-advisory-council.png'
-    ),
-    PublisherStub(
-        name='vpc',
-        dgu_name='',
-        title='Veterinary Products Committee',
-        image_url='/images/vpc.png'
-    ),
-    PublisherStub(
-        name='pvst',
-        dgu_name='',
-        title='Plant Varieties and Seeds Tribunal',
-        image_url='/images/plant-varieties.png'
-    ),
-    PublisherStub(
-        name='dnpa',
-        dgu_name='dartmoor-national-park-authority',
-        title='Dartmoor National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='dwi',
-        dgu_name='',
-        title='Drinking Water Inspectorate',
-        image_url='/images/dwi.gif'
-    ),
-    PublisherStub(
-        name='enpa',
-        dgu_name='exmoor-national-park',
-        title='Exmoor National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='ldnpa',
-        dgu_name='lake-district-national-park',
-        title='Lake District National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='nfnpa',
-        dgu_name='new-forest-national-park',
-        title='New Forest National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='nymnpa',
-        dgu_name='north-york-moors-national-park-authority',
-        title='North York Moors National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='nnpa',
-        dgu_name='northumberland-national-park-authority',
-        title='Northumberland National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='pdnpa',
-        dgu_name='peak-district-national-park-authority',
-        title='Peak District National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='sdnpa',
-        dgu_name='south-downs-national-park-authority',
-        title='South Downs National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='ukcb',
-        dgu_name='',
-        title='UK Co-ordinating Body',
-        image_url='/images/ukco.png'
-    ),
-    PublisherStub(
-        name='ydnpa',
-        dgu_name='yorkshire-dales-national-park-authority',
-        title='Yorkshire Dales National Park Authority',
-        image_url=''
-    ),
-    PublisherStub(
-        name='ba',
-        dgu_name='broads-authority',
-        title='Broads Authority',
-        image_url='/images/broads-authority.png'
-    ),
-    PublisherStub(
-        name='cgma',
-        dgu_name='',
-        title='Covent Garden Market Authority',
-        image_url='/images/covent-garden.png'
-    ),
-]
+        for publisher in publishers:
+            pub_dict = {
+                'name': publisher['name'],
+                'title': publisher['title'],
+                'image_url': publisher['image_url'],
+                'extras': [],
+            }
+
+            if len(publisher['contacts']) > 0:
+                pub_dict['extras'].append({
+                    'key': 'contact_emails',
+                    'value': ','.join(publisher['contacts'])
+                })
+
+            action = 'organization_create'
+            if self._publisher_exists(publisher):
+                action = 'organization_update'
+                pub_dict['id'] = publisher['name']
+                update_count += 1
+            else:
+                add_count += 1
+
+            saved = toolkit.get_action(action)(self.context, pub_dict)
+
+            for harvester in publisher['harvesters']:
+                harvest_dict = {
+                    'name': harvester['name'],
+                    'title': harvester['title'],
+                    'url': harvester['url'],
+                    'source_type': harvester['source_type'],
+                    'owner_org': saved['id'],
+                    'frequency': 'WEEKLY',
+                }
+
+                harvest_action = 'harvest_source_create'
+                if harvester['url'] in existing_harvesters:
+                    harvest_action = 'harvest_source_update'
+                    harvest_dict['id'] = existing_harvesters[harvester['url']]['id']
+
+                toolkit.get_action(harvest_action)(self.context, harvest_dict)
+
+        print('Created {} and updated {} publishers'.format(add_count, update_count))
+
+    def _publisher_exists(self, publisher):
+        try:
+            toolkit.get_action('organization_list')(
+                self.context,
+                {'id': publisher['name']}
+            )
+        except NotFound:
+            return False
+        return True
+
