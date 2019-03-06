@@ -14,7 +14,7 @@
 {% block toolbar %}
   <div class="searchby row">
     <div class="separate-search module-content">
-      {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields %}
+      {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=c.q, sorting=sorting, sorting_selected=c.sort_by_selected, count=c.page.item_count, placeholder=_('Enter a search term'), facets=facets, show_empty=request.params, error=c.query_error, fields=c.fields, title=_('Search for data') %}
     </div>
   </div>
 {% endblock %}

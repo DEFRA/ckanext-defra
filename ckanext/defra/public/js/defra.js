@@ -67,43 +67,24 @@ $(document).ready(function () {
   /**
    * Init tooltips
    */
-  $('[data-toggle="tooltip"]').tooltip()
-});
+  $('[data-toggle="tooltip"]').tooltip();
 
-var mapshow = $('#show-map')
-mapshow.on('click', function () {
-  var field = "#location-search"
-
-  if (mapshow.is(':checked')) {
-    fake_show(field)
-  } else {
-    fake_hide(field);
-    // Clear the location form and map
+  /**
+   * Handle location search form show/hide
+   */
+  $('#location-search-collapse').on('shown.bs.collapse', function () {
+    if (map) {
+      if (!$(this).hasClass('pre-opened')) {
+        map.invalidateSize();
+        map.setZoom(5);
+      }
+    }
+  }).on('hidden.bs.collapse', function() {
     $('#ext_bbox,#ext_prev_extent,#location').val("");
     clear_map_layers();
-  }
+  });
+
 });
-
-if (!mapshow.is(':checked')) {
-  fake_hide("#location-search")
-}
-
-function fake_show(e) {
-  $(e).css({
-    position: 'relative',
-    visibility: 'visible',
-    display: 'block'
-  });
-  if (map) map.invalidateSize();
-}
-
-function fake_hide(e) {
-  $(e).css({
-    position: 'absolute',
-    visibility: 'hidden',
-    display: 'block'
-  });
-}
 
 /*
  * Clear all but the base layer of the map
