@@ -191,8 +191,76 @@ li a{
   border: none;
 }
 
-.media-item {
-  min-height: 240px;
+body.organisations .module-content {
+  padding-left: 0;
+  padding-right: 0;
+}
+body.organisations .searchby .well {
+  margin-bottom: 15px;
+}
+.org-filter-header {
+  margin-bottom: 20px;
+}
+.org-filter {
+  padding: 0px 15px 15px 15px;
+}
+.org-filter-all {
+  padding: 8px 18px;
+}
+.org-name-filter {
+  margin-top: 25px;
+}
+.org-name-filter > .btn {
+  padding: 10px;
+  width: 45px;
+  height: 45px;
+  text-align: center;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}
+
+.org-item {
+  height: 180px;
+  border: 1px solid rgba(121, 121, 121, 1);
+  margin-bottom: 30px;
+  padding: 0;
+  display: block;
+  overflow:hidden;
+}
+a.org-item:hover {
+  background-color: #E8F2EC;
+}
+.org-item > div {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+.org-item > div > div {
+  display: table-row;
+}
+.org-item > div > div > div {
+  display: table-cell;
+}
+.org-item > div > div:first-child {
+  height: 40%;
+  vertical-align: top;
+}
+.org-item > div > div:nth-child(2) {
+  vertical-align: middle;
+}
+.org-item > div > div:last-child {
+  vertical-align: bottom;
+}
+
+.org-item > div > div > div:not(:first-child) {
+  height: 30%;
+}
+.org-item > div > div > div p {
+  margin: 0;
+  padding: 15px;
+}
+.org-item > div > div:not(:first-child) p {
+  color: #333333;
 }
 
 .media-heading {
@@ -258,10 +326,12 @@ li a{
   font-weight: bold;
   color: #333;
 }
-.separate-search {
-  background-color: rgba(242, 242, 242, 1);
-  padding: 20px;
-  padding-bottom: 0;
+.searchby .well {
+  border-width: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding-bottom: 10px;
+  padding-top: 20px;
 }
 
 .tags a.tag {
@@ -271,18 +341,17 @@ li a{
   color: #fff;
 }
 
-.search-input-group .input-group-btn button.btn.btn-default {
-  margin-top: 26px;
-  padding-bottom: 8px;
-  color: #2fa450;
-}
-
 .search-form {
   padding-bottom: 0;
+  border-bottom-width: 0;
+}
+.search-form .checkbox label {
+  padding-left: 0;
 }
 
-.search-form .search-input-group {
+#dataset-search-form {
   margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .dataset-heading a {
@@ -367,8 +436,28 @@ label::after {
   padding-left: 0;
 }
 
-div.location-search {
-  padding-bottom: 20px;
+.location-search {
+  padding-top: 15px;
+  padding-bottom: 0;
+}
+.location-search h3:first-child {
+  margin-top: 0;
+}
+.location-search .location-search-help h3 {
+  font-weight: normal;
+}
+.location-search .location-search-help h3.help-break {
+  margin-top: 25px;
+}
+.location-search .location-search-help ol {
+  padding-left: 17px;
+}
+.location-search > div > hr {
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+.location-search-toggle {
+  margin-top: 16px;
 }
 
 /* Map */
@@ -692,17 +781,12 @@ ol.breadcrumb li a {
 }
 
 /* Search styling */
-.search-input-group {
+.search-form .freetext-search {
+  margin-top: 10px;
 }
-
-#field-giant-search {
-  border: solid 2px #333;
-  font-size: larger;
-}
-
-.btn-search {
-  background-color: #333;
-  color: #fff !important;
+.search-form .freetext-search button {
+  background-color: #000000;
+  color: #ffffff;
 }
 
 div.private-resource {
@@ -788,8 +872,11 @@ ul.collection li {
   border: solid 1px #2fa450 !important;
 }
 
-.btn-search:hover, .btn-search:active, .btn-search:visited, .btn-search:focus {
+.btn-search:hover, .btn-search:active, .btn-search:visited, .btn-search:focus, .btn-dark {
   background-color: black;
+}
+.btn-dark {
+  color: #ffffff;
 }
 .resource-item:hover {
   background-color: transparent;
@@ -803,7 +890,8 @@ ul.collection li {
 #dataset-resources #resource-accordion .panel-title a {
   outline: none;
 }
-.panel-group .panel-title a:not(.collapsed) i {
+.panel-group .panel-title a:not(.collapsed) i,
+.location-search-toggle a:not(.collapsed) i {
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -835,4 +923,7 @@ ul.collection li {
 }
 .module-narrow.resources .nav-item.active > a {
   color: #ffffff;
+}
+.btn-default:hover, .btn-default:active, .btn-default:focus {
+  background-color: #E8F2EC;
 }

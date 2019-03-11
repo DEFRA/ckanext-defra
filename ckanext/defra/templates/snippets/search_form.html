@@ -1,12 +1,19 @@
 {% import 'macros/form.html' as form %}
-
-{% set sorting = [
-  (_('Relevance'), 'score desc, metadata_modified desc'),
-  (_('Name Ascending'), 'title_string asc'),
-  (_('Name Descending'), 'title_string desc'),
-  (_('Last Modified'), 'metadata_modified desc'),
-  (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
-%}
+{% set sorting = [] %}
+{% if type == 'dataset' %}
+  {% set sorting = [
+    (_('Relevance'), 'score desc, metadata_modified desc'),
+    (_('Name Ascending'), 'title_string asc'),
+    (_('Name Descending'), 'title_string desc'),
+    (_('Last Modified'), 'metadata_modified desc'),
+    (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+  %}
+{% elif type == 'organization' %}
+  {% set sorting = [
+    (_('Name Ascending'), 'title asc'),
+    (_('Name Descending'), 'title desc')
+  ] %}
+{% endif %}
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
@@ -15,103 +22,105 @@
 {% if geosearch == False or c.controller == 'ckanext.defra.controllers.publisher:PublisherController' %}
   {% set mapsearch = False %}
 {% endif %}
-
-<form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
-  {% block search_input %}
-    <label for="field-giant-search">Enter a search term</label>
-    <div class="xzsearch-input-group">
-        <div class="row">
-        <div class="col-md-11" style="padding-right: 2px;">
-          <input id="field-giant-search" type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
-        </div>
-        <div class="col-md-1" style="padding-left: 0;">
-          <button class="btn btn-default btn-search" type="submit" value="search">
-              <i class="fa fa-search"></i> Search
+<div class="well">
+  <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
+    {% block search_input %}
+      <span>{{ title }}</span>
+      <div class="input-group input-group-lg freetext-search">
+        <input type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit" value="search">
+            <i class="fa fa-search"></i>
           </button>
-        </div>
+        </span>
       </div>
-    </div>
-  {% endblock %}
+    {% endblock %}
 
-  {% block search_search_fields %}
-    {% if fields -%}
-      <span>{{ form.hidden_from_list(fields=fields) }}</span>
-    {%- endif %}
-  {% endblock %}
-
-  {% block search_sortby %}
-    <select id="field-order-by" name="sort" class="form-control hidden">
-      {% for label, value in sorting %}
-        {% if label and value %}
-          <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
-        {% endif %}
-      {% endfor %}
-    </select>
-  {% endblock %}
-
-  {% block search_title %}
-    {% if mapsearch %}
-    {% set has_bbox = h.query_has_bbox(request) %}
-      <div class="checkbox location-cb" style="margin-top: 0;">
-        <label>
-          <input id="show-map" type="checkbox" {% if has_bbox %}checked="checked"{% endif %}> Search within a geographic area
-        </label>
-      </div>
-      <div id="location-search" class="row location-search" {% if not has_bbox %}style="visibility:hidden;"{% endif %}>
-        <div class="col-md-3">
-          <h3>Enter a location</h3>
-          <span class="help-block" style="font-size:small">Start typing a location and select from the list</span>
-          <input
-            type="text"
-            class="location-typeahead"
-            autocomplete="off"
-            id="location"
-            placeholder="Enter a place name"
-            data-location-service-url="{{ h.location_service_url }}"
-          />
-
-          <h4>or</h4>
-
-          <h3>Draw a search area</h3>
-          <ol style="font-size: small; padding-left: 10px;">
-            <li>Click on the pencil icon</li>
-            <li>Use the + and - buttons to zoom in and out as required</li>
-            <li>Draw a square by dragging from top left to top right</li>
-            <li>Click 'Apply' or 'Cancel'</li>
-          </ol>
-        </div>
-        <div class="col-md-9">
-            {% snippet "spatial/snippets/spatial_query.html", default_extent=[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]] %}
-        </div>
-      </div>
+    {% block search_search_fields %}
+      {% if fields -%}
+        <span>{{ form.hidden_from_list(fields=fields) }}</span>
+      {%- endif %}
+      {% if startswith %}
+        <input type="hidden" name="startswith" value="{{ startswith }}" />
       {% endif %}
-  {% endblock %}
+    {% endblock %}
 
-  {% block search_facets %}
-    {% if facets %}
-      <p class="filter-list">
-
-        {% for field in facets.fields %}
-          {% set search_facets_items = facets.search.get(field)['items'] %}
-          <span class="facet">{{ facets.titles.get(field) }}:</span>
-          {% for value in facets.fields[field] %}
-            <span class="filtered pill">
-              {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
-                {{ facets.translated_fields[(field,value)] }}
-              {%- else -%}
-                {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
-              {%- endif %}
-              <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
-            </span>
-          {% endfor %}
+    {% block search_sortby %}
+      <select id="field-order-by" name="sort" class="form-control hidden">
+        {% for label, value in sorting %}
+          {% if label and value %}
+            <option value="{{ value }}"{% if sorting_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+          {% endif %}
         {% endfor %}
-      </p>
-      <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
-    {% endif %}
-  {% endblock %}
+      </select>
+    {% endblock %}
 
-</form>
+    {% block search_title %}
+      {% if mapsearch %}
+        {% set has_bbox = h.query_has_bbox(request) %}
+        <div class="checkbox location-search-toggle">
+          <a class="{% if not has_bbox %}collapsed{% endif %}" role="button" data-toggle="collapse" href="#location-search-collapse">
+            <i class="fa fa-caret-right"></i> Search within a geographic area
+          </a>
+        </div>
+        <div class="collapse{% if has_bbox %} in pre-opened{% endif %}" id="location-search-collapse">
+          <div id="location-search" class="row location-search">
+            <div class="col-md-12"><hr /></div>
+            <div class="col-md-3 location-search-help">
+              <h3>Enter a location</h3>
+              <span class="help-block" >Start typing a place name</span>
+              <input
+                type="text"
+                class="form-control location-typeahead"
+                autocomplete="off"
+                id="location"
+                placeholder="Enter a place name"
+                data-location-service-url="{{ h.location_service_url }}"
+              />
+              <h3 class="help-break">or</h3>
+              <h3>Draw a search area</h3>
+              <div class="help-block">
+                <ol>
+                  <li>Click on the pencil icon</li>
+                  <li>Zoom using the +/- buttons</li>
+                  <li>Click & drag to draw a square</li>
+                  <li>Click 'Apply' or 'Cancel'</li>
+                </ol>
+              </div>
+            </div>
+            <div class="col-md-9">
+              {% snippet "spatial/snippets/spatial_query.html", default_extent=[[49.82380908513249, -10.8544921875], [59.478568831926395, 2.021484375]] %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endblock %}
 
+    {% block search_facets %}
+      {% if facets %}
+        <p class="filter-list">
+
+          {% for field in facets.fields %}
+            {% set search_facets_items = facets.search.get(field)['items'] %}
+            <span class="facet">{{ facets.titles.get(field) }}:</span>
+            {% for value in facets.fields[field] %}
+              <span class="filtered pill">
+                {%- if facets.translated_fields and facets.translated_fields.has_key((field,value)) -%}
+                  {{ facets.translated_fields[(field,value)] }}
+                {%- else -%}
+                  {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
+                {%- endif %}
+                <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+              </span>
+            {% endfor %}
+          {% endfor %}
+        </p>
+        <a class="show-filters btn btn-default">{{ _('Filter Results') }}</a>
+      {% endif %}
+    {% endblock %}
+
+  </form>
+</div>
 {% if show_empty and count == 0 and not error %}
   {% trans %}
     <p class="extra"></p>
