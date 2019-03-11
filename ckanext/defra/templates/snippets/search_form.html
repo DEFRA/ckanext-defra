@@ -30,7 +30,7 @@
         <input type="text" class="form-control" name="q" value="{{ query }}" autocomplete="off" placeholder="{{placeholder}}">
         <span class="input-group-btn">
           <button class="btn btn-default" type="submit" value="search">
-            <i class="fa fa-search"></i>
+            <i class="fa fa-search"></i> Search
           </button>
         </span>
       </div>
@@ -110,7 +110,9 @@
                 {%- else -%}
                   {{ h.list_dict_filter(search_facets_items, 'name', 'display_name', value) }}
                 {%- endif %}
-                <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}"><i class="fa fa-times"></i></a>
+                <a href="{{ facets.remove_field(field, value) }}" class="remove" title="{{ _('Remove') }}">
+                  <i class="fa fa-times"></i>
+                </a>
               </span>
             {% endfor %}
           {% endfor %}
