@@ -44,11 +44,11 @@
             {% endblock %}
             {% block heading_title %}
               {{ h.link_to(h.truncate(title, 100), h.url_for(package.type + '_read', controller='package', action='read', id=package.name)) }}
-              <h3 class="dataset-heading dataset-publisher-heading">
+              <p class="dataset-publisher-heading">
                 {% if package.get('organization') %}
                   Published by {{ h.link_to(package.get('organization').get('title'), h.url_for('organization_read', controller='organization', action='read', id=package.organization.name)) }}
                 {% endif %}
-              </h3>
+              </p>
             {% endblock %}
             {% block heading_meta %}
               {% if package.get('state', '').startswith('draft') %}
