@@ -4,6 +4,19 @@
   border-width: 0;
   border-radius: 0;
 }
+.mdf-navbar.beta {
+  margin-bottom: 0;
+}
+.mdf-beta-header .mdf-beta-content p {
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: smaller;
+}
+.mdf-beta-header .mdf-beta-content p .label {
+  font-size: 85%;
+}
 .mdf-navbar .navbar-nav li a {
   color: #ffffff;
 }
@@ -55,7 +68,6 @@
   bottom: -15px;
   margin-left: 40px;
 }
-
 
 a:not(.btn):not(.label) {
   color: #0F7D41;
@@ -926,4 +938,7 @@ ul.collection li {
 }
 .btn-default:hover, .btn-default:active, .btn-default:focus {
   background-color: #E8F2EC;
+}
+.label-defra {
+ background-color: #0F7D41;
 }
