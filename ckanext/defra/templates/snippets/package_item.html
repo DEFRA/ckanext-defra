@@ -22,7 +22,7 @@
   <li class="{{ item_class or "dataset-item" }}">
     {% block content %}
       {% if h.is_private_resource(package) %}
-        <span class="label label-default pull-right">{{ _('Private') }}</span>
+        <span class="label label-default pull-right private-label">{{ _('Private') }}</span>
       {% endif %}
 
       <div class="dataset-content {% if h.is_reference_dataset(package) %}reference-dataset{% endif %}">
