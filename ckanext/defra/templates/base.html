@@ -1,16 +1,13 @@
 {% ckan_extends %}
-
+{% block htmltag %}
+  {% set lang = h.lang() %}
+  <!--[if IE 9]> <html lang="{{ lang }}" class="ie9 isie"> <![endif]-->
+  <!--[if gt IE 8]><!--> <html lang="{{ lang }}" class="isie"> <!--<![endif]-->
+{% endblock htmltag %}
 {% block styles %}
   {{ super() }}
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
   {% resource 'defra/css/defra.css' %}
-  <!--[if IE]>
-    <style type="text/css">
-      .fa-caret-right:before {
-        content:"+";
-      }
-     </style>
-  <![endif]-->
 {% endblock %}
 {% block scripts %}
   {{ super() }}

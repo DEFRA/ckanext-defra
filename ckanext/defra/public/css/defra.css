@@ -129,6 +129,23 @@ body {
   color: #333;
 }
 
+html.isie .fa-caret-right:before {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-left: 8px solid;
+    border-bottom: 6px solid transparent;
+    border-top: 6px solid transparent;
+    margin-top: -3px;
+    margin-right: 0;
+}
+
+html.isie .search-form .fa-search:before {
+  content: "" !important;
+}
+
 h1, h2, h3, h4, h5 {
   font-family: 'Roboto', sans-serif;
 }
