@@ -84,6 +84,13 @@ $(document).ready(function () {
     clear_map_layers();
   });
 
+  /*
+   This is the only way to detect IE11.
+   Add a class to the html element so we can handle the lack of webfonts on Defra machines.
+  */
+  if (!!window.MSInputMethodContext && !!document.documentMode) {
+    document.documentElement.classList.add('isie');
+  }
 });
 
 /*
