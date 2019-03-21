@@ -1,21 +1,24 @@
 import json
 import os
+import uuid
 
 import ckan.plugins.toolkit as toolkit
-from ckan.logic import NotFound
+from ckan.logic.action.create import NotFound
 
 
 class ImportPublishersCommand(toolkit.CkanCommand):
     """
-    Imports all of the publishers for Defra (inc. defra) '''
+    Imports all of the publishers for Defra (inc. defra)
     """
     summary = __doc__.split('\n')[0]
     usage = '\n'.join(__doc__.split('\n')[1:])
     max_args = None
     min_args = 0
-    context = {
-        'ignore_auth': True
-    }
+
+    def get_context(self):
+        return {
+            'ignore_auth': True
+        }
 
     def command(self):
         fixture = os.path.join(
@@ -26,11 +29,12 @@ class ImportPublishersCommand(toolkit.CkanCommand):
         with open(fixture, 'r') as fh:
             publishers = json.loads(fh.read())
 
-        add_count = 0
-        update_count = 0
-
-        existing_harvesters = {
-            x['url']: x for x in toolkit.get_action('harvest_source_list')(self.context, {})
+        saved_publishers = []
+        saved_harvesters = []
+        counts = {
+            'add': 0,
+            'update': 0,
+            'delete': 0,
         }
 
         for publisher in publishers:
@@ -47,15 +51,20 @@ class ImportPublishersCommand(toolkit.CkanCommand):
                     'value': ','.join(publisher['contacts'])
                 })
 
-            action = 'organization_create'
-            if self._publisher_exists(publisher):
-                action = 'organization_update'
-                pub_dict['id'] = publisher['name']
-                update_count += 1
+            publisher_id = self._get_publisher_id(publisher['name'])
+            if publisher_id is None:
+                action = 'organization_create'
+                pub_dict['id'] = str(uuid.uuid4())
+                counts['add'] += 1
             else:
-                add_count += 1
+                pub_dict['id'] = publisher_id
+                action = 'organization_update'
+                counts['update'] += 1
 
-            saved = toolkit.get_action(action)(self.context, pub_dict)
+            saved_publisher = toolkit.get_action(action)(
+                self.get_context(), pub_dict
+            )
+            saved_publishers.append(saved_publisher['id'])
 
             for harvester in publisher['harvesters']:
                 harvest_dict = {
@@ -63,26 +72,67 @@ class ImportPublishersCommand(toolkit.CkanCommand):
                     'title': harvester['title'],
                     'url': harvester['url'],
                     'source_type': harvester['source_type'],
-                    'owner_org': saved['id'],
+                    'owner_org': saved_publisher['id'],
+                    'publisher_id': saved_publisher['id'],
                     'frequency': 'WEEKLY',
                 }
 
-                harvest_action = 'harvest_source_create'
-                if harvester['url'] in existing_harvesters:
+                harvester_id = self._get_harvester_id(harvester['name'])
+                if harvester_id is None:
+                    harvest_action = 'harvest_source_create'
+                    harvest_dict['id'] = str(uuid.uuid4())
+                else:
                     harvest_action = 'harvest_source_update'
-                    harvest_dict['id'] = existing_harvesters[harvester['url']]['id']
+                    harvest_dict['id'] = harvester_id
 
-                toolkit.get_action(harvest_action)(self.context, harvest_dict)
+                saved_harvesters.append(
+                    toolkit.get_action(harvest_action)(self.get_context(), harvest_dict)['id']
+                )
 
-        print('Created {} and updated {} publishers'.format(add_count, update_count))
+        # Delete any harvester that we haven't processed in this run
+        for harvester_id in self._get_harvester_ids():
+            if harvester_id not in saved_harvesters:
+                toolkit.get_action('harvest_source_delete')(
+                    self.get_context(), {'id': harvester_id}
+                )
 
-    def _publisher_exists(self, publisher):
+        # Delete any publishers that we haven't processed in this run
+        for pub_id in self._get_publisher_ids():
+            if pub_id not in saved_publishers:
+                toolkit.get_action('organization_delete')(self.get_context(), {'id': pub_id})
+                counts['delete'] += 1
+
+        print('Created {add}, updated {update} and deleted {delete} publishers'.format(**counts))
+
+    def _get_publisher_id(self, publisher_name):
         try:
-            toolkit.get_action('organization_list')(
-                self.context,
-                {'id': publisher['name']}
+            pub = toolkit.get_action('organization_show')(
+                self.get_context(), {'id': publisher_name}
             )
         except NotFound:
-            return False
-        return True
+            return None
+        return pub['id']
+
+    def _get_publisher_ids(self):
+        return [
+            x['id'] for x in toolkit.get_action('organization_list')(
+                self.get_context(), {'all_fields': True}
+            )
+        ]
+
+    def _get_harvester_id(self, harvester_name):
+        try:
+            pub = toolkit.get_action('harvest_source_show')(
+                self.get_context(), {'id': harvester_name}
+            )
+        except NotFound:
+            return None
+        return pub['id']
+
+    def _get_harvester_ids(self):
+        return [
+            x['id'] for x in toolkit.get_action('harvest_source_list')(
+                self.get_context(), {'all_fields': True}
+            )
+        ]
 
