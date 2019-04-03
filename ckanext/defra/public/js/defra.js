@@ -5,13 +5,13 @@ $(document).ready(function () {
    * open the first resource
    */
   if ($('#resource-accordion').length > 0) {
-    var qs = parseHash(window.location.hash);
+    var qs = parseQueryString(window.location.hash);
     var el = qs.res ? $('#resource-' + qs.res) : $('#resource-accordion .panel-collapse').first();
     $(el).collapse('show');
     if (qs.res) {
       $('#resource-' + qs.res)
-          .collapse('show')
-          .parents('.mdf-resource').get(0).scrollIntoView()
+        .collapse('show')
+        .parents('.mdf-resource').get(0).scrollIntoView()
     } else {
       $('#resource-accordion .panel-collapse').first().collapse('show');
     }
@@ -57,6 +57,15 @@ $(document).ready(function () {
   });
 
   /**
+   * Clear location search input
+   */
+  $('.location-search .form-control-clear').click(function() {
+    $('#ext_bbox,#ext_prev_extent,#location').val("");
+    clear_map_layers();
+    $('.search-form').submit();
+  });
+
+  /**
    * Dataset sort select
    */
   $('#dataset-sort').on('change', function () {
@@ -91,6 +100,31 @@ $(document).ready(function () {
   if (!!window.MSInputMethodContext && !!document.documentMode) {
     document.documentElement.classList.add('isie');
   }
+
+  /**
+   * Show/hide the facets panel
+   */
+  $('.filter-toggle').click(function(e) {
+    e.preventDefault();
+    $('aside.secondary, .filters-show').toggle();
+    $('aside.secondary').toggleClass('col-sm-3');
+    $('div.primary').toggleClass('col-md-12')
+  });
+
+  /**
+   * Toggle custom filters
+   */
+  $('.defra-custom-filters input[type="checkbox"]').on('change', function(e) {
+    var name = $(e.currentTarget).attr('name');
+    var params = parseQueryString(window.location.search.substr(1));
+    if (name in params) {
+      delete params[name];
+    }
+    else {
+      params[name] = 'True';
+    }
+    window.location.search = buildQueryString(params);
+  });
 });
 
 /*
@@ -105,11 +139,21 @@ function clear_map_layers() {
 }
 
 
-function parseHash(hash) {
+function parseQueryString(queryString) {
   var qs = {};
-  $(hash.replace('#', '').split('&')).each(function (i, q) {
+  $(queryString.replace('#', '').split('&')).each(function (i, q) {
     var parts = q.split('=');
-    qs[parts[0]] = parts[1];
+    if (parts.length > 1) {
+      qs[parts[0]] = parts[1];
+    }
   });
   return qs;
+}
+
+function buildQueryString(parts) {
+  var qs = [];
+  $.each(parts, function(key, val) {
+    qs.push(key + '=' + val);
+  });
+  return qs.join('&')
 }

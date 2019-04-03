@@ -355,7 +355,7 @@ a.org-item:hover {
   font-weight: bold;
   color: #333;
 }
-.searchby .well {
+.searchby .well, .package-list.well {
   border-width: 0;
   border-radius: 0;
   box-shadow: none;
@@ -425,7 +425,6 @@ label::after {
 .nav-item.active > a {
   background-color: #2fa450;
 }
-
 .nav-item.active > a:hover {
   background-color: #2fa450;
 }
@@ -452,12 +451,25 @@ label::after {
       bottom: 0px;
       right: -6px;
       width: 6px;
-      height: 34px;
+      height: 44px;
   }
 
   .nav-item.active>a:hover,
   .nav-aside li.active a:hover {
-      border-left-color: #ddd;
+    border-left-color: #ddd;
+  }
+
+  .nav-facet .nav-item.active > a:after {
+    top: 21px;
+  }
+  .nav-simple > li, .nav-aside > li {
+    padding: 7px 4px 7px 32px;
+  }
+  ul.nav-facet li.nav-item a:focus {
+    outline: none;
+  }
+  ul.nav-facet li.nav-item.active a:focus {
+    background-color: #2fa450;
   }
 }
 
@@ -487,6 +499,11 @@ label::after {
 }
 .location-search-toggle {
   margin-top: 16px;
+}
+.location-search .form-group.has-feedback a {
+  pointer-events: auto;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /* Map */
@@ -730,9 +747,9 @@ ol.breadcrumb {
 .dataset-item {
   border-bottom: none !important;
   padding-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   padding-bottom: 0;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 .dataset-item .mdf-dataset-resources, .dataset-item .mdf-dataset-modified {
   margin-top: 20px;
@@ -835,12 +852,6 @@ div.private-resource {
   font-weight: normal;
 }
 
-.search-count {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
-  border-bottom: solid 1px #ddd;
-}
-
 .nav-facet li.active a span.item-label {
   color: white;
 }
@@ -851,7 +862,7 @@ div.private-resource {
 
 .nav-facet .item-count.badge {
   float: right;
-  top: 11px;
+  top: 12px;
   position: absolute;
   right: 20px;
 }
@@ -958,4 +969,77 @@ ul.collection li {
 }
 .label-defra {
  background-color: #0F7D41;
+}
+
+.filters-header {
+  display: table;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.filters-header h3 {
+  margin: 0;
+}
+.filters-header > div {
+  display: table-row;
+}
+.filters-header > div > div {
+  display: table-cell;
+  width: 50%;
+  vertical-align: middle;
+}
+.filters-header > div > div:last-child {
+  text-align: right;
+}
+.filters h2.module-heading {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+.search-count {
+  margin-bottom: 15px;
+}
+.search-count .filters-header h3 {
+  font-weight: normal;
+}
+body.dataset-search-results .primary .module .module-content {
+  padding: 5px 15px 20px 15px;
+}
+body.dataset-search-results .secondary, body.dataset-search-results .primary {
+  z-index: 2;
+  margin-top: 10px;
+}
+body.dataset-search-results .defra-custom-filters {
+  text-align: right;
+  padding: 10px 10px 0 10px;
+}
+body.dataset-search-results .defra-custom-filters .form-group label {
+  margin-right: 20px;
+  font-weight: normal;
+}
+body.dataset-search-results .secondary, body.dataset-search-results .alert-warning {
+  margin-top: 10px;
+}
+.package-list.well {
+  padding: 5px 15px;
+}
+.package-list .dataset-item {
+  background-color: white;
+  padding: 10px;
+}
+.show-filters, .filters-show {
+  display: none;
+}
+.search-facets {
+  margin-bottom: 15px;
+}
+.search-facets .module-content.empty {
+  font-size: smaller;
+  padding-top: 0;
+}
+.search-facets hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.search-facets .module-footer {
+  border-bottom: none;
 }

@@ -1,6 +1,6 @@
 {% ckan_extends %}
 {% import 'macros/form.html' as form %}
-
+{% block bodytag %}{{ super() }} class="dataset-search-results"{% endblock bodytag %}
 {% set sorting = [
   (_('Relevance'), 'score desc, metadata_modified desc'),
   (_('Name Ascending'), 'name asc'),
@@ -19,50 +19,61 @@
   </div>
 {% endblock %}
 
+{% block page_primary_action %}{% endblock page_primary_action %}
 
 {% block form %}
-{% if c.page.item_count == 0 %}
-  Your search did not match any records. Please try again with a different search.
-{% else %}
-  <div class="row search-count">
-    <div class="col-md-8 col-sm-12">
-      <div class="form-inline">
-        <p class="form-control-static">Showing <strong>{{ h.item_range(c.page) }}</strong> of <strong>{{ h.SI_number_span(c.page.item_count) }}</strong> record{{ h.plural("s", c.page.item_count)}}</p>
+    <div class="search-count">
+      <div class="filters-header">
+        <div>
+          <div>
+            <h3>
+              <strong>{{ h.SI_number_span(c.page.item_count) }}</strong> result{{ h.plural("s", c.page.item_count)}} found
+            </h3>
+            <small>
+              <a href="#" class="filter-toggle filters-show">
+                <i class="fa fa-caret-right"></i> Show filters
+              </a>
+            </small>
+          </div>
+          <div>
+            <div class="form-inline">
+              <div class="form-select form-group control-order-by">
+                <label for="dataset-sort">{{ _('Order by') }}</label>
+                <select id="dataset-sort" class="form-control input-sm">
+                  {% for label, value in sorting %}
+                    {% if label and value %}
+                      <option value="{{ value }}"{% if c.sort_by_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
+                    {% endif %}
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-4 col-sm-12">
-      <div class="form-inline">
-         <div class="form-select form-group control-order-by">
-          <label for="dataset-sort">{{ _('Order by') }}</label>
-          <select id="dataset-sort" class="form-control input-sm">
-            {% for label, value in sorting %}
-              {% if label and value %}
-                <option value="{{ value }}"{% if c.sort_by_selected == value %} selected="selected"{% endif %}>{{ label }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-          <button class="btn btn-default js-hide" type="submit">{{ _('Go') }}</button>
-         </div>
-      </div>
-    </div>
-  </div>
-{% endif %}
 {% endblock %}
 
 {% block secondary_content %}
-<div class="filters">
-  <div>
-    <h2>FILTERS</h2>
-
-    {{ h.snippet('snippets/custom_facet_items.html')}}
-
+  <div class="filters">
+    <div class="filters-header">
+      <div>
+        <div>
+          <h3>Filter By</h3>
+        </div>
+        <div>
+          <small>
+            <a href="#" class="filter-toggle">
+              <i class="fa fa-caret-left"></i> Hide filters
+            </a>
+          </small>
+        </div>
+      </div>
+    </div>
     {% for facet in c.facet_titles %}
       {% if not facet in ['groups', 'tags'] %}
         {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
       {% endif %}
     {% endfor %}
   </div>
-  <a class="close no-text hide-filters"><i class="fa fa-times-circle"></i><span class="text">close</span></a>
-</div>
 {% endblock %}
-
