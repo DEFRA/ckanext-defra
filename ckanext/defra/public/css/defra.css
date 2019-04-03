@@ -1043,3 +1043,6 @@ body.dataset-search-results .secondary, body.dataset-search-results .alert-warni
 .search-facets .module-footer {
   border-bottom: none;
 }
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+  background-color: #0F7D41;
+}
