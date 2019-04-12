@@ -119,7 +119,4 @@ class ImportDataCommand(toolkit.CkanCommand):
             self.clean(dataset)
             counter += self.save_dataset(dataset)
 
-            #if counter == 2000:
-            #    break
-
         print "Imported {} datasets".format(counter)

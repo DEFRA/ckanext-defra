@@ -12,7 +12,7 @@ setup(
     name='''ckanext-defra''',
     version='0.0.1',
 
-    description='''defra prototype/alpha extension''',
+    description='''defra extension''',
     long_description=long_description,
     url='https://github.com/',
 
