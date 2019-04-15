@@ -5,14 +5,19 @@ echo "This is travis-build.bash..."
 
 echo "Installing the packages that CKAN requires..."
 sudo apt-get update -qq
-sudo apt-get install postgresql-$PGVERSION solr-jetty libcommons-fileupload-java
+sudo apt-get install solr-jetty
+
+echo "Installing the plugin locally..."
+python setup.py develop
+pip install -r dev-requirements.txt
 
 echo "Installing CKAN and its Python dependencies..."
 git clone https://github.com/ckan/ckan
 cd ckan
-echo "CKAN branch: v2.7"
-git checkout 2.7
-sed -i -e 's/psycopg2==2.4.5/psycopg2==2.7.3.2/g' requirements.txt
+export latest_ckan_release_branch=ckan-2.8.2
+echo "CKAN branch: $latest_ckan_release_branch"
+git checkout $latest_ckan_release_branch
+pip install --upgrade setuptools
 python setup.py develop
 pip install -r requirements.txt
 pip install -r dev-requirements.txt
@@ -38,22 +43,19 @@ sed -i -e 's/^solr_url.*/solr_url = http:\/\/127.0.0.1:8983\/solr/' test-core.in
 cd -
 
 echo "Creating the PostgreSQL user and database..."
-sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'pass';"
+sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
 sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
 
 echo "Initialising the database..."
 cd ckan
-paster db init -c test-core.ini
-paster --plugin=ckanext-harvest harvester initdb -c test-core.ini
+paster db init -c test.ini
+paster --plugin=ckanext-harvest harvester initdb -c test.ini
 cd -
-
-echo "Installing ckanext-defra and its requirements..."
-python setup.py develop
-pip install -r dev-requirements.txt
 
 echo "Moving test.ini into a subdir..."
 mkdir subdir
 mv test.ini subdir
+mv who.ini subdir
 
 echo "travis-build.bash is done."
 
