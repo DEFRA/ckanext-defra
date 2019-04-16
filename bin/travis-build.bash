@@ -48,7 +48,7 @@ sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
 
 echo "Initialising the database..."
 cd ckan
-paster db init -c test.ini
+paster --plugin=ckan db init -c test.ini
 paster --plugin=ckanext-harvest harvester initdb -c test.ini
 cd -
 
