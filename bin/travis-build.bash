@@ -30,8 +30,8 @@ sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
 sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
 sudo -u postgres psql -d ckan_test -f /usr/share/postgresql/9.6/contrib/postgis-2.3/postgis.sql
 sudo -u postgres psql -d ckan_test -f /usr/share/postgresql/9.6/contrib/postgis-2.3/spatial_ref_sys.sql
-sudo -u postgres psql -c 'ALTER VIEW geometry_columns OWNER TO ckan_default;'
-sudo -u postgres psql -c 'ALTER TABLE spatial_ref_sys OWNER TO ckan_default;'
+sudo -u postgres psql -d ckan_test -c 'ALTER VIEW geometry_columns OWNER TO ckan_default;'
+sudo -u postgres psql -d ckan_test -c 'ALTER TABLE spatial_ref_sys OWNER TO ckan_default;'
 
 echo "SOLR config..."
 # Solr is multicore for tests on ckan master, but it's easier to run tests on
