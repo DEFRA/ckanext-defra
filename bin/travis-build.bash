@@ -45,10 +45,6 @@ python setup.py develop
 pip install -r pip-requirements.txt
 cd -
 
-echo "CURDIR"
-echo $PWD
-echo "----"
-
 echo "Initialising the database..."
 paster --plugin=ckan db init -c test.ini
 
