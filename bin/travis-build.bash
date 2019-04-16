@@ -28,8 +28,8 @@ sudo -u postgres psql -c "CREATE EXTENSION postgis;"
 sudo -u postgres psql -c "CREATE EXTENSION postgis_topology;"
 sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
 sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
-sudo -u postgres psql -d ckan_default -f /usr/share/postgresql/9.6/contrib/postgis-2.3/postgis.sql
-sudo -u postgres psql -d ckan_default -f /usr/share/postgresql/9.6/contrib/postgis-2.3/spatial_ref_sys.sql
+sudo -u postgres psql -d ckan_test -f /usr/share/postgresql/9.6/contrib/postgis-2.3/postgis.sql
+sudo -u postgres psql -d ckan_test -f /usr/share/postgresql/9.6/contrib/postgis-2.3/spatial_ref_sys.sql
 sudo -u postgres psql -c 'ALTER VIEW geometry_columns OWNER TO ckan_default;'
 sudo -u postgres psql -c 'ALTER TABLE spatial_ref_sys OWNER TO ckan_default;'
 
