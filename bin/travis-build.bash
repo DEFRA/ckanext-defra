@@ -24,8 +24,11 @@ pip install -r dev-requirements.txt
 cd -
 
 echo "Creating the PostgreSQL user and database..."
+sudo -u postgres psql -c "CREATE EXTENSION postgis;"
+sudo -u postgres psql -c "CREATE EXTENSION postgis_topology;"
 sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
 sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
+
 
 echo "SOLR config..."
 # Solr is multicore for tests on ckan master, but it's easier to run tests on
