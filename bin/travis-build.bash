@@ -11,6 +11,10 @@ echo "Installing the plugin locally..."
 python setup.py develop
 pip install -r dev-requirements.txt
 
+echo "Creating the PostgreSQL user and database..."
+sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
+sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
+
 echo "Installing CKAN and its Python dependencies..."
 git clone https://github.com/ckan/ckan
 cd ckan
