@@ -29,7 +29,6 @@ sudo -u postgres psql -c "CREATE EXTENSION postgis_topology;"
 sudo -u postgres psql -c "CREATE USER ckan_default WITH PASSWORD 'ckan';"
 sudo -u postgres psql -c 'CREATE DATABASE ckan_test WITH OWNER ckan_default;'
 
-
 echo "SOLR config..."
 # Solr is multicore for tests on ckan master, but it's easier to run tests on
 # Travis single-core. See https://github.com/ckan/ckan/issues/2972
@@ -41,6 +40,10 @@ cd ckanext-spatial
 python setup.py develop
 pip install -r pip-requirements.txt
 cd -
+
+echo "CURDIR"
+echo $PWD
+echo "----"
 
 echo "Initialising the database..."
 paster --plugin=ckan db init -c test.ini
