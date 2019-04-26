@@ -3,8 +3,8 @@
 {% if type == 'dataset' %}
   {% set sorting = [
     (_('Relevance'), 'score desc, metadata_modified desc'),
-    (_('Name Ascending'), 'name asc'),
-    (_('Name Descending'), 'name desc'),
+    (_('Name Ascending'), 'title asc'),
+    (_('Name Descending'), 'title desc'),
     (_('Last Modified'), 'metadata_modified desc'),
     (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
   %}
