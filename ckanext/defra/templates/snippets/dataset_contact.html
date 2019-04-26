@@ -1,5 +1,8 @@
 {% set contact = h.get_pkg_dict_extra(pkg_dict, 'contact-email', None) %}
-{% set org_contacts = h.get_pkg_dict_extra(h.get_organization(pkg_dict.organization.id), 'contact_emails', None) %}
+{% set org_contacts = None %}
+{% if pkg_dict.organization.id %}
+  {% set org_contacts = h.get_pkg_dict_extra(h.get_organization(pkg_dict.organization.id), 'contact_emails', None) %}
+{% endif %}
 <section class="module module-narrow dataset-contacts">
   <div class="module module-narrow module-shallow context-info">
     <h2>{{ _('Contacts') }}</h2>
