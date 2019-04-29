@@ -1,5 +1,13 @@
+### ckanext-defra
 
-# ckanext-defra
+[![Build Status](https://travis-ci.org/DEFRA/ckanext-defra.svg?branch=master)](https://travis-ci.org/DEFRA/ckanext-defra)
+
+Customised CKAN theme for use on Defra's Find Data project.
+
+**Status:** Development
+
+**CKAN Version**: 2.6+
+
 
 -----------------
 Running the Tests
