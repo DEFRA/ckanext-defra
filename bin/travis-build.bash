@@ -45,6 +45,14 @@ python setup.py develop
 pip install -r pip-requirements.txt
 cd -
 
+echo "Installing ckanext-harvest and its Python dependencies..."
+git clone https://github.com/ckan/ckanext-harvest
+cd ckanext-harvest
+python setup.py develop
+pip install -r pip-requirements.txt
+pip install -r dev-requirements.txt
+cd -
+
 echo "Initialising the database..."
 paster --plugin=ckan db init -c test.ini
 
