@@ -404,7 +404,7 @@
         "value": "2015-01-01"
       }, {
         "key": "private-resources",
-        "value": true
+        "value": "True"
       }
     ],
     "title": "Cats per square kilometre",
@@ -413,7 +413,7 @@
   "license_title": null,
   "maintainer": null,
   "relationships_as_object": [],
-  "private": false,
+  "private": true,
   "maintainer_email": null,
   "num_tags": 0,
   "id": "867bbd8d-e9f9-452f-af72-a5afe646e71d",
@@ -587,7 +587,7 @@
       "value": "2014-12-31"
     }, {
       "key": "reference",
-      "value": true
+      "value": "true"
     }
   ],
   "title": "Fish Landings to United Kingdom Ports 2014",

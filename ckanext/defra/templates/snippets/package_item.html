@@ -36,10 +36,10 @@
                     </span>
               {% endif %}
               {% if h.is_reference_dataset(package) %}
-                <span class="label label-blue">REFERENCE</span>
+                <span class="label label-blue reference-label">REFERENCE</span>
               {% endif %}
               {% if h.is_gdpr_dataset(package) %}
-                <span class="label label-red">GDPR</span>
+                <span class="label label-red gdpr-label">GDPR</span>
               {% endif %}
             {% endblock %}
             {% block heading_title %}
