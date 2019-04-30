@@ -1,8 +1,8 @@
 {% ckan_extends %}
 {% set total = c.page.collection|length %}
 {% set sorting = [
-  (_('Name Ascending'), 'title asc'),
-  (_('Name Descending'), 'title desc'),
+  (_('Name Ascending'), 'title_string asc'),
+  (_('Name Descending'), 'title_string desc'),
   (_('Datasets Ascending'), 'package_count asc'),
   (_('Datasets Descending'), 'package_count desc'),
 ] %}
