@@ -38,11 +38,7 @@
         "last_modified": null,
         "position": 0,
         "revision_id": "ab75b330-50ad-4396-9986-d6d694b97cfd",
-        "resource_type": null,
-        "extras": [{
-          "key": "link_status",
-          "value": "active"
-        }]
+        "resource_type": null
       },
       {
         "cache_last_updated": null,
@@ -66,11 +62,7 @@
         "last_modified": null,
         "position": 1,
         "revision_id": "ab75b330-50ad-4396-9986-d6d694b97cfd",
-        "resource_type": null,
-        "extras": [{
-          "key": "link_status",
-          "value": "active"
-        }]
+        "resource_type": null
       }
     ],
     "num_resources": 2,
@@ -250,11 +242,7 @@
         "last_modified": null,
         "position": 0,
         "revision_id": "88d70a6d-92b4-4d9d-8ff2-a7805920775b",
-        "resource_type": null,
-        "extras": [{
-          "key": "link_status",
-          "value": "active"
-        }]
+        "resource_type": null
       },
       {
         "cache_last_updated": null,
@@ -278,11 +266,7 @@
         "last_modified": null,
         "position": 1,
         "revision_id": "88d70a6d-92b4-4d9d-8ff2-a7805920775b",
-        "resource_type": null,
-        "extras": [{
-          "key": "link_status",
-          "value": "active"
-        }]
+        "resource_type": null
       }
     ],
     "num_resources": 2,
@@ -464,11 +448,7 @@
       "last_modified": null,
       "position": 0,
       "revision_id": "7bb76aa5-a22e-46dd-bf10-fec2e0080327",
-      "resource_type": null,
-      "extras": [{
-        "key": "link_status",
-        "value": "active"
-      }]
+      "resource_type": null
     }, {
       "cache_last_updated": null,
       "package_id": "867bbd8d-e9f9-452f-af72-a5afe646e71d",
@@ -491,11 +471,7 @@
       "last_modified": null,
       "position": 1,
       "revision_id": "7bb76aa5-a22e-46dd-bf10-fec2e0080327",
-      "resource_type": null,
-      "extras": [{
-        "key": "link_status",
-        "value": "active"
-      }]
+      "resource_type": null
     }
   ],
   "num_resources": 2,
