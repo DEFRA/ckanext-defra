@@ -44,7 +44,8 @@ setup(
         import_publishers = ckanext.defra.commands.import_publishers:ImportPublishersCommand
         import_data = ckanext.defra.commands.import_data:ImportDataCommand
         remove_duplicates = ckanext.defra.commands.duplicates:RemoveDuplicatesCommand
-
+        create_test_data = ckanext.defra.commands.create_test_data:DefraCreateTestDataCommand
+        
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
     ''',

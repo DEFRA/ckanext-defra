@@ -1,0 +1,619 @@
+[
+  {
+    "license_title": null,
+    "maintainer": null,
+    "relationships_as_object": [],
+    "private": false,
+    "maintainer_email": null,
+    "num_tags": 3,
+    "id": "6ccea40f-fb95-4da2-b696-7266c67962bf",
+    "metadata_created": "2019-03-21T14:14:08.367148",
+    "metadata_modified": "2019-04-09T16:47:16.208907",
+    "author": null,
+    "author_email": null,
+    "state": "active",
+    "version": null,
+    "creator_user_id": "a6993097-8775-43fe-b566-209ad1aa57ba",
+    "type": "dataset",
+    "resources": [
+      {
+        "cache_last_updated": null,
+        "package_id": "6ccea40f-fb95-4da2-b696-7266c67962bf",
+        "datastore_active": false,
+        "id": "cde5202e-7acd-47a0-a9f8-cfebaf05d422",
+        "size": null,
+        "state": "active",
+        "resource_locator_function": "",
+        "hash": "",
+        "description": "CSV File",
+        "format": "CSV",
+        "mimetype_inner": null,
+        "url_type": null,
+        "resource_locator_protocol": "url",
+        "mimetype": null,
+        "cache_url": null,
+        "name": "Unnamed resource",
+        "created": "2019-04-09T16:47:16.234889",
+        "url": "http://data.defra.gov.uk/Agriculture/APHA0387-Dogs_Per_Km.csv",
+        "last_modified": null,
+        "position": 0,
+        "revision_id": "ab75b330-50ad-4396-9986-d6d694b97cfd",
+        "resource_type": null,
+        "extras": [{
+          "key": "link_status",
+          "value": "active"
+        }]
+      },
+      {
+        "cache_last_updated": null,
+        "package_id": "6ccea40f-fb95-4da2-b696-7266c67962bf",
+        "datastore_active": false,
+        "id": "0c45cfbc-2e2e-44e6-8311-532464059d6f",
+        "size": null,
+        "state": "active",
+        "resource_locator_function": "",
+        "hash": "",
+        "description": "Animal and Plant Health Agency Website",
+        "format": "",
+        "mimetype_inner": null,
+        "url_type": null,
+        "resource_locator_protocol": "",
+        "mimetype": null,
+        "cache_url": null,
+        "name": "Unnamed resource",
+        "created": "2019-04-09T16:47:16.234896",
+        "url": "https://www.gov.uk/government/organisations/animal-and-plant-health-agency",
+        "last_modified": null,
+        "position": 1,
+        "revision_id": "ab75b330-50ad-4396-9986-d6d694b97cfd",
+        "resource_type": null,
+        "extras": [{
+          "key": "link_status",
+          "value": "active"
+        }]
+      }
+    ],
+    "num_resources": 2,
+    "tags": [
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "OpenData",
+        "id": "91f246fe-1f7f-472b-9a9c-51a8b7b295d9",
+        "name": "OpenData"
+      },
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "pet",
+        "id": "d928fa3d-70cd-46bd-abcc-1b6c0834867f",
+        "name": "pet"
+      },
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "research project",
+        "id": "4db4d60b-e9c9-4bef-a123-30d6f3b1790c",
+        "name": "research project"
+      }
+    ],
+    "groups": [],
+    "license_id": null,
+    "relationships_as_subject": [],
+    "organization": {
+      "description": "",
+      "created": "2019-03-21T10:29:44.752649",
+      "title": "Animal and Plant Health Agency",
+      "name": "apha",
+      "is_organization": true,
+      "state": "active",
+      "image_url": "/images/apha.png",
+      "revision_id": "4e89ec19-49c3-4d60-ac32-e204c2d355ba",
+      "type": "organization",
+      "id": "761b5ef9-4150-481e-98d9-fe0683c5ce3d",
+      "approval_status": "approved"
+    },
+    "name": "dogs-per-square-kilometre",
+    "isopen": false,
+    "url": null,
+    "notes": "This dataset is a modelled dataset, describing the mean number of dogs per square kilometre across GB. The figures are aligned to the British national grid, with a population estimate provided for each 1km square. These data were generated as part of the delivery of commissioned research. The data contained within this dataset are modelled figures, based on national estimates for pet population, and available information on Veterinary activity across GB. The data are accurate as of 01/01/2015. The data provided are summarised to the 1km level.  Further information on this research is available in a research publication by James Aegerter, David Fouracre & Graham C. Smith, discussing the structure and density of pet cat and dog populations across Great Britain. Attribution statement:",
+    "owner_org": "defra",
+    "extras": [
+      {
+        "key": "access_constraints",
+        "value": "[\"There are no public access constraints to this data. Use of this data is subject to the licence identified.\"]"
+      },
+      {
+        "key": "bbox-east-long",
+        "value": "1.78"
+      },
+      {
+        "key": "bbox-north-lat",
+        "value": "60.86000000000001"
+      },
+      {
+        "key": "bbox-south-lat",
+        "value": "49.86"
+      },
+      {
+        "key": "bbox-west-long",
+        "value": "-8.54"
+      },
+      {
+        "key": "contact-email",
+        "value": "aphaopendata@apha.gov.uk"
+      },
+      {
+        "key": "coupled-resource",
+        "value": "[]"
+      },
+      {
+        "key": "dataset-reference-date",
+        "value": "[{\"type\": \"creation\", \"value\": \"2016-04-01\"}, {\"type\": \"publication\", \"value\": \"2016-06-15\"}]"
+      },
+      {
+        "key": "frequency-of-update",
+        "value": "unknown"
+      },
+      {
+        "key": "guid",
+        "value": "3d4c440c-7714-40ea-b347-5415801d0f4f"
+      },
+      {
+        "key": "licence",
+        "value": "[\"Open Government Licence\"]"
+      },
+      {
+        "key": "metadata-date",
+        "value": "2019-03-21"
+      },
+      {
+        "key": "metadata-language",
+        "value": "eng"
+      },
+      {
+        "key": "progress",
+        "value": ""
+      },
+      {
+        "key": "resource-type",
+        "value": "dataset"
+      },
+      {
+        "key": "responsible-party",
+        "value": "[{\"name\": \"Animal and Plant Health Agency\", \"roles\": [\"pointOfContact\"]}]"
+      },
+      {
+        "key": "spatial",
+        "value": "{\"type\": \"Polygon\", \"coordinates\": [[[-8.54, 49.86], [1.78, 49.86], [1.78, 60.86], [-8.54, 60.86], [-8.54, 49.86]]]}"
+      },
+      {
+        "key": "spatial-data-service-type",
+        "value": ""
+      },
+      {
+        "key": "spatial-reference-system",
+        "value": "http://www.opengis.net/def/crs/EPSG/0/27700"
+      },
+      {
+        "key": "spatial_harvester",
+        "value": "true"
+      },
+      {
+        "key": "temporal-extent-begin",
+        "value": "2015-01-01"
+      },
+      {
+        "key": "temporal-extent-end",
+        "value": "2015-01-01"
+      }
+    ],
+    "title": "Dogs per square kilometre",
+    "revision_id": "eb6694ac-8868-47b5-8024-3a0492a3cf2b"
+  },
+  {
+    "license_title": null,
+    "maintainer": null,
+    "relationships_as_object": [],
+    "private": false,
+    "maintainer_email": null,
+    "num_tags": 3,
+    "id": "f3d9f92c-6eac-468e-b92c-a0d49d7b9790",
+    "metadata_created": "2019-03-21T14:15:53.682506",
+    "metadata_modified": "2019-04-09T16:48:45.255750",
+    "author": null,
+    "author_email": null,
+    "state": "active",
+    "version": null,
+    "creator_user_id": "a6993097-8775-43fe-b566-209ad1aa57ba",
+    "type": "dataset",
+    "resources": [
+      {
+        "cache_last_updated": null,
+        "package_id": "f3d9f92c-6eac-468e-b92c-a0d49d7b9790",
+        "datastore_active": false,
+        "id": "e4d5c6a5-72f6-4baf-8fc1-e2a463dbe4f2",
+        "size": null,
+        "state": "active",
+        "resource_locator_function": "",
+        "hash": "",
+        "description": "CSV File",
+        "format": "CSV",
+        "mimetype_inner": null,
+        "url_type": null,
+        "resource_locator_protocol": "url",
+        "mimetype": null,
+        "cache_url": null,
+        "name": "Unnamed resource",
+        "created": "2019-04-09T16:48:45.282616",
+        "url": "http://data.defra.gov.uk/Agriculture/APHA0384-Cats_Per_Km.csv",
+        "last_modified": null,
+        "position": 0,
+        "revision_id": "88d70a6d-92b4-4d9d-8ff2-a7805920775b",
+        "resource_type": null,
+        "extras": [{
+          "key": "link_status",
+          "value": "active"
+        }]
+      },
+      {
+        "cache_last_updated": null,
+        "package_id": "f3d9f92c-6eac-468e-b92c-a0d49d7b9790",
+        "datastore_active": false,
+        "id": "e55b573d-37ce-438a-9190-d87f939e01cf",
+        "size": null,
+        "state": "active",
+        "resource_locator_function": "",
+        "hash": "",
+        "description": "Animal and Plant Health Agency Website",
+        "format": "",
+        "mimetype_inner": null,
+        "url_type": null,
+        "resource_locator_protocol": "",
+        "mimetype": null,
+        "cache_url": null,
+        "name": "Unnamed resource",
+        "created": "2019-04-09T16:48:45.282623",
+        "url": "https://www.gov.uk/government/organisations/animal-and-plant-health-agency",
+        "last_modified": null,
+        "position": 1,
+        "revision_id": "88d70a6d-92b4-4d9d-8ff2-a7805920775b",
+        "resource_type": null,
+        "extras": [{
+          "key": "link_status",
+          "value": "active"
+        }]
+      }
+    ],
+    "num_resources": 2,
+    "tags": [
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "OpenData",
+        "id": "91f246fe-1f7f-472b-9a9c-51a8b7b295d9",
+        "name": "OpenData"
+      },
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "pet",
+        "id": "d928fa3d-70cd-46bd-abcc-1b6c0834867f",
+        "name": "pet"
+      },
+      {
+        "vocabulary_id": null,
+        "state": "active",
+        "display_name": "research project",
+        "id": "4db4d60b-e9c9-4bef-a123-30d6f3b1790c",
+        "name": "research project"
+      }
+    ],
+    "groups": [],
+    "license_id": null,
+    "relationships_as_subject": [],
+    "organization": {
+      "description": "",
+      "created": "2019-03-21T10:29:44.752649",
+      "title": "Animal and Plant Health Agency",
+      "name": "apha",
+      "is_organization": true,
+      "state": "active",
+      "image_url": "/images/apha.png",
+      "revision_id": "4e89ec19-49c3-4d60-ac32-e204c2d355ba",
+      "type": "organization",
+      "id": "761b5ef9-4150-481e-98d9-fe0683c5ce3d",
+      "approval_status": "approved"
+    },
+    "name": "cats-per-square-kilometre",
+    "isopen": false,
+    "url": null,
+    "notes": "This dataset is a modelled dataset, describing the mean number of cats per square kilometre across GB. The figures are aligned to the British national grid, with a population estimate provided for each 1km square. These data were generated as part of the delivery of commissioned research. The data contained within this dataset are modelled figures, based on national estimates for pet population, and available information on Veterinary activity across GB. The data are accurate as of 01/01/2015. The data provided are summarised to the 1km level.  Further information on this research is available in a research publication by James Aegerter, David Fouracre & Graham C. Smith, discussing the structure and density of pet cat and dog populations across Great Britain. Attribution statement:",
+    "owner_org": "defra",
+    "extras": [
+      {
+        "key": "access_constraints",
+        "value": "[\"There are no public access constraints to this data. Use of this data is subject to the licence identified.\"]"
+      },
+      {
+        "key": "bbox-east-long",
+        "value": "1.78"
+      },
+      {
+        "key": "bbox-north-lat",
+        "value": "60.86000000000001"
+      },
+      {
+        "key": "bbox-south-lat",
+        "value": "49.86"
+      },
+      {
+        "key": "bbox-west-long",
+        "value": "-8.54"
+      },
+      {
+        "key": "contact-email",
+        "value": "aphaopendata@apha.gov.uk"
+      },
+      {
+        "key": "coupled-resource",
+        "value": "[]"
+      },
+      {
+        "key": "dataset-reference-date",
+        "value": "[{\"type\": \"creation\", \"value\": \"2016-04-01\"}, {\"type\": \"publication\", \"value\": \"2016-06-15\"}]"
+      },
+      {
+        "key": "frequency-of-update",
+        "value": "unknown"
+      },
+      {
+        "key": "guid",
+        "value": "ed17c2e8-3a81-4333-9ecd-e6de5aff9860"
+      },
+      {
+        "key": "licence",
+        "value": "[\"Open Government Licence\"]"
+      },
+      {
+        "key": "metadata-date",
+        "value": "2019-03-21"
+      },
+      {
+        "key": "metadata-language",
+        "value": "eng"
+      },
+      {
+        "key": "progress",
+        "value": ""
+      },
+      {
+        "key": "resource-type",
+        "value": "dataset"
+      },
+      {
+        "key": "responsible-party",
+        "value": "[{\"name\": \"Animal and Plant Health Agency\", \"roles\": [\"pointOfContact\"]}]"
+      },
+      {
+        "key": "spatial",
+        "value": "{\"type\": \"Polygon\", \"coordinates\": [[[-8.54, 49.86], [1.78, 49.86], [1.78, 60.86], [-8.54, 60.86], [-8.54, 49.86]]]}"
+      },
+      {
+        "key": "spatial-data-service-type",
+        "value": ""
+      },
+      {
+        "key": "spatial-reference-system",
+        "value": "http://www.opengis.net/def/crs/EPSG/0/27700"
+      },
+      {
+        "key": "spatial_harvester",
+        "value": "true"
+      },
+      {
+        "key": "temporal-extent-begin",
+        "value": "2015-01-01"
+      },
+      {
+        "key": "temporal-extent-end",
+        "value": "2015-01-01"
+      }, {
+        "key": "private-resources",
+        "value": true
+      }
+    ],
+    "title": "Cats per square kilometre",
+    "revision_id": "3cf92d26-716d-48c7-b386-bc870a23fc9c"
+  }, {
+  "license_title": null,
+  "maintainer": null,
+  "relationships_as_object": [],
+  "private": false,
+  "maintainer_email": null,
+  "num_tags": 0,
+  "id": "867bbd8d-e9f9-452f-af72-a5afe646e71d",
+  "metadata_created": "2019-03-21T12:59:06.327422",
+  "metadata_modified": "2019-03-21T12:59:06.327427",
+  "author": null,
+  "author_email": null,
+  "state": "active",
+  "version": null,
+  "creator_user_id": "a6993097-8775-43fe-b566-209ad1aa57ba",
+  "type": "dataset",
+  "resources": [
+    {
+      "cache_last_updated": null,
+      "package_id": "867bbd8d-e9f9-452f-af72-a5afe646e71d",
+      "datastore_active": false,
+      "id": "f6c7f626-0466-4092-b208-4bb7226e4e4c",
+      "size": null,
+      "state": "active",
+      "resource_locator_function": "",
+      "hash": "",
+      "description": "A link to the web service or dataset",
+      "format": "",
+      "mimetype_inner": null,
+      "url_type": null,
+      "resource_locator_protocol": "",
+      "mimetype": null,
+      "cache_url": null,
+      "name": "Unnamed resource",
+      "created": "2019-03-21T12:59:06.330814",
+      "url": "http://environment.data.gov.uk/ds/catalogue/#/e9f68cafd7e937c07e697439493ff06d",
+      "last_modified": null,
+      "position": 0,
+      "revision_id": "7bb76aa5-a22e-46dd-bf10-fec2e0080327",
+      "resource_type": null,
+      "extras": [{
+        "key": "link_status",
+        "value": "active"
+      }]
+    }, {
+      "cache_last_updated": null,
+      "package_id": "867bbd8d-e9f9-452f-af72-a5afe646e71d",
+      "datastore_active": false,
+      "id": "adea8b86-fa21-4504-9d8a-2fa8ff9acc89",
+      "size": null,
+      "state": "active",
+      "resource_locator_function": "",
+      "hash": "",
+      "description": "A link to the general host site",
+      "format": "",
+      "mimetype_inner": null,
+      "url_type": null,
+      "resource_locator_protocol": "",
+      "mimetype": null,
+      "cache_url": null,
+      "name": "Unnamed resource",
+      "created": "2019-03-21T12:59:06.330818",
+      "url": "http://environment.data.gov.uk/ds/catalogue/index.jsp#/catalogue",
+      "last_modified": null,
+      "position": 1,
+      "revision_id": "7bb76aa5-a22e-46dd-bf10-fec2e0080327",
+      "resource_type": null,
+      "extras": [{
+        "key": "link_status",
+        "value": "active"
+      }]
+    }
+  ],
+  "num_resources": 2,
+  "tags": [],
+  "groups": [],
+  "license_id": null,
+  "relationships_as_subject": [],
+  "organization": {
+    "description": "",
+    "created": "2019-03-21T10:29:50.343042",
+    "title": "Marine Management Organisation",
+    "name": "mmo",
+    "is_organization": true,
+    "state": "active",
+    "image_url": "/images/mmo.png",
+    "revision_id": "4913fd47-d9cc-4680-90fc-796bc3b11a4a",
+    "type": "organization",
+    "id": "77de5995-b1de-43f1-a7d9-3b1dba4d1a47",
+    "approval_status": "approved"
+  },
+  "name": "fish-landings-to-united-kingdom-ports-2014",
+  "isopen": false,
+  "url": null,
+  "notes": "Annual statistics for commercial fishing activity by UK registered fishing vessels for the year indicated. Previously this dataset was provided separately as Fish Landings to UK Ports (All Vessels) and Fish Landings to UK Ports (by Vessel Length) but from 2012 it is now a combined dataset.\n                  \n           Statistics are provided for the North East Atlantic (FAO Major Area 27) by port of landing by fishing gear and vessel length on: \n           Landings by live weight (tonnes), \n           Landings by value (pounds sterling), \n           Time spent fishing (days), \n           Number of vessels (this information may be omitted from published versions). \n            \n           Gear types are shown at the level of the International Standard Statistical Classification of Fishing Gear (ISSCFG) and also aggregated into different groups to allow analysis at different levels. \n            \n           Vessel lengths are aggregated as follows:\n             \n           All Vessels (this is the sum total of all the vessel lengths),  \n           Less than or equal to 10m, \n           More than 10m to 12m, \n           More than 12m to less than 15m, \n           More than or equal to 15m.",
+  "owner_org": "defra",
+  "extras": [
+    {
+      "key": "access_constraints",
+      "value": "[\"No limitations on access, however copyright should be used at all times.\"]"
+    },
+    {
+      "key": "bbox-east-long",
+      "value": "57.3000"
+    },
+    {
+      "key": "bbox-north-lat",
+      "value": "69.6582"
+    },
+    {
+      "key": "bbox-south-lat",
+      "value": "-29.8697"
+    },
+    {
+      "key": "bbox-west-long",
+      "value": "-15.4217"
+    },
+    {
+      "key": "contact-email",
+      "value": "dkm@marinemanagement.org.uk"
+    },
+    {
+      "key": "coupled-resource",
+      "value": "[]"
+    },
+    {
+      "key": "dataset-reference-date",
+      "value": "[{\"type\": \"publication\", \"value\": \"2016-01-04\"}, {\"type\": \"creation\", \"value\": \"2015-08-21\"}, {\"type\": \"revision\", \"value\": \"2015-08-21\"}]"
+    },
+    {
+      "key": "frequency-of-update",
+      "value": "notPlanned"
+    },
+    {
+      "key": "guid",
+      "value": "e9f68cafd7e937c07e697439493ff06d"
+    },
+    {
+      "key": "licence",
+      "value": "[\"Open Government Licence. Acknowledgement of Marine Management Organisation as source required.\"]"
+    },
+    {
+      "key": "metadata-date",
+      "value": "2016-04-14"
+    },
+    {
+      "key": "metadata-language",
+      "value": "eng"
+    },
+    {
+      "key": "progress",
+      "value": ""
+    },
+    {
+      "key": "resource-type",
+      "value": "dataset"
+    },
+    {
+      "key": "responsible-party",
+      "value": "[{\"name\": \"Marine Management Organisation\", \"roles\": [\"originator\", \"custodian\"]}]"
+    },
+    {
+      "key": "spatial",
+      "value": "{\"type\": \"Polygon\", \"coordinates\": [[[-15.4217, -29.8697], [57.3, -29.8697], [57.3, 69.6582], [-15.4217, 69.6582], [-15.4217, -29.8697]]]}"
+    },
+    {
+      "key": "spatial-data-service-type",
+      "value": ""
+    },
+    {
+      "key": "spatial-reference-system",
+      "value": "urn:ogc:def:crs:EPSG::4258"
+    },
+    {
+      "key": "spatial_harvester",
+      "value": "true"
+    },
+    {
+      "key": "temporal-extent-begin",
+      "value": "2014-01-01"
+    },
+    {
+      "key": "temporal-extent-end",
+      "value": "2014-12-31"
+    }, {
+      "key": "reference",
+      "value": true
+    }
+  ],
+  "title": "Fish Landings to United Kingdom Ports 2014",
+  "revision_id": "7bb76aa5-a22e-46dd-bf10-fec2e0080327"
+}]
