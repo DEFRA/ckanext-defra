@@ -264,11 +264,22 @@ def popular_datasets(count=5):
     return results['results']
 
 
-def recent_datasets(count=5):
+def recently_added_datasets(count=5):
     results = get_action('package_search')(
         {},
         {
             'sort': 'metadata_created desc',
+            'rows': count
+        }
+    )
+    return results['results']
+
+
+def recently_updated_datasets(count=5):
+    results = get_action('package_search')(
+        {},
+        {
+            'sort': 'metadata_modified desc',
             'rows': count
         }
     )
@@ -414,3 +425,12 @@ def get_contact_email(pkg):
 
 def list_letters():
     return [chr(o) for o in range(ord('a'), ord('z') + 1)]
+
+
+def get_resource_count():
+    from ckan import model
+    return model.Session.query(model.Resource).count()
+
+
+def get_harvester_count():
+    return len(get_action('harvest_source_list')({}, {'all': True}))

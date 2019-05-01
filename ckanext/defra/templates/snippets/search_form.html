@@ -77,7 +77,7 @@
             <div class="col-md-3 location-search-help">
               <h3>Enter a location</h3>
               <span class="help-block" >Start typing a place name</span>
-              {% if request.params._inloc %}
+              {% if request.params and request.params._inloc %}
                 <div class="form-group has-feedback has-clear">
               {% endif %}
               <input
@@ -88,9 +88,9 @@
                 placeholder="Enter a place name"
                 data-location-service-url="{{ h.location_service_url }}"
                 name="_inloc"
-                value="{{ request.params._inloc }}"
+                value="{% if request.params %}{{ request.params._inloc }}{% endif %}"
               />
-              {% if request.params._inloc %}
+              {% if request.params and request.params._inloc %}
                   <a
                     class="form-control-feedback form-control-clear"
                     data-container="body"
