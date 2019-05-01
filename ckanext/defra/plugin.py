@@ -50,7 +50,7 @@ class DefraPlugin(plugins.SingletonPlugin,
         return routes
 
     def after_map(self, routes):
-        routes.redirect('/', '/dataset')
+        # routes.redirect('/', '/dataset')
 
         with SubMapper(routes, controller='ckanext.defra.controllers.prototype:PrototypeController') as m:
             m.connect('proto_more', '/dataset/{id}/more', action='more')

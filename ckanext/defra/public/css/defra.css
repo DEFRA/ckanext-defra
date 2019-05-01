@@ -767,6 +767,18 @@ ol.breadcrumb {
 .dataset-item .mdf-dataset-resources, .dataset-item .mdf-dataset-modified {
   margin-top: 20px;
 }
+.dataset-minimal .dataset-description,
+.dataset-minimal .mdf-dataset-resources,
+.dataset-minimal .mdf-dataset-modified {
+  display: none;
+}
+.homepage-stats li {
+  margin-bottom: 15px;
+}
+.homepage-stats .dataset-heading > a {
+  font-size: 15px;
+}
+
 li.resource-item-spacer {
   border-bottom: solid 1px #ddd;
 }
@@ -1061,4 +1073,40 @@ body.dataset-search-results .secondary, body.dataset-search-results .alert-warni
 }
 .filter-list .label.label-default a {
   color: white;
+}
+.page_primary_action {
+  margin-bottom: 0;
+}
+.page_primary_action .btn {
+  margin-bottom: 20px;
+}
+.mdf-stats {
+
+}
+
+.mdf-stats .stat {
+  height: 150px;
+  margin-bottom: 30px;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  background-color: rgba(15, 125, 65, 0.2);
+}
+.mdf-stats .stat > div {
+  display: table;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+.mdf-stats .stat > div > div {
+  display: table-row;
+  height: 50%;
+}
+.mdf-stats .stat > div > div > div {
+  display: table-cell;
+  vertical-align: top;
+}
+.mdf-stats h1 {
+  padding: 0;
+  margin: 0;
 }

@@ -15,37 +15,37 @@ Example:
 
 #}
 {% block package_list %}
-    <div class="well package-list">
-      <div class="defra-custom-filters">
-        <form class="form-inline">
-          <div class="form-group">
-            <label>
-              {% set reference_active = ('extras_reference', 'True') in request.params.items() %}
-              <input type="checkbox" name="extras_reference"{% if reference_active %} checked{% endif %}>
-              Core Reference Data
-            </label>
-          </div>
-          <div class="form-group">
-            <label>
-              {% set private_active = ('extras_private-resources', 'True') in request.params.items() %}
-              <input type="checkbox" name="extras_private-resources"{% if private_active %} checked{% endif %}>
-              Private Datasets
-            </label>
-          </div>
-        </form>
-      </div>
-      {% if packages %}
-        <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
-          {% block package_list_inner %}
-            {% for package in packages %}
-              {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
-            {% endfor %}
-          {% endblock %}
-        </ul>
-      {% else %}
-        <div class="alert alert-warning text-center">
-          <i class="fa fa-warning"></i> Your search did not match any records. Please try again.
+  <div class="well package-list">
+    <div class="defra-custom-filters">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>
+            {% set reference_active = ('extras_reference', 'True') in request.params.items() %}
+            <input type="checkbox" name="extras_reference"{% if reference_active %} checked{% endif %}>
+            Core Reference Data
+          </label>
         </div>
-      {% endif %}
+        <div class="form-group">
+          <label>
+            {% set private_active = ('extras_private-resources', 'True') in request.params.items() %}
+            <input type="checkbox" name="extras_private-resources"{% if private_active %} checked{% endif %}>
+            Private Datasets
+          </label>
+        </div>
+      </form>
     </div>
+    {% if packages %}
+      <ul class="{{ list_class or 'dataset-list list-unstyled' }}">
+        {% block package_list_inner %}
+          {% for package in packages %}
+            {% snippet 'snippets/package_item.html', package=package, item_class=item_class, hide_resources=hide_resources, banner=banner, truncate=truncate, truncate_title=truncate_title %}
+          {% endfor %}
+        {% endblock %}
+      </ul>
+    {% else %}
+      <div class="alert alert-warning text-center">
+        <i class="fa fa-warning"></i> Your search did not match any records. Please try again.
+      </div>
+    {% endif %}
+  </div>
  {% endblock %}
