@@ -2,10 +2,10 @@
 {% import 'macros/form.html' as form %}
 {% block bodytag %}{{ super() }} class="dataset-search-results"{% endblock bodytag %}
 {% set sorting = [
-  (_('Relevance'), 'score desc, metadata_modified desc'),
+  (_('Relevance'), 'score desc, last_modified desc'),
   (_('Name Ascending'), 'title_string asc'),
   (_('Name Descending'), 'title_string desc'),
-  (_('Last Modified'), 'metadata_modified desc'),
+  (_('Last Modified'), 'last_modified desc'),
   (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
 %}
 
