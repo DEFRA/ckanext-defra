@@ -17,13 +17,13 @@
 {% set search_class = search_class if search_class else 'search-giant' %}
 {% set no_bottom_border = no_bottom_border if no_bottom_border else false %}
 {% set form_id = form_id if form_id else false %}
-{% set action = action if action else ''%}
+{% set action = action if action else '' %}
 {% set mapsearch = True %}
 {% if geosearch == False or c.controller == 'ckanext.defra.controllers.publisher:PublisherController' or type == 'harvest' %}
   {% set mapsearch = False %}
 {% endif %}
 <div class="well">
-  <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get">
+  <form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %}" method="get" action="{{ action }}">
     {% block search_input %}
       <span>{{ title }}</span>
       <div class="input-group input-group-lg freetext-search">
