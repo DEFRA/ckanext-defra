@@ -1,0 +1,11 @@
+<div class="module-content homepage-stats">
+  <header>
+    <h2 class="page-heading">Recently Updated Datasets</h2>
+  </header>
+  {% set datasets = h.recently_updated_datasets(count=5) %}
+  <ul class="dataset-list list-unstyled">
+    {% for dataset in datasets %}
+    {{ h.snippet('snippets/package_item.html', package=dataset, show_resources=False, minimal=True) }}
+  {% endfor %}
+  </ul>
+</div>
