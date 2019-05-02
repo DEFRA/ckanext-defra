@@ -1,0 +1,16 @@
+[{
+  "name": "defra",
+  "dgu_name": "department-for-environment-food-and-rural-affairs",
+  "title": "Department for Environment, Food & Rural Affairs",
+  "image_url": "/images/defra.png",
+  "contacts":  [
+    "open@defra.gsi.gov.uk"
+  ],
+  "harvesters": [{
+    "name": "defra-dsp",
+    "title": "Defra Metadata harvester",
+    "url": "https://environment.data.gov.uk/discover/defra",
+    "description": null,
+    "source_type": "csw"
+  }]
+}]
