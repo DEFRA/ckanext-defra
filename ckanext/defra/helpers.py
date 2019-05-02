@@ -147,7 +147,7 @@ def clean_extra(extra):
                'theme-secondary', 'foi-name', 'foi-web',
                'access_constraints', 'its-dataset', 'register',
                'sla', 'spatial_harvester', 'private-resources',
-               'gdpr', 'reference']:
+               'gdpr', 'reference', 'metadata-date']:
         return None, None
 
     if key == 'harvest_source_reference':
