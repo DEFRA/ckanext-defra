@@ -4,6 +4,7 @@ import uuid
 
 import ckan.plugins.toolkit as toolkit
 from ckan.logic.action.create import NotFound
+from ckan.logic import ValidationError
 
 
 class ImportPublishersCommand(toolkit.CkanCommand):
@@ -99,8 +100,11 @@ class ImportPublishersCommand(toolkit.CkanCommand):
         # Delete any publishers that we haven't processed in this run
         for pub_id in self._get_publisher_ids():
             if pub_id not in saved_publishers:
-                toolkit.get_action('organization_delete')(self.get_context(), {'id': pub_id})
-                counts['delete'] += 1
+                try:
+                    toolkit.get_action('organization_delete')(self.get_context(), {'id': pub_id})
+                    counts['delete'] += 1
+                except ValidationError, ex:
+                    print('Unable to delete publisher {}, {}'.format(pub_id, ex))
 
         print('Created {add}, updated {update} and deleted {delete} publishers'.format(**counts))
 
