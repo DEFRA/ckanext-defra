@@ -4,7 +4,7 @@ import ckan.plugins.toolkit as toolkit
 from ckan.lib.base import c
 
 
-class PrototypeController(toolkit.BaseController):
+class DatasetController(toolkit.BaseController):
 
     def more(self, id):
         context = {}
