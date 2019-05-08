@@ -1,5 +1,4 @@
 # encoding: utf-8
-
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.base import c
 
