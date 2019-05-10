@@ -3,8 +3,7 @@ import json
 
 import ckan.plugins.toolkit as toolkit
 from ckan.common import response
-from ckan import model
-from ckan.lib.base import c
+
 
 class SearchController(toolkit.BaseController):
     def autocomplete(self):
@@ -30,7 +29,7 @@ class SearchController(toolkit.BaseController):
 
         packages = toolkit.get_action('package_search')({}, {
             'q': package_q,
-            'fq': package_fq,
+            'fq': package_fq + ' +dataset_type:dataset',
             'rows': 5
         })
         datasets = []
