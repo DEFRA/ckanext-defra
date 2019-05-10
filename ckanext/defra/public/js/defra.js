@@ -17,49 +17,119 @@ $(document).ready(function () {
     }
   }
 
-  $('.location-typeahead').typeahead({
-    displayText: function (item) {
-      return item.district ? item.name + ', ' + item.district : item.name;
-    },
-    source: function (query, cb) {
-      if (query && query.length > 3) {
-        $.ajax({
-          url: this.$element.data('locationServiceUrl') + '?q=' + query.split(',')[0],
-          dataType: 'json',
-          crossDomain: true,
-          success: function (resp) {
-            if (resp.Results.Place && resp.Results.Place.length > 0) {
-              return cb(resp.Results.Place)
+  if ($('.dataset-search-form').length) {
+    $('.dataset-search-form #search-query').typeahead({
+      minLength: 2,
+      maxItem: 15,
+      hint: false,
+      cache: false,
+      dynamic: true,
+      groupOrder: ['Publishers', 'Datasets', 'Harvesters'],
+      maxItemPerGroup: 5,
+      group: {
+        key: 'category'
+      },
+      display: ['title'],
+      searchOnFocus: true,
+      cancelButton: true,
+      source: {
+        autocomplete: {
+          ajax: function (query) {
+            var data = {q: query};
+            var publisher = $('body').data('publisher');
+            if (publisher) data.publisher = publisher;
+            return {
+              type: 'GET',
+              url: '/search/autocomplete',
+              data: data,
+              callback: {
+                done: function (data) {
+                  var results = [];
+                  $.each(data, function (key, val) {
+                    $.each(val, function (idx, item) {
+                      item.category = key;
+                      results.push(item);
+                    });
+                  });
+                  return results;
+                }
+              }
             }
-            return cb([]);
-          },
-          error: function () {
-            return cb([]);
           }
-        });
+        }
+      },
+      correlativeTemplate: true,
+      callback: {
+        onClick: function (node, a, item) {
+          switch (item.category) {
+            case 'Publishers':
+              window.location = '/publisher/' + item.name;
+              break;
+            case 'Datasets':
+              window.location = '/dataset/' + item.name;
+              break;
+            case 'Harvesters':
+              window.location = '/harvest/' + item.id;
+              break;
+          }
+        }
       }
-      return cb([]);
-    },
-    afterSelect: function (selectedItem) {
-      clear_map_layers();
-      if (selectedItem) {
-        var bounds = [
-          [selectedItem.Xmin, selectedItem.Ymax],
-          [selectedItem.Xmax, selectedItem.Ymin]
-        ];
-        L.rectangle(bounds, {color: '#ef6f64', weight: 2, opacity: 1}).addTo(map);
-        map.fitBounds(bounds);
-        var bbox = [selectedItem.Ymin, selectedItem.Xmin, selectedItem.Ymax, selectedItem.Xmax];
-        $('#ext_bbox,#ext_prev_extent').val(bbox.join(','));
-        $('.search-form').submit();
+    });
+  }
+
+  if ($('#location-search').length) {
+    $('#location-search #location').typeahead({
+      minLength: 3,
+      maxItem: 15,
+      hint: false,
+      cache: false,
+      dynamic: true,
+      searchOnFocus: true,
+      display: ['name', 'district'],
+      template: function(query, item) {
+        return item.district ? item.name + ', ' + item.district : item.name;
+      },
+      source: {
+        autocomplete: {
+          ajax: function (query) {
+            var data = {q: query.split(',')[0]};
+            return {
+              type: 'GET',
+              url: $('.location-typeahead').data('locationServiceUrl'),
+              data: data,
+              callback: {
+                done: function (data) {
+                  if (data.error) return [];
+                  return data.Results.Place ? data.Results.Place : [];
+                }
+              }
+            }
+          }
+        }
+      },
+      correlativeTemplate: true,
+      callback: {
+        onClick: function (node, a, item) {
+          clear_map_layers();
+          var bounds = [
+            [item.Xmin, item.Ymax],
+            [item.Xmax, item.Ymin]
+          ];
+          L.rectangle(bounds, {color: '#ef6f64', weight: 2, opacity: 1}).addTo(map);
+          map.fitBounds(bounds);
+          var bbox = [item.Ymin, item.Xmin, item.Ymax, item.Xmax];
+          $('#ext_bbox,#ext_prev_extent').val(bbox.join(','));
+          $('#location').val(item.name);
+          $('.search-form').submit();
+        }
       }
-    }
-  });
+    });
+  }
 
   /**
    * Clear location search input
    */
-  $('.location-search .form-control-clear').click(function() {
+  $('.location-search .clear-location').click(function() {
     $('#ext_bbox,#ext_prev_extent,#location').val("");
     clear_map_layers();
     $('.search-form').submit();
@@ -88,9 +158,6 @@ $(document).ready(function () {
         map.setZoom(5);
       }
     }
-  }).on('hidden.bs.collapse', function() {
-    $('#ext_bbox,#ext_prev_extent,#location').val("");
-    clear_map_layers();
   });
 
   /*
