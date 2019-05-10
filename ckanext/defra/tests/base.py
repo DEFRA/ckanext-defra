@@ -4,7 +4,7 @@ from ckanext.harvest.model import setup as db_setup
 
 
 class BaseTestCase(helpers.FunctionalTestBase):
-    _load_plugins = ['harvest']
+    _load_plugins = ['harvest', 'test_harvester']
 
     @classmethod
     def setup_class(cls):
