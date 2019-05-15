@@ -443,11 +443,12 @@ def is_lucene(query):
     :return:
     """
     match = re.match(
-        '''
-        (.*?:.*?)|  # Field Search (<field>:<value>)
-        (.*? AND .*?)|  # And operator (<x> AND <y>)
-        (.*? OR .*?)|  # Or operator (<x> OR <y>)
-        (.*? NOT .*?)
+        r'''
+        (\w+:\w+)|  # Field Search (<field>:<value>)
+        (\w+\ AND\ \w+)|  # And operator (<x> AND <y>)
+        (\w+\ OR\ \w+)|  # Or operator (<x> OR <y>)
+        (\w+\ NOT\ \w+)|  # Not operator (NOT <x>)
+        (-\w+)  # Exclude operator (-<x>)
         ''',
         query,
         re.X | re.I
