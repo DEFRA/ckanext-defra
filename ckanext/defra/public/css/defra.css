@@ -1046,6 +1046,13 @@ ul.collection li {
   transform: rotate(90deg);
   transition-duration: 200ms;
 }
+.advanced-search-wrapper {
+  margin-top: 14px;
+}
+#advanced-search-help dd {
+  margin-bottom: 20px;
+}
+
 #dataset-resources .mdf-resource .data-type {
   margin-left: 10px;
 }

@@ -70,10 +70,21 @@
     {% block search_title %}
       {% if mapsearch %}
         {% set has_bbox = h.query_has_bbox(request) %}
-        <div class="checkbox location-search-toggle">
-          <a class="{% if not has_bbox %}collapsed{% endif %}" role="button" data-toggle="collapse" href="#location-search-collapse">
-            <i class="fa fa-caret-right"></i> Search within a geographic area
-          </a>
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="checkbox location-search-toggle">
+              <a class="{% if not has_bbox %}collapsed{% endif %}" role="button" data-toggle="collapse" href="#location-search-collapse">
+                <i class="fa fa-caret-right"></i> Search within a geographic area
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-12 advanced-search-wrapper text-right">
+            <small>
+              <a href="#" data-toggle="modal" data-target="#advanced-search-help">
+                <i class="fa fa-question-circle"></i> Advanced Search Queries
+              </a>
+            </small>
+          </div>
         </div>
         <div class="collapse{% if has_bbox %} in pre-opened{% endif %}" id="location-search-collapse">
           <div id="location-search" class="row location-search">
@@ -191,3 +202,50 @@
     <p id="search-error"><strong>There was an error while searching.</strong> Please try again.</p>
   {% endtrans %}
 {% endif %}
+
+<div class="modal fade" tabindex="-1" role="dialog" id="advanced-search-help">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">
+          Advanced Searching with {{ g.site_title }}
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>{{ g.site_title }} makes use of <a href="https://lucene.apache.org/core/2_9_4/queryparsersyntax.html#Term%20Modifiers" target="_blank">Lucene Syntax</a> to provide advanced querying of metadata on the system.</p>
+        <p>Below you can find some helpful commands to get you started.</p>
+        <br/>
+        <div class="row">
+          <div class="col-md-6">
+            <dl>
+              <dt>Search for a specific title</dt>
+              <dd><a href="?q=title:Dogs">title:Dogs</a></dd>
+              <dt>Search within a specific department</dt>
+              <dd><a href="?q=organization:Defra">organization:Defra</a></dd>
+              <dt>Search for a specific title within a department</dt>
+              <dd><a href="?q=organization:defra title:publishing">organization:defra title:publishing</a></dd>
+              <dt>Exclude certain keywords</dt>
+              <dd><a href="?q=title:dogs NOT cats">dogs NOT cats</a></dd>
+            </dl>
+          </div>
+          <div class="col-md-6">
+            <dl>
+              <dt>Find titles that words starting with "Cat"</dt>
+              <dd><a href="?q=title:Cat*">title:Cat*</a></dd>
+              <dt>Search across multiple departments</dt>
+              <dd><a href="?q=organization:defra OR organization:cefas">organization:defra OR organization:cefas</a></dd>
+              <dt>Search for multiple strings</dt>
+              <dd><a href="?q=title: dogs AND cats">dogs AND cats</a></dd>
+              <dt>Search between specific dates</dt>
+              <dd><a href="?q=title:[2005 TO 2010]">title:[2005 TO 2010]</a></dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

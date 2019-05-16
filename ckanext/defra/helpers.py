@@ -434,3 +434,23 @@ def get_resource_count():
 
 def get_harvester_count():
     return len(get_action('harvest_source_list')({}, {'all': True}))
+
+
+def is_lucene(query):
+    """
+    Check if a search query contains lucene syntax
+    :param query:
+    :return:
+    """
+    match = re.match(
+        r'''
+        (\w+:\w+)|  # Field Search (<field>:<value>)
+        (\w+\ AND\ \w+)|  # And operator (<x> AND <y>)
+        (\w+\ OR\ \w+)|  # Or operator (<x> OR <y>)
+        (\w+\ NOT\ \w+)|  # Not operator (NOT <x>)
+        (-\w+)  # Exclude operator (-<x>)
+        ''',
+        query,
+        re.X | re.I
+    )
+    return match is not None
