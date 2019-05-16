@@ -208,9 +208,9 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">
+        <h3 class="modal-title" id="myModalLabel">
           Advanced Searching with {{ g.site_title }}
-        </h4>
+        </h3>
       </div>
       <div class="modal-body">
         <p>{{ g.site_title }} makes use of <a href="https://lucene.apache.org/core/2_9_4/queryparsersyntax.html#Term%20Modifiers" target="_blank">Lucene Syntax</a> to provide advanced querying of metadata on the system.</p>
@@ -231,7 +231,7 @@
           </div>
           <div class="col-md-6">
             <dl>
-              <dt>Find titles that words starting with "Cat"</dt>
+              <dt>Find titles containing words starting with "Cat"</dt>
               <dd><a href="?q=title:Cat*">title:Cat*</a></dd>
               <dt>Search across multiple departments</dt>
               <dd><a href="?q=organization:defra OR organization:cefas">organization:defra OR organization:cefas</a></dd>
