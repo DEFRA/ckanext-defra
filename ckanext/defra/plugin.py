@@ -50,9 +50,7 @@ class DefraPlugin(plugins.SingletonPlugin,
         return routes
 
     def after_map(self, routes):
-        # routes.redirect('/', '/dataset')
-
-        with SubMapper(routes, controller='ckanext.defra.controllers.prototype:PrototypeController') as m:
+        with SubMapper(routes, controller='ckanext.defra.controllers.dataset:DatasetController') as m:
             m.connect('proto_more', '/dataset/{id}/more', action='more')
 
         controller = 'ckanext.defra.controllers.publisher:PublisherController'
@@ -87,7 +85,9 @@ class DefraPlugin(plugins.SingletonPlugin,
                       '/publisher/bulk_process/{id}',
                       action='bulk_process')
 
-        # delete_routes_by_path_startswith(routes, '/organization')
+        with SubMapper(routes, controller='ckanext.defra.controllers.search:SearchController') as m:
+            m.connect('search_autocomplete', '/search/autocomplete', action='autocomplete')
+
         return routes
 
     # ITemplateHelpers

@@ -390,6 +390,85 @@ a.org-item:hover {
 .search-form .checkbox label {
   padding-left: 0;
 }
+.search-form .typeahead__container {
+  font: inherit;
+  margin-top: 10px;
+}
+.search-form .typeahead__field {
+  height: 46px;
+}
+.search-form .typeahead__button button, .search-form .js-typeahead, .search-form .typeahead__cancel-button {
+  height: 100%;
+  font-size: 18px;
+}
+.search-form .js-typeahead {
+  padding: 10px 16px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.search-form .typeahead__button button {
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  width: 130px;
+  background-color: #0F7D41;
+  color: #ffffff;
+}
+.search-form .typeahead__button button:hover {
+  background-color: #11924B;
+  color: white;
+}
+.search-form .typeahead__filter+.typeahead__button button {
+  margin-left: 0;
+}
+.search-form .typeahead__list > .typeahead__group.active > a,
+.search-form .typeahead__list > .typeahead__group > a,
+.search-form .typeahead__list > .typeahead__group > a:focus,
+.search-form .typeahead__list>.typeahead__group> a:hover {
+  color: #0F7D41;
+  background: #E8F2EC;
+}
+.search-form .typeahead__list>.typeahead__group:first-child {
+  border-color: #97C4A9;
+  border-top: 1px solid #97C4A9;
+}
+.search-form .typeahead__list > li.typeahead__group+li.typeahead__item {
+  border-color: #97C4A9;
+}
+.search-form .typeahead__hint {
+  padding: 10px 16px !important;
+  font-size: 18px;
+}
+.search-form .typeahead__cancel-button {
+  line-height: 2.0;
+}
+.location-search .js-typeahead {
+  padding: 10px 16px;
+  font-size: 14px;
+}
+.location-search .typeahead__field {
+  height: 34px;
+}
+.location-search .typeahead__list {
+  font-size: 14px;
+}
+.location-search .typeahead__cancel-button {
+  line-height: 1.4;
+}
+.location-search .clear-location {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  line-height: 1.25;
+  padding: .5rem .75rem;
+  line-height: 1.5;
+}
+.location-search .cancel .clear-location {
+  visibility: hidden;
+}
 
 #dataset-search-form {
   margin-bottom: 0;
@@ -565,6 +644,9 @@ label::after {
 }
 .leaflet-draw-actions li {
   display: none;
+}
+.leaflet-top {
+  z-index: 1;
 }
 .dataset-map-expanded #dataset-map {
   position: relative !important;

@@ -1,5 +1,5 @@
 {% ckan_extends %}
-
+{% block bodytag %}{{ super() }} class="publisher" data-publisher="{{ c.group_dict.name }}"{% endblock bodytag %}
 {% block organization_facets %}
   <div class="filters">
     <div>
