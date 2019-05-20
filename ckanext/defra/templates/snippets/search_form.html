@@ -225,7 +225,7 @@
               <dt>Search for a specific title within a department</dt>
               <dd><a href="{{ action }}?q=organization:defra title:publishing">organization:defra title:publishing</a></dd>
               <dt>Exclude certain keywords</dt>
-              <dd><a href="{{ action }}?q=title:dogs NOT cats">dogs NOT cats</a></dd>
+              <dd><a href="{{ action }}?q=title:dogs NOT title:cats">title:dogs NOT title:cats</a></dd>
             </dl>
           </div>
           <div class="col-md-6">
@@ -235,7 +235,7 @@
               <dt>Search across multiple departments</dt>
               <dd><a href="{{ action }}?q=organization:defra OR organization:cefas">organization:defra OR organization:cefas</a></dd>
               <dt>Search for multiple strings</dt>
-              <dd><a href="{{ action }}?q=title: dogs AND cats">dogs AND cats</a></dd>
+              <dd><a href="{{ action }}?q=title:dogs AND title:cats">title:dogs AND title:cats</a></dd>
               <dt>Search between specific dates</dt>
               <dd><a href="{{ action }}?q=title:[2005 TO 2010]">title:[2005 TO 2010]</a></dd>
             </dl>
