@@ -1,4 +1,4 @@
-import os
+import pkg_resources
 import re
 import json
 
@@ -493,3 +493,7 @@ def dataset_issues(dataset):
 
 def is_sysadmin(user):
     return authz.is_sysadmin(user)
+
+
+def get_current_version():
+    return pkg_resources.require("ckanext-defra")[0].version

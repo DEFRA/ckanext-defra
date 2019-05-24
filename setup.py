@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setup(
     name='''ckanext-defra''',
-    version='0.0.1',
+    version='0.1.0',
 
     description='''defra extension''',
     long_description=long_description,

@@ -1199,3 +1199,7 @@ body.dataset-search-results .secondary, body.dataset-search-results .alert-warni
   padding: 0;
   margin: 0;
 }
+.attribution {
+  font-size: small;
+  text-align: right;
+}
