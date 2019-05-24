@@ -51,7 +51,8 @@ class DefraPlugin(plugins.SingletonPlugin,
 
     def after_map(self, routes):
         with SubMapper(routes, controller='ckanext.defra.controllers.dataset:DatasetController') as m:
-            m.connect('proto_more', '/dataset/{id}/more', action='more')
+            m.connect('dataset_more', '/dataset/{dataset_id}/more', action='more')
+            m.connect('dataset_issues', '/dataset/{dataset_id}/issues', action='issues')
 
         controller = 'ckanext.defra.controllers.publisher:PublisherController'
         with SubMapper(routes,

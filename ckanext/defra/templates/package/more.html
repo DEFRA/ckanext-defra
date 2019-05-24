@@ -1,8 +1,5 @@
 {% extends "/package/read_base.html" %}
-
-
 {% set pkg = c.pkg_dict %}
-
 {% block primary_content_inner %}
   {% block package_description %}
     {% if pkg.private %}
@@ -12,26 +9,23 @@
       </span>
     {% endif %}
     <h1>
-        {{ pkg.title }}
+      {{ pkg.title }}
     </h1>
-
     <ul class="nav nav-tabs">
-        <li><a href="/dataset/{{c.pkg_dict.name}}">Dataset</a></li>
-        <li class="active"><a href="">More like this</a></li>
-        <li><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+      <li><a href="/dataset/{{c.pkg_dict.name}}">Dataset</a></li>
+      <li class="active"><a href="">More like this</a></li>
+      <li><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+      {% if h.is_sysadmin(c.user) %}
+        <li><a href="/dataset/{{c.pkg_dict.name}}/issues">Issues</a></li>
+      {% endif %}
     </ul>
-
-
     <div class="dataset-tab-container">
-        {% set more_datasets = h.more_like_this(c.pkg_dict) %}
-        <ul class="dataset-list list-unstyled" style="margin-top: 20px;">
+      {% set more_datasets = h.more_like_this(c.pkg_dict) %}
+      <ul class="dataset-list list-unstyled" style="margin-top: 20px;">
         {% for dataset in more_datasets %}
-            {{ h.snippet('snippets/package_item.html', package=dataset.as_dict(), show_resources=False) }}
+          {{ h.snippet('snippets/package_item.html', package=dataset.as_dict(), show_resources=False) }}
         {% endfor %}
-        </ul>
-    </div>
-
-  {% endblock %}
-
+      </ul>
     </div>
   {% endblock %}
+{% endblock %}

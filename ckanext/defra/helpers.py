@@ -1,6 +1,9 @@
+import os
 import re
 import json
+
 from ckan.plugins.toolkit import _, request, get_action
+import ckan.authz as authz
 
 
 def get_licence_fields_from_free_text(licence_str):
@@ -454,3 +457,39 @@ def is_lucene(query):
         re.X | re.I
     )
     return match is not None
+
+
+def dataset_issues(dataset):
+    """
+    Return a list of known issues with the dataset. Requires ckanext-defrareports extension
+    :param dataset_id:
+    :return:
+    """
+    try:
+        from ckanext.defrareports.lib import quality
+    except ImportError:
+        return None
+
+    issues = {
+        'dataset': [],
+        'resource': []
+    }
+    score, reasons = quality.score_record(dataset)
+    for reason in reasons:
+        issues['dataset'].append(reason)
+
+    for resource in dataset['resources']:
+        if resource.get('link_status') != 'active':
+            issues['resource'].append({
+                'name': resource.get('name'),
+                'url': resource.get('url'),
+                'issue': '<a href="{} target="_blank">Linked resource</a> doesn\'t seem to exist'.format(
+                    resource['url']
+                )
+            })
+
+    return issues
+
+
+def is_sysadmin(user):
+    return authz.is_sysadmin(user)

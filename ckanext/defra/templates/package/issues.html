@@ -1,0 +1,66 @@
+{% extends "/package/read_base.html" %}
+{% set pkg = c.pkg_dict %}
+{% block primary_content_inner %}
+  {% block package_description %}
+    {% if pkg.private %}
+      <span class="dataset-private label label-inverse pull-right">
+        <i class="fa fa-lock"></i>
+        {{ _('Private') }}
+      </span>
+    {% endif %}
+    <h1>
+      {{ pkg.title }}
+    </h1>
+    <ul class="nav nav-tabs">
+      <li><a href="/dataset/{{c.pkg_dict.name}}">Dataset</a></li>
+      <li><a href="">More like this</a></li>
+      <li><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+      {% if h.is_sysadmin(c.user) %}
+        <li class="active"><a href="/dataset/{{c.pkg_dict.name}}/issues">Issues</a></li>
+      {% endif %}
+    </ul>
+    <div class="dataset-tab-container">
+      {% set issues = h.dataset_issues(c.pkg_dict) %}
+      {% if issues == None %}
+        <div class="alert text-danger text-center">
+          <i class="fa fa-warning"></i>&nbsp;
+          Please install the <a href="https://github.com/DEFRA/ckanext-defrareports" target="_blank">ckanext-defrareports</a> plugin to enable the dataset issues tab
+        </div>
+      {% elif issues.dataset|length > 0 or issues.resource|length > 0 %}
+        {% if issues.dataset %}
+          <div class="panel panel-default">
+            <div class="panel-heading">Dataset Issues</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                {% for issue in issues.dataset %}
+                  <li class="list-group-item">
+                    <i class="fa fa-exclamation-circle"></i> {{ issue }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+        {% if issues.resource %}
+          <div class="panel panel-default">
+            <div class="panel-heading">Resource Issues</div>
+            <div class="panel-body">
+              <ul class="list-group">
+                {% for issue in issues.resource %}
+                  <li class="list-group-item">
+                    <i class="fa fa-exclamation-circle"></i> {{ issue.name }}: {{ issue.issue|safe }}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="alert text-success text-center">
+          <i class="fa fa-check-circle"></i>&nbsp;
+          No issues detected with this dataset.
+        </div>
+      {% endif %}
+    </div>
+  {% endblock %}
+{% endblock %}

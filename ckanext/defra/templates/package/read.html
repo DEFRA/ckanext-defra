@@ -12,75 +12,76 @@
       </span>
     {% endif %}
     <h1>
-        {{ pkg.title }}
+      {{ pkg.title }}
     </h1>
 
     <ul class="nav nav-tabs">
-        <li class="active"><a href="">Dataset</a></li>
-        <li><a href="/dataset/{{ c.pkg_dict.name }}/more">More like this</a></li>
-        <li><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+      <li class="active"><a href="">Dataset</a></li>
+      <li><a href="/dataset/{{ c.pkg_dict.name }}/more">More like this</a></li>
+      <li><a href="{{ h.url_for('dataset_activity', id=pkg.name) }}">Activity</a></li>
+      <li><a href="/dataset/{{c.pkg_dict.name}}/issues">Issues</a></li>
     </ul>
 
     <div class="dataset-tab-container">
-    {% block package_notes %}
+      {% block package_notes %}
         {% if pkg.notes %}
-        <div class="notes embedded-content">
+          <div class="notes embedded-content">
             {{ h.render_markdown(h.get_translated(pkg, 'notes')) }}
-        </div>
+          </div>
         {% endif %}
 
         {% set release_notes = h.release_notes(pkg) %}
         {% if release_notes %}
-            <h3>Release notes</h3>
-            <div class="notes embedded-content">
+          <h3>Release notes</h3>
+          <div class="notes embedded-content">
             {{ release_notes }}
-            </div>
+          </div>
         {% endif %}
 
         {% if h.is_reference_dataset(pkg) %}
-        <div class="rds-container">
+          <div class="rds-container">
             <span class="label label-blueleft reference-label" >REFERENCE</span>
             <span class="rds-label"> This data is sourced from the <a href="http://rdsproto.ukwest.cloudapp.azure.com/">Defra Reference Data Service</a>
-        </div>
+          </div>
         {% endif %}
 
         {% if h.is_gdpr_dataset(pkg) %}
-        <div class="gdpr-container">
+          <div class="gdpr-container">
             <span class="label label-danger">GDPR</span>
             <span class="gdpr-label"> This dataset falls under the GDPR regulations
-        </div>
+          </div>
         {% endif %}
 
         {% set access_constraints = h.access_constraints(pkg) %}
         {% if access_constraints %}
-            <h3>Access constraints</h3>
-            <div class="notes embedded-content">
+          <h3>Access constraints</h3>
+          <div class="notes embedded-content">
             {{ h.linked_access_constraints(access_constraints)|safe }}
-            </div>
+          </div>
         {% endif %}
 
         {% set freq = h.update_frequency(pkg) %}
         {% if freq %}
-        <h3>Update frequency</h3>
-        <div class="notes embedded-content">
-        {{ freq }}
-        </div>
+          <h3>Update frequency</h3>
+          <div class="notes embedded-content">
+            {{ freq }}
+          </div>
         {% endif %}
 
         {% block package_resources %}
-        {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+          {% snippet "package/snippets/resources_list.html", pkg=pkg, resources=pkg.resources %}
+        {% endblock %}
+
+        {% block package_tags %}
+        {% endblock %}
+        </div>
+
+        {% block package_additional_info %}
+          {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
+        {% endblock %}
+
       {% endblock %}
-
-      {% block package_tags %}
-      {% endblock %}
-    </div>
-
-    {% block package_additional_info %}
-    {% snippet "package/snippets/additional_info.html", pkg_dict=pkg %}
   {% endblock %}
 
-    {% endblock %}
-  {% endblock %}
-
-    </div>
-  {% endblock %}
+  </div>
+{% endblock %}
