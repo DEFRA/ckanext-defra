@@ -3,15 +3,15 @@
 {% if type == 'dataset' %}
   {% set sorting = [
     (_('Relevance'), 'score desc, last_modified desc'),
-    (_('Name Ascending'), 'title_string asc'),
-    (_('Name Descending'), 'title_string desc'),
-    (_('Last Modified'), 'last_modified desc'),
+    (_('Last modified'), 'last_modified desc'),
+    (_('Title ascending'), 'title_string asc'),
+    (_('Title descending'), 'title_string desc'),
     (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
   %}
 {% elif type == 'organization' %}
   {% set sorting = [
-    (_('Name Ascending'), 'title asc'),
-    (_('Name Descending'), 'title desc')
+    (_('Title ascending'), 'title asc'),
+    (_('Title descending'), 'title desc')
   ] %}
 {% endif %}
 {% set search_class = search_class if search_class else 'search-giant' %}
@@ -81,7 +81,7 @@
           <div class="col-md-6 col-sm-12 advanced-search-wrapper text-right">
             <small>
               <a href="#" data-toggle="modal" data-target="#advanced-search-help">
-                <i class="fa fa-question-circle"></i> Advanced Search Queries
+                <i class="fa fa-question-circle"></i> Advanced search queries
               </a>
             </small>
           </div>
@@ -208,7 +208,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h3 class="modal-title" id="myModalLabel">
-          Advanced Searching with {{ g.site_title }}
+          Advanced searching with {{ g.site_title }}
         </h3>
       </div>
       <div class="modal-body">
